@@ -1,0 +1,82 @@
+---
+import database from '../data/database.json';
+const { categories } = database;
+---
+
+<section class="bg-gray-50 py-12">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="bg-white rounded-lg card-shadow p-6 animate-slide-up">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+        <i class="fas fa-search text-primary-500 mr-2"></i>
+        Buscar Productos
+      </h2>
+      
+      <div class="flex flex-col md:flex-row gap-4">
+        <div class="flex-1">
+          <input 
+            type="text" 
+            id="searchInput"
+            placeholder="Buscar productos..."
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all duration-300 hover:border-primary-300"
+          />
+        </div>
+        
+        <div class="md:w-48">
+          <select 
+            id="categoryFilter"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all duration-300 hover:border-primary-300"
+          >
+            {categories.map(category => (
+              <option value={category}>{category}</option>
+            ))}
+          </select>
+        </div>
+        
+        <button 
+          id="searchButton"
+          class="bg-primary-500 hover:bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg transform hover:-translate-y-0.5"
+        >
+          <i class="fas fa-search"></i>
+          Buscar
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const searchButton = document.getElementById('searchButton');
+    
+    function performSearch() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const selectedCategory = categoryFilter.value;
+      
+      // Filter products
+      const productCards = document.querySelectorAll('.product-card');
+      productCards.forEach(card => {
+        const title = card.querySelector('.product-title').textContent.toLowerCase();
+        const category = card.dataset.category;
+        
+        const matchesSearch = title.includes(searchTerm);
+        const matchesCategory = selectedCategory === 'Todos' || category === selectedCategory;
+        
+        if (matchesSearch && matchesCategory) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    searchButton.addEventListener('click', performSearch);
+    searchInput.addEventListener('keyup', function(e) {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
+    });
+    categoryFilter.addEventListener('change', performSearch);
+  });
+</script>

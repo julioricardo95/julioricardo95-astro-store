@@ -1,0 +1,62 @@
+---
+import database from '../data/database.json';
+const articles = database.articles.slice(0, 3);
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">
+      <i class="fas fa-newspaper text-primary-500 mr-2"></i>
+      Artículos Informativos
+    </h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {articles.map(article => (
+        <article class="bg-white rounded-lg card-shadow card-shadow-hover overflow-hidden transition-all duration-500 animate-fade-in hover:scale-105 hover:-translate-y-2 group">
+          <div class="relative">
+            <img 
+              src={article.image} 
+              alt={article.title}
+              class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
+            />
+            <div class="absolute top-4 left-4 bg-secondary-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-md animate-pulse-slow">
+              {article.category}
+            </div>
+          </div>
+          
+          <div class="p-6">
+            <time class="text-gray-500 text-sm flex items-center mb-3">
+              <i class="fas fa-calendar-alt mr-2 group-hover:animate-wiggle"></i>
+              {new Date(article.date).toLocaleDateString('es-ES', { 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric' 
+            })}
+            </time>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-secondary-600 transition-colors duration-300">{article.title}</h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">{article.description}</p>
+            
+            <a 
+              href={`/articulo/${article.id}`}
+              class="inline-flex items-center text-primary-500 hover:text-primary-600 font-semibold transition-all duration-300 group/link"
+            >
+              Leer más
+              <i class="fas fa-arrow-right ml-2 group-hover/link:translate-x-2 group-hover/link:animate-bounce-slow transition-transform duration-300"></i>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+    
+    <div class="text-center mt-12">
+      <a 
+        href="/articulos" 
+        class="bg-secondary-500 hover:bg-secondary-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300 inline-flex items-center"
+      >
+        <i class="fas fa-newspaper mr-2"></i>
+        Ver Todos los Artículos
+      </a>
+    </div>
+  </div>
+</section>

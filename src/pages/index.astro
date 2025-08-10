@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Banner from '../components/Banner.astro';
+import SearchFilter from '../components/SearchFilter.astro';
+import ProductCarousel from '../components/ProductCarousel.astro';
+import ArticleGrid from '../components/ArticleGrid.astro';
+import ProductGrid from '../components/ProductGrid.astro';
+import SocialButtons from '../components/SocialButtons.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Mi Tienda Online - Los Mejores Productos al Mejor Precio";
+const description = "Descubre nuestra amplia selección de productos de calidad. Electrónicos, moda, deportes y más. Envío gratuito y las mejores ofertas.";
+const image = "https://images.pexels.com/photos/1292294/pexels-photo-1292294.jpeg?auto=compress&cs=tinysrgb&w=1200";
+---
+
+<BaseLayout title={title} description={description} image={image}>
+  <main>
+    <Banner />
+    <SearchFilter />
+    <ProductCarousel />
+    <div id="articulos">
+      <ArticleGrid />
+    </div>
+    <ProductGrid />
+    <SocialButtons />
+  </main>
+  <Footer />
+</BaseLayout>
