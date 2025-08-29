@@ -1,0 +1,575 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer';
+import articlesData from '../../data/articles.json';
+
+function formatDate(dateString: string): string {
+  return new Intl.DateTimeFormat('es-ES', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(new Date(dateString));
+}
+
+// Ordenar artículos por fecha de publicación (más recientes primero)
+const sortedArticles = articlesData.sort((a, b) => 
+  new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
+);
+
+const featuredArticle = sortedArticles.find(article => article.featured);
+const otherArticles = sortedArticles.filter(article => article.id !== featuredArticle?.id);
+---
+
+<Layout 
+  title="Blog de Tecnología - TechStore Pro"
+  description="Mantente actualizado con las últimas noticias, tendencias, reviews y consejos del mundo tecnológico. Guías de compra, análisis de productos y tips de expertos."
+  keywords="blog tecnología, noticias tech, reviews productos, guías compra, tendencias tecnológicas, consejos expertos, análisis smartphones"
+  type="blog"
+>
+  <Header />
+  <main class="blog-page">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb">
+        <a href="/">Inicio</a>
+        <span class="separator">›</span>
+        <span>Blog</span>
+      </nav>
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1 class="page-title">Blog de Tecnología</h1>
+        <p class="page-subtitle">
+          Descubre las últimas tendencias, análisis y consejos del mundo tecnológico
+        </p>
+      </div>
+
+      <!-- Artículo Destacado -->
+      {featuredArticle && (
+        <article class="featured-article">
+          <div class="featured-content">
+            <div class="featured-text">
+              <div class="article-meta">
+                <span class="article-category">
+                  <i class="fas fa-tag"></i>
+                  {featuredArticle.category}
+                </span>
+                <span class="article-date">
+                  <i class="fas fa-calendar"></i>
+                  {formatDate(featuredArticle.publishDate)}
+                </span>
+                <span class="article-read-time">
+                  <i class="fas fa-clock"></i>
+                  {featuredArticle.readTime} min lectura
+                </span>
+              </div>
+              
+              <h2 class="featured-title">
+                <a href={`/articulos/${featuredArticle.slug}`}>
+                  {featuredArticle.title}
+                </a>
+              </h2>
+              
+              <p class="featured-excerpt">
+                {featuredArticle.excerpt}
+              </p>
+              
+              <div class="featured-footer">
+                <div class="article-author">
+                  <img 
+                    src={`https://ui-avatars.com/api/?name=${encodeURIComponent(featuredArticle.author)}&background=2563EB&color=fff&size=48&rounded=true`}
+                    alt={featuredArticle.author}
+                    class="author-avatar"
+                  />
+                  <div class="author-info">
+                    <span class="author-name">{featuredArticle.author}</span>
+                    <span class="author-title">Editor Tecnológico</span>
+                  </div>
+                </div>
+                
+                <a href={`/articulos/${featuredArticle.slug}`} class="btn btn-primary">
+                  <i class="fas fa-book-open"></i>
+                  Leer Artículo
+                </a>
+              </div>
+            </div>
+            
+            <div class="featured-image">
+              <img 
+                src={featuredArticle.image} 
+                alt={featuredArticle.title}
+                loading="eager"
+              />
+              <div class="featured-badge">
+                <i class="fas fa-star"></i>
+                Destacado
+              </div>
+            </div>
+          </div>
+        </article>
+      )}
+
+      <!-- Grid de Artículos -->
+      <div class="articles-section">
+        <div class="section-header">
+          <h2>Todos los Artículos</h2>
+          <div class="articles-filters">
+            <select class="filter-select" id="category-filter">
+              <option value="">Todas las categorías</option>
+              <option value="tecnologia">Tecnología</option>
+              <option value="gaming">Gaming</option>
+              <option value="salud">Salud</option>
+              <option value="fotografia">Fotografía</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="articles-grid">
+          {otherArticles.map(article => (
+            <article class="article-card">
+              <div class="article-image">
+                <a href={`/articulos/${article.slug}`}>
+                  <img 
+                    src={article.image} 
+                    alt={article.title}
+                    loading="lazy"
+                  />
+                </a>
+                <div class="article-overlay">
+                  <a href={`/articulos/${article.slug}`} class="read-btn">
+                    <i class="fas fa-book-open"></i>
+                    Leer
+                  </a>
+                </div>
+              </div>
+              
+              <div class="article-content">
+                <div class="article-meta">
+                  <span class="article-category">
+                    <i class="fas fa-tag"></i>
+                    {article.category}
+                  </span>
+                  <span class="article-date">
+                    <i class="fas fa-calendar"></i>
+                    {formatDate(article.publishDate)}
+                  </span>
+                  <span class="article-read-time">
+                    <i class="fas fa-clock"></i>
+                    {article.readTime} min
+                  </span>
+                </div>
+                
+                <h3 class="article-title">
+                  <a href={`/articulos/${article.slug}`}>
+                    {article.title}
+                  </a>
+                </h3>
+                
+                <p class="article-excerpt">
+                  {article.excerpt}
+                </p>
+                
+                <div class="article-footer">
+                  <div class="article-author">
+                    <img 
+                      src={`https://ui-avatars.com/api/?name=${encodeURIComponent(article.author)}&background=2563EB&color=fff&size=32&rounded=true`}
+                      alt={article.author}
+                      class="author-avatar"
+                    />
+                    <span class="author-name">{article.author}</span>
+                  </div>
+                  
+                  <div class="article-tags">
+                    {article.tags.slice(0, 2).map(tag => (
+                      <span class="tag">#{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer client:load />
+</Layout>
+
+<style>
+  .blog-page {
+    min-height: 100vh;
+    padding: var(--spacing-8) 0;
+    background: var(--gray-50);
+  }
+
+  .breadcrumb {
+    margin-bottom: var(--spacing-6);
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: var(--spacing-16);
+  }
+
+  .page-title {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .page-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--gray-600);
+    margin: 0;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .featured-article {
+    background: white;
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    margin-bottom: var(--spacing-20);
+    border: 1px solid var(--gray-200);
+  }
+
+  .featured-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+  }
+
+  .featured-text {
+    padding: var(--spacing-12);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .featured-image {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: var(--spacing-6);
+    right: var(--spacing-6);
+    background: var(--accent-color);
+    color: white;
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+  }
+
+  .featured-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    margin: var(--spacing-6) 0;
+    line-height: 1.2;
+  }
+
+  .featured-title a {
+    color: var(--gray-900);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .featured-title a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  .featured-excerpt {
+    font-size: var(--font-size-lg);
+    line-height: 1.7;
+    color: var(--gray-700);
+    margin-bottom: var(--spacing-8);
+  }
+
+  .featured-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+    font-size: var(--font-size-sm);
+    color: var(--gray-500);
+  }
+
+  .article-meta span {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+  }
+
+  .article-category {
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+
+  .article-author {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+  }
+
+  .author-avatar {
+    border-radius: 50%;
+    border: 2px solid var(--gray-200);
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .author-name {
+    font-weight: 600;
+    color: var(--gray-900);
+    font-size: var(--font-size-sm);
+  }
+
+  .author-title {
+    font-size: var(--font-size-xs);
+    color: var(--gray-500);
+  }
+
+  .articles-section {
+    background: white;
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-12);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-12);
+    border-bottom: 1px solid var(--gray-200);
+    padding-bottom: var(--spacing-6);
+  }
+
+  .section-header h2 {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0;
+  }
+
+  .articles-filters .filter-select {
+    padding: var(--spacing-3) var(--spacing-4);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    background: white;
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+  }
+
+  .filter-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-8);
+  }
+
+  .article-card {
+    background: white;
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    border: 1px solid var(--gray-100);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .article-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+  }
+
+  .article-card:hover .article-image img {
+    transform: scale(1.05);
+  }
+
+  .article-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+  }
+
+  .article-card:hover .article-overlay {
+    opacity: 1;
+  }
+
+  .read-btn {
+    background: white;
+    color: var(--gray-900);
+    padding: var(--spacing-3) var(--spacing-6);
+    border-radius: var(--border-radius-full);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    transition: all var(--transition-fast);
+    font-size: var(--font-size-sm);
+  }
+
+  .read-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    transform: scale(1.05);
+  }
+
+  .article-content {
+    padding: var(--spacing-6);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .article-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin: 0 0 var(--spacing-4) 0;
+    line-height: 1.3;
+  }
+
+  .article-title a {
+    color: var(--gray-900);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .article-title a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
+  .article-excerpt {
+    color: var(--gray-600);
+    margin: 0 0 var(--spacing-6) 0;
+    line-height: 1.6;
+    flex: 1;
+    font-size: var(--font-size-sm);
+  }
+
+  .article-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  .article-tags {
+    display: flex;
+    gap: var(--spacing-2);
+  }
+
+  .tag {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: var(--font-size-3xl);
+    }
+
+    .page-subtitle {
+      font-size: var(--font-size-lg);
+    }
+
+    .featured-content {
+      grid-template-columns: 1fr;
+    }
+
+    .featured-text {
+      padding: var(--spacing-8);
+    }
+
+    .featured-title {
+      font-size: var(--font-size-2xl);
+    }
+
+    .featured-excerpt {
+      font-size: var(--font-size-base);
+    }
+
+    .featured-footer {
+      flex-direction: column;
+      gap: var(--spacing-4);
+      align-items: flex-start;
+    }
+
+    .section-header {
+      flex-direction: column;
+      gap: var(--spacing-4);
+      align-items: flex-start;
+    }
+
+    .articles-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-6);
+    }
+
+    .article-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-3);
+    }
+  }
+</style>

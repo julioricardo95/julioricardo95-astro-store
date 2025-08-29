@@ -1,28 +1,30 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Banner from '../components/Banner.astro';
-import SearchFilter from '../components/SearchFilter.astro';
-import ProductCarousel from '../components/ProductCarousel.astro';
-import ArticleGrid from '../components/ArticleGrid.astro';
-import ProductGrid from '../components/ProductGrid.astro';
-import SocialButtons from '../components/SocialButtons.astro';
-import Footer from '../components/Footer.astro';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import ProductCarousel from '../components/ProductCarousel';
+import ArticlesSection from '../components/ArticlesSection.astro';
+import Footer from '../components/Footer';
 
-const title = "Mi Tienda Online - Los Mejores Productos al Mejor Precio";
-const description = "Descubre nuestra amplia selección de productos de calidad. Electrónicos, moda, deportes y más. Envío gratuito y las mejores ofertas.";
-const image = "https://images.pexels.com/photos/1292294/pexels-photo-1292294.jpeg?auto=compress&cs=tinysrgb&w=1200";
+// Importar datos de productos
+import productsData from '../data/products.json';
+
+// Filtrar productos destacados
+const featuredProducts = productsData.filter(product => product.featured);
 ---
 
-<BaseLayout title={title} description={description} image={image}>
+<Layout 
+  title="TechStore Pro - Tu Tienda de Tecnología Online"
+  description="Descubre los mejores productos tecnológicos al mejor precio. Smartphones, laptops, accesorios gaming y más con envío gratis, garantía de 2 años y soporte 24/7. ¡Ofertas exclusivas!"
+  keywords="tienda tecnología, smartphones baratos, laptops gaming, accesorios tecnológicos, ofertas electrónicos, envío gratis México"
+  image="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1200"
+  type="website"
+>
+  <Header />
   <main>
-    <Banner />
-    <SearchFilter />
-    <ProductCarousel />
-    <div id="articulos">
-      <ArticleGrid />
-    </div>
-    <ProductGrid />
-    <SocialButtons />
+    <Hero />
+    <ProductCarousel client:load products={featuredProducts} title="Productos Destacados" />
+    <ArticlesSection />
   </main>
-  <Footer />
-</BaseLayout>
+  <Footer client:load />
+</Layout>

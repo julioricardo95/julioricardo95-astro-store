@@ -1,0 +1,215 @@
+[
+  {
+    "id": "smartphone-pro-2024",
+    "name": "Smartphone Pro 2024",
+    "category": "Electrónicos",
+    "categorySlug": "electronicos",
+    "price": 899.99,
+    "originalPrice": 1099.99,
+    "discount": 18,
+    "description": "El smartphone más avanzado del año con cámara triple de 108MP, pantalla AMOLED de 6.7 pulgadas y batería de larga duración.",
+    "shortDescription": "Smartphone premium con cámara profesional y pantalla AMOLED.",
+    "features": [
+      "Cámara triple de 108MP con zoom óptico 10x",
+      "Pantalla AMOLED de 6.7\" con 120Hz",
+      "Batería de 5000mAh con carga rápida de 65W",
+      "Procesador octa-core de última generación",
+      "128GB de almacenamiento expandible",
+      "Resistente al agua IP68"
+    ],
+    "specifications": {
+      "Pantalla": "6.7\" AMOLED, 2400 x 1080, 120Hz",
+      "Procesador": "Snapdragon 888 Plus",
+      "RAM": "8GB",
+      "Almacenamiento": "128GB expandible",
+      "Cámara": "108MP + 12MP + 5MP",
+      "Batería": "5000mAh",
+      "Sistema": "Android 14"
+    },
+    "images": [
+      "https://images.pexels.com/photos/1092644/pexels-photo-1092644.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/1841841/pexels-photo-1841841.jpeg?auto=compress&cs=tinysrgb&w=800"
+    ],
+    "stock": 15,
+    "featured": true,
+    "tags": ["nuevo", "premium", "cámara"]
+  },
+  {
+    "id": "laptop-gaming-ultra",
+    "name": "Laptop Gaming Ultra",
+    "category": "Electrónicos",
+    "categorySlug": "electronicos",
+    "price": 1299.99,
+    "originalPrice": 1599.99,
+    "discount": 19,
+    "description": "Laptop gaming de alto rendimiento con RTX 4060, procesador Intel i7 y pantalla 144Hz para la mejor experiencia gaming.",
+    "shortDescription": "Laptop gaming con RTX 4060 y pantalla 144Hz.",
+    "features": [
+      "NVIDIA RTX 4060 8GB VRAM",
+      "Intel Core i7-13700H",
+      "32GB RAM DDR5",
+      "SSD 1TB NVMe",
+      "Pantalla 15.6\" 144Hz Full HD",
+      "Teclado RGB mecánico"
+    ],
+    "specifications": {
+      "Pantalla": "15.6\" IPS, 1920x1080, 144Hz",
+      "Procesador": "Intel Core i7-13700H",
+      "RAM": "32GB DDR5",
+      "Almacenamiento": "1TB SSD NVMe",
+      "Gráficos": "NVIDIA RTX 4060 8GB",
+      "Peso": "2.3kg",
+      "Sistema": "Windows 11 Pro"
+    },
+    "images": [
+      "https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/812264/pexels-photo-812264.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/1229861/pexels-photo-1229861.jpeg?auto=compress&cs=tinysrgb&w=800"
+    ],
+    "stock": 8,
+    "featured": true,
+    "tags": ["gaming", "alto-rendimiento", "rtx"]
+  },
+  {
+    "id": "auriculares-inalambricos-pro",
+    "name": "Auriculares Inalámbricos Pro",
+    "category": "Accesorios",
+    "categorySlug": "accesorios",
+    "price": 199.99,
+    "originalPrice": 249.99,
+    "discount": 20,
+    "description": "Auriculares inalámbricos con cancelación de ruido activa, sonido Hi-Fi y hasta 30 horas de batería.",
+    "shortDescription": "Auriculares premium con cancelación de ruido activa.",
+    "features": [
+      "Cancelación de ruido activa avanzada",
+      "Sonido Hi-Fi con drivers de 40mm",
+      "Batería de hasta 30 horas",
+      "Carga rápida: 5 min = 3 horas",
+      "Bluetooth 5.3 con codec LDAC",
+      "Micrófono con supresión de ruido"
+    ],
+    "specifications": {
+      "Conectividad": "Bluetooth 5.3, USB-C",
+      "Drivers": "40mm dinámicos",
+      "Batería": "30 horas con ANC",
+      "Carga": "USB-C, carga rápida",
+      "Peso": "280g",
+      "Codecs": "SBC, AAC, LDAC"
+    },
+    "images": [
+      "https://images.pexels.com/photos/3587478/pexels-photo-3587478.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/3587479/pexels-photo-3587479.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/1649771/pexels-photo-1649771.jpeg?auto=compress&cs=tinysrgb&w=800"
+    ],
+    "stock": 25,
+    "featured": false,
+    "tags": ["inalámbrico", "cancelación-ruido", "premium"]
+  },
+  {
+    "id": "reloj-inteligente-fitness",
+    "name": "Reloj Inteligente Fitness",
+    "category": "Accesorios",
+    "categorySlug": "accesorios",
+    "price": 149.99,
+    "originalPrice": 199.99,
+    "discount": 25,
+    "description": "Reloj inteligente con monitoreo de salud 24/7, GPS integrado y más de 100 modos deportivos.",
+    "shortDescription": "Smartwatch con GPS y monitoreo de salud completo.",
+    "features": [
+      "Monitor de ritmo cardíaco 24/7",
+      "GPS integrado de doble banda",
+      "Más de 100 modos deportivos",
+      "Monitor de sueño y estrés",
+      "Pantalla AMOLED de 1.43\"",
+      "Batería de hasta 14 días"
+    ],
+    "specifications": {
+      "Pantalla": "1.43\" AMOLED, 466x466",
+      "Sensores": "Heart Rate, GPS, SpO2",
+      "Batería": "hasta 14 días",
+      "Conectividad": "Bluetooth 5.2, WiFi",
+      "Resistencia": "5ATM + IP68",
+      "Peso": "52g sin correa"
+    },
+    "images": [
+      "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/1582270/pexels-photo-1582270.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/1646953/pexels-photo-1646953.jpeg?auto=compress&cs=tinysrgb&w=800"
+    ],
+    "stock": 30,
+    "featured": true,
+    "tags": ["fitness", "salud", "gps"]
+  },
+  {
+    "id": "camara-mirrorless-4k",
+    "name": "Cámara Mirrorless 4K",
+    "category": "Electrónicos",
+    "categorySlug": "electronicos",
+    "price": 849.99,
+    "originalPrice": 999.99,
+    "discount": 15,
+    "description": "Cámara mirrorless profesional con grabación 4K, estabilización de imagen y lente intercambiable.",
+    "shortDescription": "Cámara profesional con grabación 4K y lentes intercambiables.",
+    "features": [
+      "Sensor APS-C de 24.2MP",
+      "Grabación 4K a 30fps",
+      "Estabilización de imagen de 5 ejes",
+      "Pantalla táctil articulada de 3\"",
+      "Sistema de enfoque híbrido",
+      "WiFi y Bluetooth integrados"
+    ],
+    "specifications": {
+      "Sensor": "APS-C CMOS 24.2MP",
+      "Video": "4K/30p, Full HD/120p",
+      "Estabilización": "5 ejes en el cuerpo",
+      "Pantalla": "3\" táctil articulada",
+      "Batería": "hasta 440 fotos",
+      "Conectividad": "WiFi, Bluetooth, USB-C"
+    },
+    "images": [
+      "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/51383/photo-camera-subject-photographer-51383.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/274973/pexels-photo-274973.jpeg?auto=compress&cs=tinysrgb&w=800"
+    ],
+    "stock": 12,
+    "featured": false,
+    "tags": ["fotografía", "4k", "profesional"]
+  },
+  {
+    "id": "tablet-pro-12-inch",
+    "name": "Tablet Pro 12\"",
+    "category": "Electrónicos",
+    "categorySlug": "electronicos",
+    "price": 599.99,
+    "originalPrice": 749.99,
+    "discount": 20,
+    "description": "Tablet profesional de 12 pulgadas con stylus incluido, perfecta para creativos y profesionales.",
+    "shortDescription": "Tablet profesional con stylus incluido y pantalla de 12\".",
+    "features": [
+      "Pantalla 2K de 12\" con 120Hz",
+      "Stylus de precisión incluido",
+      "Procesador octa-core potente",
+      "8GB RAM + 256GB almacenamiento",
+      "Cámaras dual con IA",
+      "Batería de todo el día"
+    ],
+    "specifications": {
+      "Pantalla": "12\" 2K IPS, 2560x1600, 120Hz",
+      "Procesador": "MediaTek Dimensity 9000",
+      "RAM": "8GB LPDDR5",
+      "Almacenamiento": "256GB expandible",
+      "Cámaras": "13MP + 5MP traseras, 8MP frontal",
+      "Batería": "10000mAh",
+      "Sistema": "Android 14"
+    },
+    "images": [
+      "https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/1334598/pexels-photo-1334598.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/210742/pexels-photo-210742.jpeg?auto=compress&cs=tinysrgb&w=800"
+    ],
+    "stock": 18,
+    "featured": true,
+    "tags": ["creatividad", "profesional", "stylus"]
+  }
+]

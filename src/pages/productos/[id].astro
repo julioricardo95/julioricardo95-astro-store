@@ -1,0 +1,804 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer';
+import productsData from '../../data/products.json';
+
+export async function getStaticPaths() {
+  return productsData.map((product) => ({
+    params: { id: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const { id } = Astro.params;
+
+// Encontrar productos relacionados de la misma categoría
+const relatedProducts = productsData
+  .filter(p => p.categorySlug === product.categorySlug && p.id !== product.id)
+  .slice(0, 3);
+
+function formatPrice(price: number): string {
+  return new Intl.NumberFormat('es-MX', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  }).format(price);
+}
+
+function calculateDiscount(price: number, originalPrice?: number): number {
+  if (!originalPrice || originalPrice <= price) return 0;
+  return Math.round(((originalPrice - price) / originalPrice) * 100);
+}
+
+const discount = calculateDiscount(product.price, product.originalPrice);
+const savings = product.originalPrice ? product.originalPrice - product.price : 0;
+---
+
+<Layout 
+  title={`${product.name} - TechStore Pro`}
+  description={`${product.description} ✅ Precio: ${formatPrice(product.price)} ✅ Envío gratis ✅ Garantía 2 años ✅ Stock disponible: ${product.stock} unidades`}
+  keywords={`${product.name}, ${product.category}, ${product.tags?.join(', ')}, comprar ${product.name}, precio ${product.name}, oferta tecnología`}
+  image={product.images[0]}
+  url={`https://mi-ecommerce.com/productos/${product.id}`}
+  type="product"
+>
+  <Header />
+  <main class="product-page">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb">
+        <a href="/">Inicio</a>
+        <span class="separator">›</span>
+        <a href="/productos">Productos</a>
+        <span class="separator">›</span>
+        <a href={`/productos?category=${product.categorySlug}`}>{product.category}</a>
+        <span class="separator">›</span>
+        <span>{product.name}</span>
+      </nav>
+
+      <!-- Producto Principal -->
+      <div class="product-main">
+        <div class="product-gallery">
+          <div class="main-image">
+            <img 
+              id="main-product-image"
+              src={product.images[0]} 
+              alt={product.name}
+              loading="eager"
+            />
+            {discount > 0 && (
+              <div class="product-badge discount">
+                -{discount}%
+              </div>
+            )}
+            {product.featured && (
+              <div class="product-badge featured">
+                <i class="fas fa-star"></i>
+                Destacado
+              </div>
+            )}
+          </div>
+          
+          <div class="thumbnail-gallery">
+            {product.images.map((image, index) => (
+              <button 
+                class={`thumbnail ${index === 0 ? 'active' : ''}`}
+                onclick={`changeMainImage('${image}', this)`}
+              >
+                <img src={image} alt={`${product.name} vista ${index + 1}`} />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="product-info">
+          <div class="product-header">
+            <h1 class="product-title">{product.name}</h1>
+            <div class="product-category">
+              <a href={`/productos?category=${product.categorySlug}`}>
+                <i class="fas fa-tag"></i>
+                {product.category}
+              </a>
+            </div>
+          </div>
+
+          <div class="product-rating">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <span class="rating-text">(4.5) • 128 reseñas</span>
+          </div>
+
+          <div class="product-price">
+            <span class="current-price">{formatPrice(product.price)}</span>
+            {product.originalPrice && product.originalPrice > product.price && (
+              <div class="price-details">
+                <span class="original-price">{formatPrice(product.originalPrice)}</span>
+                <span class="savings">Ahorras {formatPrice(savings)}</span>
+              </div>
+            )}
+          </div>
+
+          <p class="product-description">
+            {product.description}
+          </p>
+
+          <div class="product-features">
+            <h3>Características principales:</h3>
+            <ul>
+              {product.features.map(feature => (
+                <li>
+                  <i class="fas fa-check"></i>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="contact-actions">
+            <h3>¿Interesado en este producto?</h3>
+            <p>Contáctanos para más información o realizar tu pedido</p>
+            <div class="social-buttons">
+              <button class="social-btn whatsapp" onclick={`contactWhatsApp('${product.name.replace(/'/g, "\\'")}', '${formatPrice(product.price)}', '${product.shortDescription.replace(/'/g, "\\'")}')`}>
+                <i class="fab fa-whatsapp"></i>
+                <span>Consultar por WhatsApp</span>
+              </button>
+              <button class="social-btn facebook" onclick={`shareFacebook('${product.name.replace(/'/g, "\\'")}')`}>
+                <i class="fab fa-facebook-f"></i>
+                <span>Compartir en Facebook</span>
+              </button>
+              <button class="social-btn phone" onclick="callStore()">
+                <i class="fas fa-phone"></i>
+                <span>Llamar ahora</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="stock-info">
+            {product.stock > 10 ? (
+              <div class="in-stock">
+                <i class="fas fa-check-circle"></i>
+                En stock ({product.stock} disponibles)
+              </div>
+            ) : product.stock > 0 ? (
+              <div class="low-stock">
+                <i class="fas fa-exclamation-triangle"></i>
+                Pocas unidades disponibles ({product.stock} restantes)
+              </div>
+            ) : (
+              <div class="out-of-stock">
+                <i class="fas fa-times-circle"></i>
+                Agotado
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <!-- Especificaciones -->
+      <div class="product-specs">
+        <h2>Especificaciones Técnicas</h2>
+        <div class="specs-grid">
+          {Object.entries(product.specifications).map(([key, value]) => (
+            <div class="spec-item">
+              <dt class="spec-label">{key}:</dt>
+              <dd class="spec-value">{value}</dd>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Productos Relacionados -->
+      {relatedProducts.length > 0 && (
+        <div class="related-products">
+          <h2>Productos Relacionados</h2>
+          <div class="related-grid">
+            {relatedProducts.map(relatedProduct => (
+              <div class="related-card">
+                <a href={`/productos/${relatedProduct.id}`} class="related-link">
+                  <img 
+                    src={relatedProduct.images[0]} 
+                    alt={relatedProduct.name}
+                    loading="lazy"
+                  />
+                  <h3>{relatedProduct.name}</h3>
+                  <div class="related-price">
+                    {formatPrice(relatedProduct.price)}
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </main>
+  <Footer client:load />
+
+  <!-- Schema.org Product Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "description": product.description,
+    "brand": {
+      "@type": "Brand",
+      "name": "TechStore Pro"
+    },
+    "category": product.category,
+    "image": product.images,
+    "offers": {
+      "@type": "Offer",
+      "price": product.price,
+      "priceCurrency": "USD",
+      "availability": product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "TechStore Pro"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "reviewCount": "128"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Cliente Satisfecho"
+        },
+        "reviewBody": "Excelente producto, muy recomendado."
+      }
+    ]
+  }
+  </script>
+</Layout>
+
+<style>
+  .product-page {
+    padding: var(--spacing-8) 0;
+    background: var(--gray-50);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .breadcrumb a {
+      text-decoration: none; 
+      color: #3498db;
+      font-weight: 500;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+  }
+
+  .breadcrumb a:hover {
+      color: #fff;
+      background: #3498db;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+  }
+
+  .breadcrumb a:active {
+      transform: translateY(0);
+  }
+
+  .breadcrumb span:last-child {
+      color: #2c3e50;
+      font-weight: 600;
+      padding: 5px 10px;
+  }
+
+  .separator {
+      color: #95a5a6;
+      margin: 0 10px;
+      font-weight: 300;
+  }
+
+  .product-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-12);
+    background: white;
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-10);
+    margin-bottom: var(--spacing-12);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .product-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  .main-image {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+  }
+
+  .main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-badge {
+    position: absolute;
+    top: var(--spacing-4);
+    right: var(--spacing-4);
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    z-index: 2;
+  }
+
+  .product-badge.discount {
+    background: var(--error-color);
+    color: white;
+  }
+
+  .product-badge.featured {
+    background: var(--accent-color);
+    color: white;
+    left: var(--spacing-4);
+    right: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+  }
+
+  .thumbnail-gallery {
+    display: flex;
+    gap: var(--spacing-3);
+    overflow-x: auto;
+    padding: var(--spacing-2) 0;
+  }
+
+  .thumbnail {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+    background: none;
+    padding: 0;
+  }
+
+  .thumbnail.active {
+    border-color: var(--primary-color);
+  }
+
+  .thumbnail:hover {
+    border-color: var(--primary-light);
+  }
+
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+
+  .product-header {
+    border-bottom: 1px solid var(--gray-200);
+    padding-bottom: var(--spacing-4);
+  }
+
+  .product-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0 0 var(--spacing-3) 0;
+    line-height: 1.2;
+  }
+
+  .product-category a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+  }
+
+  .product-category a:hover {
+    text-decoration: underline;
+  }
+
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+  }
+
+  .stars {
+    color: var(--accent-color);
+    font-size: var(--font-size-lg);
+  }
+
+  .rating-text {
+    color: var(--gray-600);
+    font-size: var(--font-size-sm);
+  }
+
+  .product-price {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .current-price {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+
+  .price-details {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+  }
+
+  .original-price {
+    font-size: var(--font-size-lg);
+    color: var(--gray-400);
+    text-decoration: line-through;
+  }
+
+  .savings {
+    background: var(--success-color);
+    color: white;
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+  }
+
+  .product-description {
+    font-size: var(--font-size-lg);
+    line-height: 1.7;
+    color: var(--gray-700);
+    margin: 0;
+  }
+
+  .product-features h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--gray-900);
+    margin: 0 0 var(--spacing-4) 0;
+  }
+
+  .product-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .product-features li {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    font-size: var(--font-size-base);
+    color: var(--gray-700);
+  }
+
+  .product-features li i {
+    color: var(--success-color);
+    font-weight: 600;
+  }
+
+  .contact-actions {
+    background: var(--gray-50);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-8);
+    margin: var(--spacing-6) 0;
+  }
+
+  .contact-actions h3 {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--gray-900);
+    margin: 0 0 var(--spacing-2) 0;
+  }
+
+  .contact-actions p {
+    color: var(--gray-600);
+    margin: 0 0 var(--spacing-6) 0;
+    font-size: var(--font-size-sm);
+  }
+
+  .social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  .social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-3);
+    padding: var(--spacing-4) var(--spacing-6);
+    border: none;
+    border-radius: var(--border-radius);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    width: 100%;
+  }
+
+  .social-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+  }
+
+  .social-btn.whatsapp {
+    background: #25D366;
+  }
+
+  .social-btn.facebook {
+    background: #1877F2;
+  }
+
+  .social-btn.phone {
+    background: var(--primary-color);
+  }
+
+  .stock-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-3);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    margin-top: var(--spacing-4);
+  }
+
+  .in-stock {
+    background: #F0FDF4;
+    color: var(--success-color);
+  }
+
+  .low-stock {
+    background: #FFFBEB;
+    color: var(--accent-color);
+  }
+
+  .out-of-stock {
+    background: #FEF2F2;
+    color: var(--error-color);
+  }
+
+  .product-specs {
+    background: white;
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-10);
+    margin-bottom: var(--spacing-12);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .product-specs h2 {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0 0 var(--spacing-8) 0;
+  }
+
+  .specs-grid {
+    display: grid;
+    gap: var(--spacing-4);
+  }
+
+  .spec-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--spacing-4);
+    padding: var(--spacing-4);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .spec-item:last-child {
+    border-bottom: none;
+  }
+
+  .spec-label {
+    font-weight: 600;
+    color: var(--gray-700);
+    margin: 0;
+  }
+
+  .spec-value {
+    color: var(--gray-900);
+    margin: 0;
+  }
+
+  .related-products {
+    background: white;
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-10);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .related-products h2 {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0 0 var(--spacing-8) 0;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-6);
+  }
+
+  .related-card {
+    border: 1px solid var(--gray-200);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+  }
+
+  .related-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .related-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .related-link:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .related-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .related-card h3 {
+    padding: var(--spacing-4);
+    margin: 0;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--gray-900);
+    line-height: 1.3;
+  }
+
+  .related-price {
+    padding: 0 var(--spacing-4) var(--spacing-4) var(--spacing-4);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+
+  @media (max-width: 768px) {
+    .product-main {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-8);
+      padding: var(--spacing-6);
+    }
+
+    .main-image {
+      height: 300px;
+    }
+
+    .product-title {
+      font-size: var(--font-size-2xl);
+    }
+
+    .current-price {
+      font-size: var(--font-size-3xl);
+    }
+
+    .social-buttons {
+      gap: var(--spacing-3);
+    }
+
+    .specs-grid .spec-item {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-2);
+    }
+
+    .related-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-4);
+    }
+  }
+</style>
+
+<script>
+  function changeMainImage(src, thumbnail) {
+    const mainImage = document.getElementById('main-product-image');
+    if (mainImage) {
+      mainImage.src = src;
+    }
+    
+    // Actualizar thumbnail activo
+    document.querySelectorAll('.thumbnail').forEach(thumb => {
+      thumb.classList.remove('active');
+    });
+    thumbnail.classList.add('active');
+  }
+
+  function contactWhatsApp(productName, price, description) {
+    const message = `¡Hola! Me interesa este producto:
+
+📱 *${productName}*
+💰 Precio: ${price}
+📝 ${description}
+
+¿Podrían darme más información y disponibilidad?
+
+Enlace: ${window.location.href}`;
+    
+    const phoneNumber = '+50558567432'; // Reemplaza con tu número real
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  }
+
+  function shareFacebook(productName) {
+    const url = window.location.href;
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent('¡Mira este increíble producto: ' + productName + '!')}`;
+    window.open(facebookUrl, '_blank', 'width=600,height=400');
+  }
+
+  function callStore() {
+    const phoneNumber = '+50558567432'; // Reemplaza con tu número real
+    window.location.href = `tel:${phoneNumber}`;
+  }
+
+  // Hacer las funciones globales para que puedan ser llamadas desde onclick
+  window.changeMainImage = changeMainImage;
+  window.contactWhatsApp = contactWhatsApp;
+  window.shareFacebook = shareFacebook;
+  window.callStore = callStore;
+</script>

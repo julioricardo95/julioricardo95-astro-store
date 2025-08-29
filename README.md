@@ -46,32 +46,3 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-
-REALIZA UNA PAGINA UTILIZANDO ASTRO 
-
-LA PAGINA DE INICIO 
-FILTRO DE BUSQUEDA
-UN BONITO BANNER 
-SIGUE EL carousel
-SIGUEN POST DE ARTICULOS IMFORMATIVO
-Y TERMINA CON PRODUCTOS
- 
-CADA PAGINADA DEBERA TENER
-SEO Y open graph
-3 BOTONES FACEBOOK WHATSAPP LLAMAR 
-CARUSEL
-
-
-UTILIZA UN JSON COMO BASE DE DATOS 
-CATEGORIA 
-TITULO
-IMG MULTIPLE CON lazy loading
-DESCRIPCION 
-PRECIO
-
-FOOTER 
-LINK DE REDES SOCIALES
-
-UTILIZA font awesome PARA ICONOS
-Y OTRA LIBRERIAS PARA EL carousel

@@ -1,0 +1,382 @@
+---
+import articlesData from '../data/articles.json';
+
+// Obtener solo los artículos destacados para la página de inicio
+const featuredArticles = articlesData.filter(article => article.featured).slice(0, 3);
+
+function formatDate(dateString: string): string {
+  return new Intl.DateTimeFormat('es-ES', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(new Date(dateString));
+}
+---
+
+<section class="articles-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Últimos Artículos</h2>
+      <p class="section-subtitle">
+        Mantente actualizado con las últimas tendencias en tecnología
+      </p>
+    </div>
+    
+    <div class="articles-grid">
+      {featuredArticles.map((article, index) => (
+        <article class={`article-card ${index === 0 ? 'featured' : ''}`}>
+          <div class="article-image">
+            <img 
+              src={article.image} 
+              alt={article.title}
+              loading="lazy"
+            />
+            <div class="article-overlay">
+              <a href={`/articulos/${article.slug}`} class="read-more-btn">
+                <i class="fas fa-book-open"></i>
+                Leer Artículo
+              </a>
+            </div>
+          </div>
+          
+          <div class="article-content">
+            <div class="article-meta">
+              <span class="article-category">
+                <i class="fas fa-tag"></i>
+                {article.category}
+              </span>
+              <span class="article-date">
+                <i class="fas fa-calendar"></i>
+                {formatDate(article.publishDate)}
+              </span>
+              <span class="article-read-time">
+                <i class="fas fa-clock"></i>
+                {article.readTime} min
+              </span>
+            </div>
+            
+            <h3 class="article-title">
+              <a href={`/articulos/${article.slug}`}>
+                {article.title}
+              </a>
+            </h3>
+            
+            <p class="article-excerpt">
+              {article.excerpt}
+            </p>
+            
+            <div class="article-footer">
+              <div class="article-author">
+                <img 
+                  src={`https://ui-avatars.com/api/?name=${encodeURIComponent(article.author)}&background=2563EB&color=fff&size=32&rounded=true`}
+                  alt={article.author}
+                  class="author-avatar"
+                />
+                <span class="author-name">{article.author}</span>
+              </div>
+              
+              <div class="article-tags">
+                {article.tags.slice(0, 2).map(tag => (
+                  <span class="tag">#{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+    
+    <div class="section-footer">
+      <a href="/articulos" class="btn btn-outline btn-lg">
+        <i class="fas fa-newspaper"></i>
+        Ver Todos los Artículos
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .articles-section {
+    padding: var(--spacing-20) 0;
+    background: var(--gray-50);
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-16);
+  }
+  
+  .section-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .section-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--gray-600);
+    margin: 0;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .articles-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--spacing-8);
+    margin-bottom: var(--spacing-16);
+  }
+  
+  .article-card {
+    background: white;
+    border-radius: var(--border-radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    border: 1px solid var(--gray-200);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .article-card.featured {
+    grid-row: span 2;
+  }
+  
+  .article-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .article-card.featured .article-image {
+    height: 300px;
+  }
+  
+  .article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-normal);
+  }
+  
+  .article-card:hover .article-image img {
+    transform: scale(1.05);
+  }
+  
+  .article-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+  }
+  
+  .article-card:hover .article-overlay {
+    opacity: 1;
+  }
+  
+  .read-more-btn {
+    background: white;
+    color: var(--gray-900);
+    padding: var(--spacing-3) var(--spacing-6);
+    border-radius: var(--border-radius-full);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    transition: all var(--transition-fast);
+    font-size: var(--font-size-sm);
+  }
+  
+  .read-more-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    transform: scale(1.05);
+  }
+  
+  .article-content {
+    padding: var(--spacing-6);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .article-card.featured .article-content {
+    padding: var(--spacing-8);
+  }
+  
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+    font-size: var(--font-size-xs);
+    color: var(--gray-500);
+  }
+  
+  .article-meta span {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+  }
+  
+  .article-category {
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+  
+  .article-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin: 0 0 var(--spacing-4) 0;
+    line-height: 1.3;
+  }
+  
+  .article-card.featured .article-title {
+    font-size: var(--font-size-xl);
+  }
+  
+  .article-title a {
+    color: var(--gray-900);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  
+  .article-title a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  
+  .article-excerpt {
+    color: var(--gray-600);
+    margin: 0 0 var(--spacing-6) 0;
+    line-height: 1.6;
+    flex: 1;
+    font-size: var(--font-size-sm);
+  }
+  
+  .article-card.featured .article-excerpt {
+    font-size: var(--font-size-base);
+  }
+  
+  .article-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  }
+  
+  .article-author {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+  }
+  
+  .author-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--gray-200);
+  }
+  
+  .author-name {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--gray-700);
+  }
+  
+  .article-tags {
+    display: flex;
+    gap: var(--spacing-2);
+  }
+  
+  .tag {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--border-radius);
+    font-weight: 500;
+  }
+  
+  .section-footer {
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .articles-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-6);
+    }
+    
+    .article-card.featured {
+      grid-row: span 1;
+    }
+    
+    .article-image {
+      height: 180px;
+    }
+    
+    .article-card.featured .article-image {
+      height: 200px;
+    }
+    
+    .article-content {
+      padding: var(--spacing-4);
+    }
+    
+    .article-card.featured .article-content {
+      padding: var(--spacing-5);
+    }
+    
+    .article-title {
+      font-size: var(--font-size-base);
+    }
+    
+    .article-card.featured .article-title {
+      font-size: var(--font-size-lg);
+    }
+    
+    .article-meta {
+      gap: var(--spacing-2);
+    }
+    
+    .article-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-3);
+    }
+    
+    .section-title {
+      font-size: var(--font-size-2xl);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .articles-section {
+      padding: var(--spacing-16) 0;
+    }
+    
+    .article-excerpt {
+      display: none;
+    }
+    
+    .article-card.featured .article-excerpt {
+      display: block;
+    }
+  }
+</style>

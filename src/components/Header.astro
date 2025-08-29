@@ -1,0 +1,254 @@
+---
+import SearchFilter from './SearchFilter';
+---
+
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-brand">
+        <a href="/" class="logo" aria-label="TechStore Pro - Inicio">
+          <i class="fas fa-store"></i>
+          <span>TechStore Pro</span>
+        </a>
+      </div>
+      
+      <div class="nav-search">
+        <SearchFilter client:load />
+      </div>
+      
+      <div class="nav-actions">
+        <a href="/productos" class="nav-link" aria-label="Ver catálogo de productos">
+          <i class="fas fa-th-large"></i>
+          <span>Productos</span>
+        </a>
+        <a href="/articulos" class="nav-link" aria-label="Leer blog de tecnología">
+          <i class="fas fa-newspaper"></i>
+          <span>Blog</span>
+        </a>
+        <a href="#contacto" class="nav-link" aria-label="Información de contacto">
+          <i class="fas fa-envelope"></i>
+          <span>Contacto</span>
+        </a>
+      </div>
+      
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Abrir menú móvil">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+    
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="/productos" class="mobile-nav-link">
+        <i class="fas fa-th-large"></i>
+        <span>Productos</span>
+      </a>
+      <a href="/articulos" class="mobile-nav-link">
+        <i class="fas fa-newspaper"></i>
+        <span>Blog</span>
+      </a>
+      <a href="#contacto" class="mobile-nav-link">
+        <i class="fas fa-envelope"></i>
+        <span>Contacto</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    background: white;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-6) 0;
+    min-height: 80px;
+  }
+  
+  .nav-brand .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+  
+  .nav-brand .logo:hover {
+    text-decoration: none;
+    color: var(--primary-dark);
+    transform: scale(1.05);
+  }
+  
+  .nav-brand .logo i {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .nav-search {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 var(--spacing-12);
+  }
+  
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-8);
+  }
+  
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-1);
+    padding: var(--spacing-3) var(--spacing-4);
+    color: var(--gray-700);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+    border-radius: var(--border-radius);
+    position: relative;
+  }
+  
+  .nav-link:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+    background: var(--gray-50);
+    transform: translateY(-1px);
+  }
+  
+  .nav-link i {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-1);
+  }
+  
+  .mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-size-2xl);
+    color: var(--gray-700);
+    padding: var(--spacing-3);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-fast);
+  }
+  
+  .mobile-menu-toggle:hover {
+    background: var(--gray-100);
+    color: var(--primary-color);
+  }
+  
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    border-top: 1px solid var(--gray-200);
+    padding: var(--spacing-6) 0;
+    gap: var(--spacing-3);
+    background: white;
+    box-shadow: var(--shadow-md);
+  }
+  
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    padding: var(--spacing-4) var(--spacing-6);
+    color: var(--gray-700);
+    text-decoration: none;
+    transition: background-color var(--transition-fast);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+  }
+  
+  .mobile-nav-link:hover {
+    background-color: var(--primary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    transform: translateX(4px);
+  }
+  
+  .mobile-nav-link i {
+    width: 20px;
+    text-align: center;
+    font-size: var(--font-size-lg);
+  }
+  
+  @media (max-width: 768px) {
+    .nav {
+      padding: var(--spacing-4) 0;
+      min-height: 70px;
+    }
+    
+    .nav-brand .logo {
+      font-size: var(--font-size-xl);
+    }
+    
+    .nav-brand .logo i {
+      font-size: var(--font-size-2xl);
+    }
+    
+    .nav-search {
+      display: none;
+    }
+    
+    .nav-actions {
+      display: none;
+    }
+    
+    .mobile-menu-toggle {
+      display: block;
+    }
+    
+    .mobile-nav.active {
+      display: flex;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nav {
+      padding: var(--spacing-3) 0;
+      min-height: 60px;
+    }
+    
+    .nav-brand .logo span {
+      display: none;
+    }
+    
+    .nav-brand .logo {
+      font-size: var(--font-size-lg);
+    }
+    
+    .nav-brand .logo i {
+      font-size: var(--font-size-xl);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    
+    if (mobileMenuToggle && mobileNav) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+        const icon = mobileMenuToggle.querySelector('i');
+        if (mobileNav.classList.contains('active')) {
+          icon?.classList.replace('fa-bars', 'fa-times');
+        } else {
+          icon?.classList.replace('fa-times', 'fa-bars');
+        }
+      });
+    }
+  });
+</script>
