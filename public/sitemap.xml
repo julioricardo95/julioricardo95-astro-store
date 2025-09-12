@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://tu-tienda.com/</loc>
+    <lastmod>2024-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/3768894/pexels-photo-3768894.jpeg</image:loc>
+      <image:title>TuTienda - Productos Premium</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Products Page -->
+  <url>
+    <loc>https://tu-tienda.com/productos/</loc>
+    <lastmod>2024-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Articles Page -->
+  <url>
+    <loc>https://tu-tienda.com/articulos/</loc>
+    <lastmod>2024-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Individual Products -->
+  <url>
+    <loc>https://tu-tienda.com/producto/smartphone-pro-max</loc>
+    <lastmod>2024-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg</image:loc>
+      <image:title>Smartphone Pro Max 256GB</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://tu-tienda.com/producto/laptop-gaming-ultra</loc>
+    <lastmod>2024-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/18105/pexels-photo.jpg</image:loc>
+      <image:title>Laptop Gaming Ultra RTX 4080</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://tu-tienda.com/producto/auriculares-wireless-premium</loc>
+    <lastmod>2024-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/3945667/pexels-photo-3945667.jpeg</image:loc>
+      <image:title>Auriculares Wireless Premium</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://tu-tienda.com/producto/vestido-elegante-noche</loc>
+    <lastmod>2024-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg</image:loc>
+      <image:title>Vestido Elegante de Noche</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://tu-tienda.com/producto/zapatos-deportivos-running</loc>
+    <lastmod>2024-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg</image:loc>
+      <image:title>Zapatos Deportivos Running Pro</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://tu-tienda.com/producto/reloj-inteligente-sport</loc>
+    <lastmod>2024-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg</image:loc>
+      <image:title>Reloj Inteligente Sport Edition</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://tu-tienda.com/producto/camisa-casual-premium</loc>
+    <lastmod>2024-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg</image:loc>
+      <image:title>Camisa Casual Premium</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://tu-tienda.com/producto/mochila-trabajo-ejecutiva</loc>
+    <lastmod>2024-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg</image:loc>
+      <image:title>Mochila Trabajo Ejecutiva</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Articles -->
+  <url>
+    <loc>https://tu-tienda.com/articulo/RAM</loc>
+    <lastmod>2024-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg</image:loc>
+      <image:title>Guía Completa: Cómo Elegir la Mejor RAM para tu PC</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://tu-tienda.com/articulo/MODA</loc>
+    <lastmod>2024-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg</image:loc>
+      <image:title>Las Tendencias de Moda Que Definirán Este Año</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://tu-tienda.com/articulo/NOVEDADES-EN</loc>
+    <lastmod>2024-01-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg</image:loc>
+      <image:title>Novedades Tecnológicas: Las Innovaciones Que Cambiarán Todo</image:title>
+    </image:image>
+  </url>
+  
+</urlset>

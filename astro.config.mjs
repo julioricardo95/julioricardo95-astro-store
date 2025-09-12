@@ -1,14 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mi-ecommerce.com',
-  integrations: [react(), sitemap()],
+  integrations: [tailwind(), react()],
   output: 'static',
   build: {
-    inlineStylesheets: 'never'
+    assets: 'assets'
   }
 });

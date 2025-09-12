@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tu-tienda.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Specific rules
+Allow: /productos/
+Allow: /articulos/
+Allow: /producto/
+Allow: /articulo/
+
+# Block admin areas (if any)
+Disallow: /admin/
+Disallow: /private/
+
+# Block search results with parameters
+Disallow: /*?search=*
+Disallow: /*?categoria=*
+
+# Allow important files
+Allow: /favicon.svg
+Allow: /sitemap.xml

@@ -1,0 +1,267 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Footer from '../../components/islands/Footer.jsx';
+import { generateProductSchema } from '../../utils/seo.js';
+import { SITE_CONFIG } from '../../utils/constants.js';
+import productsData from '../../data/products.json';
+
+export async function getStaticPaths() {
+	return productsData.map(product => ({
+		params: { id: product.id },
+		props: { product }
+	}));
+}
+
+const { product } = Astro.props;
+
+// Productos relacionados de la misma categoría
+const relatedProducts = productsData
+	.filter(p => p.CATEGORIA === product.CATEGORIA && p.id !== product.id)
+	.slice(0, 3);
+
+// Breadcrumb items
+const breadcrumbItems = [
+	{ name: 'Inicio', url: '/' },
+	{ name: 'Productos', url: '/productos' },
+	{ name: product.CATEGORIA, url: `/productos?categoria=${encodeURIComponent(product.CATEGORIA)}` },
+	{ name: product.TITULO, url: `/producto/${product.id}` }
+];
+
+const productSchema = generateProductSchema(product);
+---
+
+<Layout 
+	title={`${product.TITULO} | TuTienda - ${product.CATEGORIA}`}
+	description={`${product.DESCRIPCION} Precio: ${product.PRECIO}. Envío gratis y garantía incluida. ¡Compra ahora en TuTienda!`}
+	keywords={`${product.TITULO}, ${product.CATEGORIA}, ${product.PRECIO}, producto premium, calidad garantizada, envío gratis`}
+	ogImage={product.IMG[0]}
+	ogType="product"
+	canonicalURL={`${SITE_CONFIG.url}/producto/${product.id}`}
+	structuredData={productSchema}
+>
+	<Header />
+	<main>
+		<Breadcrumb items={breadcrumbItems} />
+
+		<!-- Product Detail -->
+		<section class="py-16">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+					<!-- Product Images -->
+					<div class="space-y-4">
+						<!-- Main Image -->
+						<div class="aspect-w-1 aspect-h-1 w-full">
+							<img
+								id="mainImage"
+								src={product.IMG[0]}
+								alt={product.TITULO}
+								class="w-full h-96 object-cover rounded-2xl shadow-lg"
+							/>
+						</div>
+						
+						<!-- Thumbnail Images -->
+						{product.IMG.length > 1 && (
+							<div class="grid grid-cols-3 gap-4">
+								{product.IMG.map((img, index) => (
+									<button
+										class="thumbnail-button aspect-w-1 aspect-h-1 w-full group"
+										data-img-src={img}
+									>
+										<img
+											src={img}
+											alt={`${product.TITULO} - Imagen ${index + 1}`}
+											class="w-full h-24 object-cover rounded-lg shadow group-hover:shadow-lg transition-shadow"
+										/>
+									</button>
+								))}
+							</div>
+						)}
+					</div>
+
+					<!-- Product Info -->
+					<div class="space-y-6">
+						<!-- Category Badge -->
+						<div>
+							<span class="bg-primary-100 text-primary-600 px-3 py-1 rounded-full text-sm font-semibold">
+								{product.CATEGORIA}
+							</span>
+						</div>
+
+						<!-- Title and Price -->
+						<div>
+							<h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+								{product.TITULO}
+							</h1>
+							<div class="text-4xl font-bold text-primary-600 mb-2">
+								{product.PRECIO}
+							</div>
+							<div class="flex items-center space-x-2 text-sm text-gray-600">
+								<div class="flex items-center">
+									{Array.from({length: 5}, (_, i) => (
+										<i class={`fas fa-star ${i < 4 ? 'text-yellow-400' : 'text-gray-300'}`}></i>
+									))}
+								</div>
+								<span>(127 reseñas)</span>
+							</div>
+						</div>
+
+						<!-- Description -->
+						<div>
+							<h3 class="text-lg font-semibold text-gray-900 mb-3">Descripción</h3>
+							<p class="text-gray-600 leading-relaxed">
+								{product.DESCRIPCION}
+							</p>
+						</div>
+
+						<!-- Features -->
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+							<div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+								<i class="fas fa-shipping-fast text-primary-500"></i>
+								<span class="text-sm text-gray-700">Envío gratuito</span>
+							</div>
+							<div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+								<i class="fas fa-shield-alt text-secondary-500"></i>
+								<span class="text-sm text-gray-700">Garantía incluida</span>
+							</div>
+							<div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+								<i class="fas fa-undo text-accent-500"></i>
+								<span class="text-sm text-gray-700">Devolución fácil</span>
+							</div>
+							<div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+								<i class="fas fa-headset text-primary-500"></i>
+								<span class="text-sm text-gray-700">Soporte 24/7</span>
+							</div>
+						</div>
+
+						<!-- Action Buttons -->
+						<div class="space-y-4">
+							<div class="grid grid-cols-3 gap-4">
+								<button 
+									onclick={`window.socialShare.whatsapp('Estoy interesado en ${product.TITULO.replace(/'/g, "\\'")}')`}
+									class="bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+								>
+									<i class="fab fa-whatsapp"></i>
+									<span class="hidden sm:inline">WhatsApp</span>
+								</button>
+								<button 
+									onclick="window.socialShare.facebook()"
+									class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+								>
+									<i class="fab fa-facebook"></i>
+									<span class="hidden sm:inline">Compartir</span>
+								</button>
+								<button 
+									onclick="window.contact.phone()"
+									class="bg-gray-600 hover:bg-gray-700 text-white py-3 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+								>
+									<i class="fas fa-phone"></i>
+									<span class="hidden sm:inline">Llamar</span>
+								</button>
+							</div>
+							
+							<button class="w-full bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white py-4 px-8 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
+								<i class="fas fa-heart mr-2"></i>
+								Me Interesa Este Producto
+							</button>
+						</div>
+
+						<!-- Additional Info -->
+						<div class="border-t border-gray-200 pt-6">
+							<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
+								<div>
+									<strong>SKU:</strong> {product.id}
+								</div>
+								<div>
+									<strong>Categoría:</strong> {product.CATEGORIA}
+								</div>
+								<div>
+									<strong>Disponibilidad:</strong> En stock
+								</div>
+								<div>
+									<strong>Tiempo de entrega:</strong> 2-3 días
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Related Products -->
+		{relatedProducts.length > 0 && (
+			<section class="py-16 bg-gray-50">
+				<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+					<h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">
+						Productos Relacionados
+					</h2>
+					
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+						{relatedProducts.map(relatedProduct => (
+							<div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+								<div class="relative overflow-hidden">
+									<img
+										src={relatedProduct.IMG[0]}
+										alt={relatedProduct.TITULO}
+										class="w-full h-48 object-cover hover:scale-110 transition-transform duration-500"
+										loading="lazy"
+									/>
+									<div class="absolute top-3 right-3">
+										<span class="bg-primary-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+											{relatedProduct.CATEGORIA}
+										</span>
+									</div>
+								</div>
+								
+								<div class="p-6">
+									<h3 class="font-bold text-lg text-gray-900 mb-2 line-clamp-2">
+										{relatedProduct.TITULO}
+									</h3>
+									<p class="text-gray-600 text-sm mb-4 line-clamp-2">
+										{relatedProduct.DESCRIPCION}
+									</p>
+									
+									<div class="flex items-center justify-between">
+										<span class="text-2xl font-bold text-primary-600">
+											{relatedProduct.PRECIO}
+										</span>
+										<a
+											href={`/producto/${relatedProduct.id}`}
+											class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
+										>
+											Ver Detalles
+										</a>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+		)}
+	</main>
+	<Footer client:load />
+
+	<!-- Load social utilities -->
+	<script src="/src/utils/social.js"></script>
+
+	<!-- Client-side JavaScript -->
+	<script>
+		// Handle thumbnail image switching
+		document.addEventListener('DOMContentLoaded', function() {
+			const thumbnailButtons = document.querySelectorAll('.thumbnail-button');
+			const mainImage = document.getElementById('mainImage');
+			
+			thumbnailButtons.forEach(button => {
+				button.addEventListener('click', function() {
+					const imgSrc = this.dataset.imgSrc;
+					if (mainImage && imgSrc) {
+						mainImage.src = imgSrc;
+					}
+				});
+			});
+		});
+
+	</script>
+</Layout>
