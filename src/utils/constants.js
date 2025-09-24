@@ -3,17 +3,17 @@ export const SITE_CONFIG = {
   name: "TuTienda",
   title: "TuTienda - Productos Premium Online",
   description: "Tienda online moderna con los mejores productos de tecnología, moda y accesorios. Calidad garantizada y envíos rápidos.",
-  url: "https://tu-tienda.com",
-  author: "TuTienda",
-  email: "contacto@tutienda.com",
-  phone: "+1234567890",
-  whatsapp: "1234567890",
+  url: "https://julioricardo95-astro-store.pages.dev/",
+  author: "julioricardo95",
+  email: "julioricardo95@gmail.com",
+  phone: "+50558567432",
+  whatsapp: "+50558567432",
   address: {
     street: "Calle Principal 123",
     city: "Ciudad",
     state: "Estado", 
     zip: "12345",
-    country: "US"
+    country: "ni"
   },
   social: {
     facebook: "https://facebook.com/tutienda",

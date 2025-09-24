@@ -62,14 +62,17 @@ const categories = [...new Set(productsData.map(product => product.CATEGORIA))];
 				<div class="flex flex-wrap gap-4 mb-8">
 					<a 
 						href="/productos"
-						class={`px-4 py-2 rounded-full transition-all ${!categoryFilter ? 'bg-primary-500 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:border-primary-500'}`}
+						class={`px-4 py-2 rounded-full transition-all ${!categoryFilter ? 
+						'bg-primary-500 text-white' : 
+						'bg-white text-gray-700 border border-gray-300 hover:border-primary-500'}`}
 					>
 						Todos
 					</a>
 					{categories.map(category => (
 						<a 
 							href={`/productos?categoria=${encodeURIComponent(category)}`}
-							class={`px-4 py-2 rounded-full transition-all ${categoryFilter === category ? 'bg-primary-500 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:border-primary-500'}`}
+							class={`px-4 py-2 rounded-full transition-all ${categoryFilter === category ? 'bg-primary-500 text-white' : 
+							'bg-white text-gray-700 border border-gray-300 hover:border-primary-500'}`}
 						>
 							{category}
 						</a>

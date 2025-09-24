@@ -1,98 +1,102 @@
 [
   {
-    "id": "smartphone-pro-max",
-    "TITULO": "Smartphone Pro Max 256GB",
+    "id": "hp-15-dy1031wm",
+    "TITULO": "HP 15-DY1031WM Laptop Semi Nueva",
     "CATEGORIA": "Tecnología",
     "IMG": [
-      "https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg",
-      "https://images.pexels.com/photos/1616403/pexels-photo-1616403.jpeg",
-      "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg"
+      "https://julioricardo95-astro.pages.dev/img/tienda/15-DY1031WM-HP-new.webp"
     ],
-    "DESCRIPCION": "El último smartphone con tecnología avanzada, cámara profesional de 108MP, procesador de última generación y batería de larga duración. Perfecto para profesionales y entusiastas de la tecnología.",
-    "PRECIO": "$999"
+    "DESCRIPCION": "Laptop HP renovada con Windows 10, procesador Intel Core i3-1005G1, 8GB RAM, 256GB SSD y pantalla HD 15.6 pulgadas en color Natural Silver. Ideal para trabajo y estudio.",
+    "PRECIO": "$11,718.40"
   },
   {
-    "id": "laptop-gaming-ultra",
-    "TITULO": "Laptop Gaming Ultra RTX 4080",
+    "id": "hp-15-fc0039wm",
+    "TITULO": "HP 15-FC0039WM Laptop Semi Nueva",
     "CATEGORIA": "Tecnología",
     "IMG": [
-      "https://images.pexels.com/photos/18105/pexels-photo.jpg",
-      "https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg",
-      "https://images.pexels.com/photos/1229861/pexels-photo-1229861.jpeg"
+      "https://julioricardo95-astro.pages.dev/img/tienda/15-FC0039WM%20HP-new.webp"
     ],
-    "DESCRIPCION": "Laptop gaming de alto rendimiento con RTX 4080, 32GB RAM, SSD 1TB NVMe, pantalla 144Hz. Diseñada para gamers profesionales y creadores de contenido.",
-    "PRECIO": "$2499"
+    "DESCRIPCION": "Laptop HP renovada con Windows 11, potente procesador AMD Ryzen 5 7520U, 8GB RAM, 256GB SSD y pantalla Full HD 15.6 pulgadas en color Rose Gold. Perfecta para multitarea.",
+    "PRECIO": "$13,915.60"
   },
   {
-    "id": "auriculares-wireless-premium",
-    "TITULO": "Auriculares Wireless Premium",
+    "id": "acer-a315-58-33xs",
+    "TITULO": "Acer A315-58-33XS Laptop Semi Nueva",
     "CATEGORIA": "Tecnología",
     "IMG": [
-      "https://images.pexels.com/photos/3945667/pexels-photo-3945667.jpeg",
-      "https://images.pexels.com/photos/1649771/pexels-photo-1649771.jpeg",
-      "https://images.pexels.com/photos/8349242/pexels-photo-8349242.jpeg"
+      "https://julioricardo95-astro.pages.dev/img/tienda/A315-58-33XS-ACER-new.webp"
     ],
-    "DESCRIPCION": "Auriculares inalámbricos con cancelación de ruido activa, calidad de sonido Hi-Fi, 30 horas de batería y carga rápida. Comodidad excepcional para uso prolongado.",
-    "PRECIO": "$299"
+    "DESCRIPCION": "Laptop Acer renovada con Windows 11, procesador Intel Core i3-1115G4, 8GB RAM, 256GB SSD y pantalla Full HD 15.6 pulgadas en color Pure Silver. Diseño elegante y funcional.",
+    "PRECIO": "$12,267.70"
   },
   {
-    "id": "vestido-elegante-noche",
-    "TITULO": "Vestido Elegante de Noche",
-    "CATEGORIA": "Moda",
-    "IMG": [
-      "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg",
-      "https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg",
-      "https://images.pexels.com/photos/1884581/pexels-photo-1884581.jpeg"
-    ],
-    "DESCRIPCION": "Vestido de noche elegante, confeccionado en seda premium con detalles bordados a mano. Perfecto para eventos especiales y ocasiones formales.",
-    "PRECIO": "$399"
-  },
-  {
-    "id": "zapatos-deportivos-running",
-    "TITULO": "Zapatos Deportivos Running Pro",
-    "CATEGORIA": "Moda",
-    "IMG": [
-      "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg",
-      "https://images.pexels.com/photos/1478442/pexels-photo-1478442.jpeg",
-      "https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg"
-    ],
-    "DESCRIPCION": "Zapatillas de running profesionales con tecnología de amortiguación avanzada, material transpirable y suela antideslizante. Ideales para corredores serios.",
-    "PRECIO": "$189"
-  },
-  {
-    "id": "reloj-inteligente-sport",
-    "TITULO": "Reloj Inteligente Sport Edition",
+    "id": "dell-latitude-5420",
+    "TITULO": "Dell Latitude 5420 Laptop Semi Nueva",
     "CATEGORIA": "Tecnología",
     "IMG": [
-      "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg",
-      "https://images.pexels.com/photos/1927513/pexels-photo-1927513.jpeg",
-      "https://images.pexels.com/photos/2113994/pexels-photo-2113994.jpeg"
+      "https://julioricardo95-astro.pages.dev/img/tienda/LATITUDE-5420-DELL-new.webp"
     ],
-    "DESCRIPCION": "Smartwatch deportivo con GPS integrado, monitor de salud 24/7, resistente al agua y batería de 7 días. Más de 100 modos deportivos incluidos.",
-    "PRECIO": "$449"
+    "DESCRIPCION": "Laptop Dell renovada de alta gama con Windows 11, potente procesador Intel Core i7-1185G7, 8GB RAM, 256GB SSD y pantalla Full HD 14 pulgadas en color Plateado. Para profesionales exigentes.",
+    "PRECIO": "$13,732.50"
   },
   {
-    "id": "camisa-casual-premium",
-    "TITULO": "Camisa Casual Premium",
-    "CATEGORIA": "Moda",
+    "id": "hp-15-dy2791wm",
+    "TITULO": "HP 15-DY2791WM Laptop Semi Nueva",
+    "CATEGORIA": "Tecnología",
     "IMG": [
-      "https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg",
-      "https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg",
-      "https://images.pexels.com/photos/1700386/pexels-photo-1700386.jpeg"
+      "https://julioricardo95-astro.pages.dev/img/tienda/15-DY1031WM-HP-new.webp"
     ],
-    "DESCRIPCION": "Camisa casual de algodón premium, corte moderno y acabados de calidad. Perfecta para el uso diario y ocasiones informales elegantes.",
-    "PRECIO": "$89"
+    "DESCRIPCION": "Laptop HP renovada con Windows 11, procesador Intel Core i3-1115G4, 8GB RAM, 256GB SSD y pantalla HD 15.6 pulgadas en color Silver. Confiable y eficiente.",
+    "PRECIO": "$13,183.20"
   },
   {
-    "id": "mochila-trabajo-ejecutiva",
-    "TITULO": "Mochila Trabajo Ejecutiva",
-    "CATEGORIA": "Accesorios",
+    "id": "lenovo-820cx003us",
+    "TITULO": "Lenovo 820CX003US Laptop Semi Nueva",
+    "CATEGORIA": "Tecnología",
     "IMG": [
-      "https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg",
-      "https://images.pexels.com/photos/2422497/pexels-photo-2422497.jpeg",
-      "https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg"
+      "https://julioricardo95-astro.pages.dev/img/tienda/820CX003US-LENOVO-new.webp"
     ],
-    "DESCRIPCION": "Mochila ejecutiva de cuero genuino con compartimento para laptop de 17', múltiples bolsillos organizadores y puerto USB integrado. Elegancia y funcionalidad.",
-    "PRECIO": "$199"
+    "DESCRIPCION": "Laptop Lenovo renovada con Windows 11, procesador Intel Core i3-1215U, 8GB RAM, 256GB SSD y pantalla Full HD 14 pulgadas en color Plateado. Compacta y potente.",
+    "PRECIO": "$13,293.06"
+  },
+  {
+    "id": "hp-15-dy2702dx",
+    "TITULO": "HP 15-DY2702DX Laptop Semi Nueva Táctil",
+    "CATEGORIA": "Tecnología",
+    "IMG": [
+      "https://julioricardo95-astro.pages.dev/img/tienda/15-DY2702DX-HP-new.webp"
+    ],
+    "DESCRIPCION": "Laptop HP renovada con Windows 11, procesador Intel Core i3-1115G4, 12GB RAM, 256GB SSD y pantalla Full HD táctil de 15.6 pulgadas en color Silver. Mayor memoria y funcionalidad táctil.",
+    "PRECIO": "$13,732.50"
+  },
+  {
+    "id": "hp-14-dq2031wm",
+    "TITULO": "HP 14-DQ2031WM Laptop Semi Nueva",
+    "CATEGORIA": "Tecnología",
+    "IMG": [
+      "https://julioricardo95-astro.pages.dev/img/tienda/14-DQ2031WM-HP-new.webp"
+    ],
+    "DESCRIPCION": "Laptop HP renovada compacta con Windows 11, procesador Intel Core i3-1115G4, 8GB RAM, 256GB SSD y pantalla HD 14 pulgadas en color Silver. Portabilidad y rendimiento.",
+    "PRECIO": "$11,864.88"
+  },
+  {
+    "id": "hp-15-dy2131wm",
+    "TITULO": "HP 15-DY2131WM Laptop Semi Nueva",
+    "CATEGORIA": "Tecnología",
+    "IMG": [
+      "https://julioricardo95-astro.pages.dev/img/tienda/15-DY1031WM-HP-new.webp"
+    ],
+    "DESCRIPCION": "Laptop HP renovada con Windows 11, procesador Intel Core i3-1115G4, 8GB RAM, 256GB SSD y pantalla HD 15.6 pulgadas en color Silver. Equilibrio perfecto entre precio y rendimiento.",
+    "PRECIO": "$14,062.08"
+  },
+  {
+    "id": "dell-13520-5124blk-pus",
+    "TITULO": "Dell 13520-5124BLK-PUS Laptop Semi Nueva Táctil",
+    "CATEGORIA": "Tecnología",
+    "IMG": [
+      "https://julioricardo95-astro.pages.dev/img/tienda/13520-5124BLK-PUS-DELL-new.webp"
+    ],
+    "DESCRIPCION": "Laptop Dell renovada premium con Windows 11, potente procesador Intel Core i5-1235U, 8GB RAM, 512GB SSD y pantalla Full HD táctil de 15.6 pulgadas en color Negro. Alto rendimiento y almacenamiento.",
+    "PRECIO": "$17,577.60"
   }
 ]
