@@ -10,6 +10,26 @@
     "PRECIO": "$11,718.40"
   },
   {
+  "id": "sony-wh-ch720n",
+  "TITULO": "Sony WH-CH720N Audífonos Inalámbricos",
+  "CATEGORIA": "Audio",
+  "IMG": [
+    "https://julioricardo95-astro.pages.dev/img/tienda/sony-wh-ch720n-new.webp"
+  ],
+  "DESCRIPCION": "Audífonos Sony con cancelación de ruido digital, batería de hasta 35 horas, conexión Bluetooth y micrófono incorporado para llamadas claras. Color negro elegante.",
+  "PRECIO": "$2,399.00"
+  },
+  {
+  "id": "kit-herramientas-profesional",
+  "TITULO": "Kit de Herramientas Profesional 125 Piezas",
+  "CATEGORIA": "Hogar",
+  "IMG": [
+    "https://julioricardo95-astro.pages.dev/img/tienda/kit-herramientas-new.webp"
+  ],
+  "DESCRIPCION": "Kit completo de herramientas profesionales con 125 piezas, incluye llaves, destornilladores, alicates y más. Maletín de almacenamiento resistente. Perfecto para reparaciones domésticas.",
+  "PRECIO": "$1,850.75"
+  },
+  {
     "id": "hp-15-fc0039wm",
     "TITULO": "HP 15-FC0039WM Laptop Semi Nueva",
     "CATEGORIA": "Tecnología",
