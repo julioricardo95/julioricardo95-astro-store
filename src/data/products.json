@@ -1,5 +1,15 @@
 [
   {
+    "id": "hp-15-dy1031w",
+    "TITULO": "PH 15-DY1031WM Laptop Semi Nueva",
+    "CATEGORIA": "radio",
+    "IMG": [
+      "https://julioricardo95-astro.pages.dev/img/tienda/15-DY1031WM-HP-new.webp"
+    ],
+    "DESCRIPCION": "Laptop HP renovada con Windows 10, procesador Intel Core i3-1005G1, 8GB RAM, 256GB SSD y pantalla HD 15.6 pulgadas en color Natural Silver. Ideal para trabajo y estudio.",
+    "PRECIO": "$11,718.40"
+  },
+  {
     "id": "hp-15-dy1031wm",
     "TITULO": "HP 15-DY1031WM Laptop Semi Nueva",
     "CATEGORIA": "Tecnología",

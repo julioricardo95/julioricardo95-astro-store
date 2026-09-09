@@ -6,104 +6,115 @@ import InfiniteScroll from '../../components/islands/InfiniteScroll.jsx';
 import ProductCard from '../../components/ProductCard.jsx';
 import productsData from '../../data/products.json';
 
-// Obtener parámetros de búsqueda y filtros
+// 1. Obtener parámetros de búsqueda y categoría
 const searchQuery = Astro.url.searchParams.get('search') || '';
 const categoryFilter = Astro.url.searchParams.get('categoria') || '';
 
-// Filtrar productos
+// 2. Filtrar productos estrictamente por categoría si existe
 let filteredProducts = productsData;
 
-if (searchQuery) {
-	filteredProducts = filteredProducts.filter(product =>
-		product.TITULO.toLowerCase().includes(searchQuery.toLowerCase()) ||
-		product.CATEGORIA.toLowerCase().includes(searchQuery.toLowerCase()) ||
-		product.DESCRIPCION.toLowerCase().includes(searchQuery.toLowerCase())
-	);
-}
-
 if (categoryFilter) {
-	filteredProducts = filteredProducts.filter(product =>
-		product.CATEGORIA.toLowerCase() === categoryFilter.toLowerCase()
-	);
+    // Convertimos ambos a minúsculas y eliminamos espacios extras para una coincidencia exacta
+    const normalizedCategory = categoryFilter.trim().toLowerCase();
+    filteredProducts = filteredProducts.filter(product => 
+        product.CATEGORIA && product.CATEGORIA.trim().toLowerCase() === normalizedCategory
+    );
 }
 
-// Obtener categorías únicas para el filtro
-const categories = [...new Set(productsData.map(product => product.CATEGORIA))];
+// 3. Si además hay término de búsqueda, aplicamos la búsqueda sobre la lista ya filtrada
+if (searchQuery) {
+    const searchLower = searchQuery.toLowerCase();
+    filteredProducts = filteredProducts.filter(product =>
+        (product.TITULO && product.TITULO.toLowerCase().includes(searchLower)) ||
+        (product.DESCRIPCION && product.DESCRIPCION.toLowerCase().includes(searchLower))
+    );
+}
+
+// 4. Obtener categorías únicas limpiando nulos
+const categories = [...new Set(productsData.map(product => product.CATEGORIA).filter(Boolean))];
 ---
 
 <Layout 
-	title={`Productos ${categoryFilter || searchQuery ? '- ' + (categoryFilter || searchQuery) : ''} | TuTienda`}
-	description={categoryFilter ? `Descubre nuestra selección de productos de ${categoryFilter}. Calidad premium y precios competitivos.` : searchQuery ? `Resultados de búsqueda para "${searchQuery}". Encuentra los mejores productos.` : "Explora nuestro catálogo completo de productos premium. Tecnología, moda y accesorios de las mejores marcas con calidad garantizada."}
-	keywords={`productos, ${categoryFilter || 'tecnología, moda, accesorios'}, tienda online, calidad premium, ${searchQuery || 'smartphones, laptops, vestidos'}`}
-	ogImage="https://images.pexels.com/photos/3768894/pexels-photo-3768894.jpeg"
-	ogType="website"
-	canonicalURL={`https://tu-tienda.com/productos${categoryFilter ? '?categoria=' + encodeURIComponent(categoryFilter) : ''}${searchQuery ? '?search=' + encodeURIComponent(searchQuery) : ''}`}
+    title={`Productos ${categoryFilter || searchQuery ? '- ' + (categoryFilter || searchQuery) : ''} | TuTienda`}
+    description={categoryFilter ? `Descubre nuestra selección de productos de ${categoryFilter}. Calidad premium y precios competitivos.` : searchQuery ? `Resultados de búsqueda para "${searchQuery}". Encuentra los mejores productos.` : "Explora nuestro catálogo completo de productos premium. Tecnología, moda y accesorios de las mejores marcas con calidad garantizada."}
+    keywords={`productos, ${categoryFilter || 'tecnología, moda, accesorios'}, tienda online, calidad premium, ${searchQuery || 'smartphones, laptops, vestidos'}`}
+    ogImage="https://images.pexels.com/photos/3768894/pexels-photo-3768894.jpeg"
+    ogType="website"
+    canonicalURL={`https://tu-tienda.com/productos${categoryFilter ? '?categoria=' + encodeURIComponent(categoryFilter) : ''}${searchQuery ? '?search=' + encodeURIComponent(searchQuery) : ''}`}
 >
-	<Header />
-	<main>
-		<!-- Page Header -->
-		<section class="bg-gradient-to-r from-primary-50 to-secondary-50 py-16">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="text-center">
-					<h1 class="text-4xl font-bold text-gray-900 mb-4">
-						{categoryFilter ? `Productos de ${categoryFilter}` : searchQuery ? `Resultados para "${searchQuery}"` : 'Todos los Productos'}
-					</h1>
-					<p class="text-xl text-gray-600">
-						{filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
-					</p>
-				</div>
-			</div>
-		</section>
+    <Header />
+    <main>
+        <!-- Page Header -->
+        <section class="bg-gradient-to-r from-primary-50 to-secondary-50 py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                        {categoryFilter ? `Productos de ${categoryFilter}` : searchQuery ? `Resultados para "${searchQuery}"` : 'Todos los Productos'}
+                    </h1>
+                    <p class="text-xl text-gray-600">
+                        {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
+                    </p>
+                </div>
+            </div>
+        </section>
 
-		<!-- Filters and Products -->
-		<section class="py-12">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<!-- Filters -->
-				<div class="flex flex-wrap gap-4 mb-8">
-					<a 
-						href="/productos"
-						class={`px-4 py-2 rounded-full transition-all ${!categoryFilter ? 
-						'bg-primary-500 text-white' : 
-						'bg-white text-gray-700 border border-gray-300 hover:border-primary-500'}`}
-					>
-						Todos
-					</a>
-					{categories.map(category => (
-						<a 
-							href={`/productos?categoria=${encodeURIComponent(category)}`}
-							class={`px-4 py-2 rounded-full transition-all ${categoryFilter === category ? 'bg-primary-500 text-white' : 
-							'bg-white text-gray-700 border border-gray-300 hover:border-primary-500'}`}
-						>
-							{category}
-						</a>
-					))}
-				</div>
+        <!-- Filters and Products -->
+        <section class="py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Filters -->
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <!-- Botón "Todos" LIMPIA cualquier filtro o búsqueda previo -->
+                    <a 
+                        href="/productos"
+                        class={`px-4 py-2 rounded-full transition-all ${!categoryFilter && !searchQuery ? 
+                        'bg-primary-500 text-white' : 
+                        'bg-white text-gray-700 border border-gray-300 hover:border-primary-500'}`}
+                    >
+                        Todos
+                    </a>
 
-				<!-- Products Grid -->
+                    <!-- Botones de Categorías (Limpian el buscador al cambiar de categoría) -->
+                    {categories.map(category => {
+                        const isSelected = categoryFilter.trim().toLowerCase() === category.trim().toLowerCase();
+                        return (
+                            <a 
+                                href={`/productos?categoria=${encodeURIComponent(category)}`}
+                                class={`px-4 py-2 rounded-full transition-all ${isSelected ? 
+                                'bg-primary-500 text-white' : 
+                                'bg-white text-gray-700 border border-gray-300 hover:border-primary-500'}`}
+                            >
+                                {category}
+                            </a>
+                        );
+                    })}
+                </div>
+
+                <!-- Products Grid -->
 				<InfiniteScroll 
 					items={filteredProducts}
 					itemsPerPage={8}
 					renderItemType="ProductCard"
+					currentCategory={categoryFilter.trim().toLowerCase()}
 					client:load
 				/>
-			</div>
-		</section>
-	</main>
-	<Footer client:load />
+            </div>
+        </section>
+    </main>
+    <Footer client:load />
 </Layout>
 
 <script>
-	function contactWhatsApp(productTitle) {
-		const text = encodeURIComponent('Hola, estoy interesado en ' + productTitle);
-		window.open('https://wa.me/1234567890?text=' + text, '_blank');
-	}
+    function contactWhatsApp(productTitle) {
+        const text = encodeURIComponent('Hola, estoy interesado en ' + productTitle);
+        window.open('https://wa.me/50558567432?text=' + text, '_blank');
+    }
 
-	function shareProductOnFacebook(productId) {
-		const url = encodeURIComponent(window.location.origin + '/producto/' + productId);
-		window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank');
-	}
+    function shareProductOnFacebook(productId) {
+        const url = encodeURIComponent(window.location.origin + '/producto/' + productId);
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank');
+    }
 
-	function callPhone() {
-		window.open('tel:+1234567890');
-	}
+    function callPhone() {
+        window.open('tel:+50558567432');
+    }
 </script>

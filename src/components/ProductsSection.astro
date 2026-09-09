@@ -1,66 +1,77 @@
 ---
 import ProductCarousel from './islands/ProductCarousel.jsx';
+import productsData from '../data/products.json';
+
+// 1. Filtrar los productos marcados como destacados
+const filteredByFeatured = productsData.filter(product => product.DESTACADO || product.destacado);
+
+// 2. Si hay productos destacados se usan esos; si no hay ninguno, toma los primeros 8 productos del catálogo
+const featuredProducts = filteredByFeatured.length > 0 
+  ? filteredByFeatured 
+  : productsData.slice(0, 8);
 ---
 
 <section class="py-20 bg-white">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<!-- Section Header -->
-		<div class="text-center mb-16">
-			<h2 class="text-4xl font-bold text-gray-900 mb-4">
-				Productos <span class="text-primary-600">Destacados</span>
-			</h2>
-			<p class="text-xl text-gray-600 max-w-3xl mx-auto">
-				Descubre nuestra selección curada de productos premium que combinan calidad, 
-				innovación y estilo para satisfacer tus necesidades más exigentes.
-			</p>
-		</div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                Productos <span class="text-primary-600">Destacados</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Descubre nuestra selección curada de productos premium que combinan calidad, 
+                innovación y estilo para satisfacer tus necesidades más exigentes.
+            </p>
+        </div>
 
-		<!-- Product Carousel Island -->
-		<ProductCarousel client:load />
+        <!-- Product Carousel Island -->
+        
 
-		<!-- View All Button -->
-		<div class="text-center mt-12">
-			<a 
-				href="/productos" 
-				class="inline-flex items-center bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
-			>
-				<i class="fas fa-grid-2 mr-3"></i>
-				Ver Todos los Productos
-				<i class="fas fa-arrow-right ml-3"></i>
-			</a>
-		</div>
+<ProductCarousel products={featuredProducts} client:load />
 
-		<!-- Features Grid -->
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-			<div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
-				<div class="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-full mb-4">
-					<i class="fas fa-medal text-2xl"></i>
-				</div>
-				<h3 class="text-xl font-bold text-gray-900 mb-2">Calidad Premium</h3>
-				<p class="text-gray-600">
-					Productos seleccionados cuidadosamente por nuestros expertos para garantizar la máxima calidad.
-				</p>
-			</div>
+        <!-- View All Button -->
+        <div class="text-center mt-12">
+            <a 
+                href="/productos" 
+                class="inline-flex items-center bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+                <i class="fas fa-grid-2 mr-3"></i>
+                Ver Todos los Productos
+                <i class="fas fa-arrow-right ml-3"></i>
+            </a>
+        </div>
 
-			<div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
-				<div class="inline-flex items-center justify-center w-16 h-16 bg-secondary-100 text-secondary-600 rounded-full mb-4">
-					<i class="fas fa-rocket text-2xl"></i>
-				</div>
-				<h3 class="text-xl font-bold text-gray-900 mb-2">Innovación</h3>
-				<p class="text-gray-600">
-					Las últimas tendencias y tecnologías más avanzadas del mercado en un solo lugar.
-				</p>
-			</div>
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+            <div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-full mb-4">
+                    <i class="fas fa-medal text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Calidad Premium</h3>
+                <p class="text-gray-600">
+                    Productos seleccionados cuidadosamente por nuestros expertos para garantizar la máxima calidad.
+                </p>
+            </div>
 
-			<div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
-				<div class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-4">
-					<i class="fas fa-heart text-2xl"></i>
-				</div>
-				<h3 class="text-xl font-bold text-gray-900 mb-2">Satisfacción</h3>
-				<p class="text-gray-600">
-					+10,000 clientes satisfechos respaldan la calidad de nuestros productos y servicio.
-				</p>
-			</div>
-		</div>
-	</div>
+            <div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-secondary-100 text-secondary-600 rounded-full mb-4">
+                    <i class="fas fa-rocket text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Innovación</h3>
+                <p class="text-gray-600">
+                    Las últimas tendencias y tecnologías más avanzadas del mercado en un solo lugar.
+                </p>
+            </div>
+
+            <div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-4">
+                    <i class="fas fa-heart text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Satisfacción</h3>
+                <p class="text-gray-600">
+                    +10,000 clientes satisfechos respaldan la calidad de nuestros productos y servicio.
+                </p>
+            </div>
+        </div>
+    </div>
 </section>

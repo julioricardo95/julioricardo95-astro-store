@@ -3,17 +3,19 @@ export const SITE_CONFIG = {
   name: "TuTienda",
   title: "TuTienda - Productos Premium Online",
   description: "Tienda online moderna con los mejores productos de tecnología, moda y accesorios. Calidad garantizada y envíos rápidos.",
+  siteUrl: "https://julioricardo95-astro-store.pages.dev",
   url: "https://julioricardo95-astro-store.pages.dev/",
   author: "julioricardo95",
   email: "julioricardo95@gmail.com",
-  phone: "+50558567432",
-  whatsapp: "+50558567432",
+  phone: "+505 5856 7432",
+  // Formato numérico limpio sin '+' ni espacios para la API de WhatsApp (wa.me/50558567432)
+  whatsapp: "50558567432", 
   address: {
     street: "Calle Principal 123",
     city: "Ciudad",
     state: "Estado", 
     zip: "12345",
-    country: "ni"
+    country: "Nicaragua"
   },
   social: {
     facebook: "https://facebook.com/tutienda",
@@ -21,8 +23,8 @@ export const SITE_CONFIG = {
     twitter: "https://twitter.com/tutienda"
   },
   geo: {
-    latitude: "40.7128",
-    longitude: "-74.0060"
+    latitude: "12.4678",
+    longitude: "-85.6589"
   }
 };
 
@@ -41,7 +43,7 @@ export const CATEGORIES = {
   ACCESORIOS: "Accesorios"
 };
 
-// Pagination
+// Pagination & UI Constants
 export const PAGINATION = {
   PRODUCTS_PER_PAGE: 8,
   ARTICLES_PER_PAGE: 6,

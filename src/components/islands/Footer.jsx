@@ -8,7 +8,7 @@ export default function Footer() {
   };
 
   const handleWhatsApp = () => {
-    window.open(`https://wa.me/${SITE_CONFIG.whatsapp}?text=Hola, me gustaría obtener más información`, '_blank');
+    window.open(`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Hola, me gustaría obtener más información')}`, '_blank');
   };
 
   const handleFacebook = () => {
@@ -50,7 +50,9 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-sm">
                 <i className="fas fa-map-marker-alt text-primary-400"></i>
-                <span className="text-gray-300">{SITE_CONFIG.address.street}, {SITE_CONFIG.address.city}, CP {SITE_CONFIG.address.zip}</span>
+                <span className="text-gray-300">
+                  {SITE_CONFIG.address.street}, {SITE_CONFIG.address.city}, CP {SITE_CONFIG.address.zip}
+                </span>
               </div>
               <button 
                 onClick={handleCall}
@@ -133,21 +135,21 @@ export default function Footer() {
             {/* Social Media Buttons */}
             <div className="flex space-x-4 mb-6">
               <button
-                onClick={() => window.open(SITE_CONFIG.social.facebook, '_blank')}
+                onClick={handleFacebook}
                 className="w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors transform hover:scale-110"
                 title="Facebook"
               >
                 <i className="fab fa-facebook text-white"></i>
               </button>
               <button
-                onClick={() => window.open(SITE_CONFIG.social.instagram, '_blank')}
+                onClick={handleInstagram}
                 className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-full flex items-center justify-center transition-all transform hover:scale-110"
                 title="Instagram"
               >
                 <i className="fab fa-instagram text-white"></i>
               </button>
               <button
-                onClick={() => window.open(SITE_CONFIG.social.twitter, '_blank')}
+                onClick={handleTwitter}
                 className="w-10 h-10 bg-blue-400 hover:bg-blue-500 rounded-full flex items-center justify-center transition-colors transform hover:scale-110"
                 title="Twitter"
               >

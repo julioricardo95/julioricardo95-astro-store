@@ -25,36 +25,41 @@ export default function InfiniteScroll({
 
   const RenderComponent = componentMap[renderItemType] || ProductCard;
 
-  // Initialize with first page
+  // 🔴 CORRECCIÓN 1: Reiniciar completamente el estado cuando cambia 'items'
   useEffect(() => {
     const initialItems = items.slice(0, itemsPerPage);
     setDisplayedItems(initialItems);
+    setCurrentPage(1); // Importante: resetear la página a 1
     setHasMore(items.length > itemsPerPage);
+    setLoading(false);
   }, [items, itemsPerPage]);
 
-  // Load more items
+  // 🔴 CORRECCIÓN 2: Cargar más elementos sin cierres obsoletos (closures)
   const loadMoreItems = useCallback(() => {
     if (loading || !hasMore) return;
 
     setLoading(true);
     
-    // Simulate loading delay for better UX
     setTimeout(() => {
-      const startIndex = currentPage * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      const newItems = items.slice(startIndex, endIndex);
-      
-      if (newItems.length > 0) {
-        setDisplayedItems(prev => [...prev, ...newItems]);
-        setCurrentPage(prev => prev + 1);
-        setHasMore(endIndex < items.length);
-      } else {
-        setHasMore(false);
-      }
+      // Usamos el valor funcional de prevPage para garantizar que siempre leemos la página real
+      setCurrentPage(prevPage => {
+        const startIndex = prevPage * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const newItems = items.slice(startIndex, endIndex);
+        
+        if (newItems.length > 0) {
+          setDisplayedItems(prev => [...prev, ...newItems]);
+          setHasMore(endIndex < items.length);
+          return prevPage + 1;
+        } else {
+          setHasMore(false);
+          return prevPage;
+        }
+      });
       
       setLoading(false);
-    }, 500);
-  }, [items, currentPage, itemsPerPage, loading, hasMore]);
+    }, 400);
+  }, [items, itemsPerPage, loading, hasMore]);
 
   // Intersection Observer for infinite scroll
   useEffect(() => {
@@ -106,7 +111,7 @@ export default function InfiniteScroll({
       {/* Rendered Items */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {displayedItems.map((item, index) => (
-          <div key={item.id || index} className="animate-fade-in">
+          <div key={item.id || item.ID || index} className="animate-fade-in">
             <RenderComponent 
               {...(renderItemType === 'ProductCard' ? { product: item } : { article: item })}
             />

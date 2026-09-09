@@ -5,14 +5,15 @@ import Footer from '../../components/islands/Footer.jsx';
 import InfiniteScroll from '../../components/islands/InfiniteScroll.jsx';
 import ArticleCard from '../../components/ArticleCard.jsx';
 
-// Obtener artículos desde archivos Markdown
-const articles = await Astro.glob('../../articles/*.md');
+// Reemplazo de Astro.glob por import.meta.glob de Vite (eager para carga síncrona)
+const articleImports = import.meta.glob('../../articles/*.md', { eager: true });
+const articles = Object.values(articleImports);
 
 // Ordenar artículos por fecha (más recientes primero)
 const sortedArticles = articles.sort((a, b) => {
-	const dateA = new Date(a.frontmatter.date);
-	const dateB = new Date(b.frontmatter.date);
-	return dateB - dateA;
+    const dateA = new Date(a.frontmatter.date);
+    const dateB = new Date(b.frontmatter.date);
+    return dateB.getTime() - dateA.getTime();
 });
 
 // Obtener categorías únicas
@@ -20,95 +21,95 @@ const categories = [...new Set(sortedArticles.map(article => article.frontmatter
 ---
 
 <Layout 
-	title="Artículos y Guías | TuTienda - Blog de Tecnología y Moda"
-	description="Lee nuestros artículos sobre las últimas tendencias en tecnología, moda y estilo de vida. Guías, reseñas y consejos de expertos."
-	keywords="blog, artículos, guías, tecnología, moda, tendencias, reseñas, consejos, expertos, noticias"
-	ogImage="https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg"
-	ogType="blog"
-	canonicalURL="https://tu-tienda.com/articulos/"
+    title="Artículos y Guías | TuTienda - Blog de Tecnología y Moda"
+    description="Lee nuestros artículos sobre las últimas tendencias en tecnología, moda y estilo de vida. Guías, reseñas y consejos de expertos."
+    keywords="blog, artículos, guías, tecnología, moda, tendencias, reseñas, consejos, expertos, noticias"
+    ogImage="https://images.pexels.com/photos/8566473/pexels-photo-8566473.jpeg"
+    ogType="blog"
+    canonicalURL="https://tu-tienda.com/articulos/"
 >
-	<Header />
-	<main>
-		<!-- Page Header -->
-		<section class="bg-gradient-to-r from-primary-50 to-secondary-50 py-16">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-				<h1 class="text-4xl font-bold text-gray-900 mb-4">
-					Artículos y <span class="text-primary-600">Guías</span>
-				</h1>
-				<p class="text-xl text-gray-600 max-w-3xl mx-auto">
-					Descubre las últimas tendencias, consejos de expertos y guías detalladas 
-					sobre tecnología, moda y estilo de vida.
-				</p>
-			</div>
-		</section>
+    <Header />
+    <main>
+        <!-- Page Header -->
+        <section class="bg-gradient-to-r from-primary-50 to-secondary-50 py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                    Artículos y <span class="text-primary-600">Guías</span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Descubre las últimas tendencias, consejos de expertos y guías detalladas 
+                    sobre tecnología, moda y estilo de vida.
+                </p>
+            </div>
+        </section>
 
-		<!-- Categories Filter -->
-		<section class="py-8 bg-white border-b">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="flex flex-wrap gap-4 justify-center">
-					<button class="px-6 py-2 bg-primary-500 text-white rounded-full font-semibold transition-all hover:bg-primary-600">
-						Todos
-					</button>
-					{categories.map(category => (
-						<button class="px-6 py-2 bg-white text-gray-700 border border-gray-300 rounded-full font-semibold transition-all hover:border-primary-500 hover:text-primary-600">
-							{category}
-						</button>
-					))}
-				</div>
-			</div>
-		</section>
+        <!-- Categories Filter -->
+        <section class="py-8 bg-white border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <button class="px-6 py-2 bg-primary-500 text-white rounded-full font-semibold transition-all hover:bg-primary-600">
+                        Todos
+                    </button>
+                    {categories.map(category => (
+                        <button class="px-6 py-2 bg-white text-gray-700 border border-gray-300 rounded-full font-semibold transition-all hover:border-primary-500 hover:text-primary-600">
+                            {category}
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </section>
 
-		<!-- Articles Grid -->
-		<section class="py-16">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<InfiniteScroll 
-					items={sortedArticles.map(article => ({
-						...article.frontmatter,
-						slug: article.file.split('/').pop().replace('.md', ''),
-						id: article.file.split('/').pop().replace('.md', '')
-					}))}
-					itemsPerPage={6}
-					renderItemType="ArticleCard"
-					client:load
-				/>
-			</div>
-		</section>
+        <!-- Articles Grid -->
+        <section class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <InfiniteScroll 
+                    items={sortedArticles.map(article => ({
+                        ...article.frontmatter,
+                        slug: article.file.split('/').pop().replace('.md', ''),
+                        id: article.file.split('/').pop().replace('.md', '')
+                    }))}
+                    itemsPerPage={6}
+                    renderItemType="ArticleCard"
+                    client:load
+                />
+            </div>
+        </section>
 
-		<!-- Newsletter Subscription -->
-		<section class="py-16 bg-gradient-to-r from-primary-500 to-secondary-500">
-			<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-				<h2 class="text-3xl font-bold text-white mb-4">
-					¿No te quieres perder nada?
-				</h2>
-				<p class="text-xl text-white/90 mb-8">
-					Suscríbete a nuestro boletín y recibe los últimos artículos directamente en tu email.
-				</p>
-				<div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-					<input
-						type="email"
-						placeholder="Tu email aquí..."
-						class="flex-1 px-4 py-3 rounded-lg border-none focus:outline-none focus:ring-2 focus:ring-white text-gray-900"
-					/>
-					<button class="bg-white text-primary-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors">
-						<i class="fas fa-paper-plane mr-2"></i>
-						Suscribirse
-					</button>
-				</div>
-			</div>
-		</section>
-	</main>
-	<Footer client:load />
+        <!-- Newsletter Subscription -->
+        <section class="py-16 bg-gradient-to-r from-primary-500 to-secondary-500">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold text-white mb-4">
+                    ¿No te quieres perder nada?
+                </h2>
+                <p class="text-xl text-white/90 mb-8">
+                    Suscríbete a nuestro boletín y recibe los últimos artículos directamente en tu email.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+                    <input
+                        type="email"
+                        placeholder="Tu email aquí..."
+                        class="flex-1 px-4 py-3 rounded-lg border-none focus:outline-none focus:ring-2 focus:ring-white text-gray-900"
+                    />
+                    <button class="bg-white text-primary-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Suscribirse
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer client:load />
 </Layout>
 
 <script>
-	window.shareOnFacebook = function(articleSlug) {
-		const url = encodeURIComponent(window.location.origin + '/articulo/' + articleSlug);
-		window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank');
-	};
+    window.shareOnFacebook = function(articleSlug) {
+        const url = encodeURIComponent(window.location.origin + '/articulo/' + articleSlug);
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank');
+    };
 
-	window.shareOnWhatsApp = function(title, articleSlug) {
-		const url = window.location.origin + '/articulo/' + articleSlug;
-		const text = encodeURIComponent(title + ' - ' + url);
-		window.open('https://wa.me/?text=' + text, '_blank');
-	};
+    window.shareOnWhatsApp = function(title, articleSlug) {
+        const url = window.location.origin + '/articulo/' + articleSlug;
+        const text = encodeURIComponent(title + ' - ' + url);
+        window.open('https://wa.me/?text=' + text, '_blank');
+    };
 </script>

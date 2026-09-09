@@ -1,114 +1,117 @@
 ---
 import SEOHead from '../components/SEOHead.astro';
-import { SITE_CONFIG } from '../utils/constants.js';
+import { SITE_CONFIG, SEO_DEFAULTS } from '../utils/constants.js';
+// 1. IMPORTAR TUS ESTILOS GLOBALES (Requerido para Tailwind v4)
+import '../styles/global.css';
 
 export interface Props {
-	title: string;
-	description?: string;
-	ogImage?: string;
-	canonicalURL?: string;
-	keywords?: string;
-	author?: string;
-	ogType?: string;
-	twitterCard?: string;
-	robots?: string;
+    title?: string;
+    description?: string;
+    ogImage?: string;
+    canonicalURL?: string;
+    keywords?: string;
+    author?: string;
+    ogType?: string;
+    twitterCard?: string;
+    robots?: string;
 }
 
 const { 
-	title, 
-	description = "Tienda online moderna con los mejores productos de tecnología, moda y accesorios. Calidad garantizada y envíos rápidos.", 
-	ogImage = "https://images.pexels.com/photos/3768894/pexels-photo-3768894.jpeg", 
-	canonicalURL,
-	keywords = "tienda online, tecnología, moda, accesorios, productos premium, calidad garantizada, envío rápido, smartphone, laptop, auriculares, vestidos, zapatos",
-	author = "TuTienda",
-	ogType = "website",
-	twitterCard = "summary_large_image",
-	robots = "index, follow"
+    title = SITE_CONFIG.title, 
+    description = SITE_CONFIG.description, 
+    ogImage = SEO_DEFAULTS.ogImage, 
+    canonicalURL,
+    keywords = SEO_DEFAULTS.keywords,
+    author = SITE_CONFIG.author,
+    ogType = "website",
+    twitterCard = SEO_DEFAULTS.twitterCard,
+    robots = SEO_DEFAULTS.robots
 } = Astro.props;
-const siteURL = "https://tu-tienda.com";
+
+const siteURL = SITE_CONFIG.siteUrl;
 const currentURL = canonicalURL || Astro.url.href;
 ---
 
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="apple-touch-icon" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		
-		<SEOHead {...Astro.props} />
-		
-		<!-- Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-		
-		<!-- Font Awesome -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-	</head>
-	<body class="bg-gray-50 text-gray-900 font-sans antialiased">
-		<slot />
-		
-		<!-- WhatsApp Button -->
-		<div class="fixed bottom-4 right-4 z-50">
-			<a 
-				href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
-				target="_blank"
-				class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transform transition-transform hover:scale-110 animate-bounce-gentle"
-				aria-label="Contactar por WhatsApp"
-			>
-				<i class="fab fa-whatsapp text-2xl"></i>
-			</a>
-		</div>
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        
+        <!-- SEO Head Component -->
+        <SEOHead 
+            title={title}
+            description={description}
+            ogImage={ogImage}
+            canonicalURL={currentURL}
+            keywords={keywords}
+            author={author}
+            ogType={ogType}
+            twitterCard={twitterCard}
+            robots={robots}
+        />
+        
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+    <body class="bg-gray-50 text-gray-900 font-sans antialiased min-h-screen flex flex-col justify-between">
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <slot />
+        </main>
+        
+        <!-- WhatsApp Floating Button -->
+        <div class="fixed bottom-6 right-6 z-50">
+            <a 
+                href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-center w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-2xl transform transition-all duration-300 hover:scale-110 active:scale-95"
+                aria-label="Contactar por WhatsApp"
+            >
+                <i class="fab fa-whatsapp text-3xl"></i>
+            </a>
+        </div>
+    </body>
 </html>
 
-<style>
-	html {
-		scroll-behavior: smooth;
-	}
-	
-	body {
-		overflow-x: hidden;
-	}
-	
-	/* Custom scrollbar */
-	::-webkit-scrollbar {
-		width: 8px;
-	}
-	
-	::-webkit-scrollbar-track {
-		@apply bg-gray-100;
-	}
-	
-	::-webkit-scrollbar-thumb {
-		@apply bg-primary-500 rounded-full;
-	}
-	
-	::-webkit-scrollbar-thumb:hover {
-		@apply bg-primary-600;
-	}
-	
-	/* Line clamp utilities */
-	.line-clamp-2 {
-		display: -webkit-box;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-	
-	.line-clamp-3 {
-		display: -webkit-box;
-		-webkit-line-clamp: 3;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-	
-	/* Smooth scroll behavior */
-	html {
-		scroll-behavior: smooth;
-	}
+<style is:global>
+    /* Permite usar la directiva @apply con variables del tema de Tailwind v4 */
+    @reference "../styles/global.css";
+
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        overflow-x: hidden;
+    }
+    
+    /* Custom Scrollbar usando @apply */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        @apply bg-gray-100;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        @apply bg-primary-500 rounded-full;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-primary-600;
+    }
+    
+    /* Nota: Tailwind v4 ya incluye 'line-clamp-2' y 'line-clamp-3' de forma nativa */
 </style>

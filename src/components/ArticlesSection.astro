@@ -1,124 +1,131 @@
 ---
-// Obtener artículos desde archivos Markdown
-const articles = await Astro.glob('../articles/*.md');
+// Obtener artículos utilizando la API nativa de Vite en lugar del obsoleto Astro.glob
+const articleImports = import.meta.glob('../articles/*.md', { eager: true });
+const articles = Object.values(articleImports);
 
 // Ordenar artículos por fecha (más recientes primero)
 const sortedArticles = articles.sort((a, b) => {
   const dateA = new Date(a.frontmatter.date);
   const dateB = new Date(b.frontmatter.date);
-  return dateB - dateA;
-}).slice(0, 3); // Mostrar solo los 3 más recientes
+  return dateB.getTime() - dateA.getTime();
+}).slice(0, 3); // Solo tomamos los 3 más recientes
 ---
 
 <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<!-- Section Header -->
-		<div class="text-center mb-16">
-			<h2 class="text-4xl font-bold text-gray-900 mb-4">
-				Artículos <span class="text-primary-600">Recientes</span>
-			</h2>
-			<p class="text-xl text-gray-600 max-w-3xl mx-auto">
-				Mantente actualizado con las últimas tendencias, guías y novedades 
-				en tecnología, moda y estilo de vida.
-			</p>
-		</div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Encabezado de la Sección -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                Artículos <span class="text-primary-600">Recientes</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Mantente actualizado con las últimas tendencias, guías y novedades 
+                en tecnología, moda y estilo de vida.
+            </p>
+        </div>
 
-		<!-- Articles Grid -->
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-			{sortedArticles.map((article, index) => (
-				<article class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transform hover:scale-105 transition-all duration-300 animate-slide-up" style={`animation-delay: ${index * 0.1}s`}>
-					<!-- Article Image -->
-					<div class="relative overflow-hidden h-48">
-						<img 
-							src={article.frontmatter.image} 
-							alt={article.frontmatter.title}
-							class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-							loading="lazy"
-						/>
-						<div class="absolute top-4 left-4">
-							<span class="bg-primary-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-								{article.frontmatter.category}
-							</span>
-						</div>
-						<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-					</div>
-					
-					<!-- Article Content -->
-					<div class="p-6">
-						<div class="flex items-center text-sm text-gray-500 mb-3">
-							<i class="fas fa-calendar-alt mr-2"></i>
-							{new Date(article.frontmatter.date).toLocaleDateString('es-ES', {
-								year: 'numeric',
-								month: 'long',
-								day: 'numeric'
-							})}
-						</div>
-						
-						<h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-primary-600 transition-colors">
-							<a href={`/articulo/${article.file.split('/').pop().replace('.md', '')}`}>
-								{article.frontmatter.title}
-							</a>
-						</h3>
-						
-						<p class="text-gray-600 mb-4 line-clamp-3">
-							{article.frontmatter.excerpt}
-						</p>
-						
-						<div class="flex items-center justify-between">
-							<a 
-								href={`/articulo/${article.file.split('/').pop().replace('.md', '')}`}
-								class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold transition-colors"
-							>
-								Leer más
-								<i class="fas fa-arrow-right ml-2"></i>
-							</a>
-							
-							<!-- Social Share Buttons -->
-							<div class="flex space-x-2">
-								<button 
-									onclick={`shareOnFacebook('${article.file.split('/').pop().replace('.md', '')}')`}
-									class="text-blue-600 hover:text-blue-700 transition-colors p-2"
-									title="Compartir en Facebook"
-								>
-									<i class="fab fa-facebook"></i>
-								</button>
-								<button 
-									onclick={`shareOnWhatsApp('${article.frontmatter.title}', '${article.file.split('/').pop().replace('.md', '')}')`}
-									class="text-green-600 hover:text-green-700 transition-colors p-2"
-									title="Compartir en WhatsApp"
-								>
-									<i class="fab fa-whatsapp"></i>
-								</button>
-							</div>
-						</div>
-					</div>
-				</article>
-			))}
-		</div>
+        <!-- Grilla de Artículos -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {sortedArticles.map((article, index) => {
+                const slug = article.file.split('/').pop().replace('.md', '');
+                return (
+                    <article 
+                        class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transform hover:scale-105 transition-all duration-300 animate-slide-up" 
+                        style={`animation-delay: ${index * 0.1}s`}
+                    >
+                        <!-- Imagen del Artículo -->
+                        <div class="relative overflow-hidden h-48">
+                            <img 
+                                src={article.frontmatter.image} 
+                                alt={article.frontmatter.title}
+                                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                            />
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-primary-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                    {article.frontmatter.category}
+                                </span>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                        </div>
+                        
+                        <!-- Contenido del Artículo -->
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 mb-3">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                {new Date(article.frontmatter.date).toLocaleDateString('es-ES', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                })}
+                            </div>
+                            
+                            <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-primary-600 transition-colors">
+                                <a href={`/articulo/${slug}`}>
+                                    {article.frontmatter.title}
+                                </a>
+                            </h3>
+                            
+                            <p class="text-gray-600 mb-4 line-clamp-3">
+                                {article.frontmatter.excerpt}
+                            </p>
+                            
+                            <div class="flex items-center justify-between">
+                                <a 
+                                    href={`/articulo/${slug}`}
+                                    class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold transition-colors"
+                                >
+                                    Leer más
+                                    <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                                
+                                <!-- Botones de Compartir -->
+                                <div class="flex space-x-2">
+                                    <button 
+                                        onclick={`shareOnFacebook('${slug}')`}
+                                        class="text-blue-600 hover:text-blue-700 transition-colors p-2"
+                                        title="Compartir en Facebook"
+                                    >
+                                        <i class="fab fa-facebook"></i>
+                                    </button>
+                                    <button 
+                                        onclick={`shareOnWhatsApp('${article.frontmatter.title}', '${slug}')`}
+                                        class="text-green-600 hover:text-green-700 transition-colors p-2"
+                                        title="Compartir en WhatsApp"
+                                    >
+                                        <i class="fab fa-whatsapp"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                );
+            })}
+        </div>
 
-		<!-- View All Articles Button -->
-		<div class="text-center">
-			<a 
-				href="/articulos" 
-				class="inline-flex items-center bg-gradient-to-r from-secondary-500 to-primary-500 hover:from-secondary-600 hover:to-primary-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
-			>
-				<i class="fas fa-newspaper mr-3"></i>
-				Ver Todos los Artículos
-				<i class="fas fa-arrow-right ml-3"></i>
-			</a>
-		</div>
-	</div>
+        <!-- Botón Ver Todos -->
+        <div class="text-center">
+            <a 
+                href="/articulos" 
+                class="inline-flex items-center bg-gradient-to-r from-secondary-500 to-primary-500 hover:from-secondary-600 hover:to-primary-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+                <i class="fas fa-newspaper mr-3"></i>
+                Ver Todos los Artículos
+                <i class="fas fa-arrow-right ml-3"></i>
+            </a>
+        </div>
+    </div>
 </section>
 
 <script>
-	window.shareOnFacebook = function(articleSlug) {
-		const url = encodeURIComponent(window.location.origin + '/articulo/' + articleSlug);
-		window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank');
-	};
+    window.shareOnFacebook = function(articleSlug) {
+        const url = encodeURIComponent(window.location.origin + '/articulo/' + articleSlug);
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank');
+    };
 
-	window.shareOnWhatsApp = function(title, articleSlug) {
-		const url = window.location.origin + '/articulo/' + articleSlug;
-		const text = encodeURIComponent(title + ' - ' + url);
-		window.open('https://wa.me/?text=' + text, '_blank');
-	};
+    window.shareOnWhatsApp = function(title, articleSlug) {
+        const url = window.location.origin + '/articulo/' + articleSlug;
+        const text = encodeURIComponent(title + ' - ' + url);
+        window.open('https://wa.me/?text=' + text, '_blank');
+    };
 </script>

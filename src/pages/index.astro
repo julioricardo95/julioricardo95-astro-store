@@ -5,21 +5,23 @@ import HeroSection from '../components/HeroSection.astro';
 import ProductsSection from '../components/ProductsSection.astro';
 import ArticlesSection from '../components/ArticlesSection.astro';
 import Footer from '../components/islands/Footer.jsx';
+import { SITE_CONFIG, SEO_DEFAULTS } from '../utils/constants.js';
 ---
 
 <Layout 
-	title="TuTienda - Productos Premium Online | Tecnología, Moda y Accesorios"
-	description="Descubre los mejores productos de tecnología, moda y accesorios en TuTienda. Calidad premium, precios competitivos y envío rápido. ¡Compra online ahora!"
-	keywords="tienda online, productos premium, tecnología, smartphones, laptops, auriculares, moda, vestidos, zapatos, accesorios, calidad garantizada, envío rápido"
-	ogImage="https://images.pexels.com/photos/3768894/pexels-photo-3768894.jpeg"
-	ogType="website"
-	canonicalURL="https://tu-tienda.com/"
+    title={SITE_CONFIG.title}
+    description={SITE_CONFIG.description}
+    keywords={SEO_DEFAULTS.keywords}
+    ogImage={SEO_DEFAULTS.ogImage}
+    ogType="website"
+    canonicalURL={SITE_CONFIG.url}
+    author={SITE_CONFIG.author}
 >
-	<Header />
-	<main>
-		<HeroSection />
-		<ProductsSection />
-		<ArticlesSection />
-	</main>
-	<Footer client:load />
+    <Header />
+    <main id="main-content">
+        <HeroSection />
+        <ProductsSection />
+        <ArticlesSection />
+    </main>
+    <Footer client:load />
 </Layout>
