@@ -43,13 +43,17 @@ export function generateOrganizationSchema() {
 
 // Generate structured data for Product
 export function generateProductSchema(product) {
+  // Asegura que el precio sea convertido a String y elimina el símbolo '$' u otros caracteres no numéricos
+  const rawPrice = product?.PRECIO ?? '0';
+  const cleanPrice = String(rawPrice).replace('$', '').trim();
+
   return {
     "@context": "https://schema.org/",
     "@type": "Product",
-    "name": product.TITULO,
-    "image": product.IMG,
-    "description": product.DESCRIPCION,
-    "category": product.CATEGORIA,
+    "name": product?.TITULO || '',
+    "image": product?.IMG || [],
+    "description": product?.DESCRIPCION || '',
+    "category": product?.CATEGORIA || '',
     "brand": {
       "@type": "Brand",
       "name": SITE_CONFIG.name
@@ -57,7 +61,7 @@ export function generateProductSchema(product) {
     "offers": {
       "@type": "Offer",
       "priceCurrency": "USD",
-      "price": product.PRECIO.replace('$', ''),
+      "price": cleanPrice,
       "availability": "https://schema.org/InStock",
       "seller": {
         "@type": "Organization",
@@ -72,9 +76,9 @@ export function generateArticleSchema(article) {
   return {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": article.title,
-    "description": article.excerpt,
-    "image": article.image,
+    "headline": article?.title || '',
+    "description": article?.excerpt || '',
+    "image": article?.image || '',
     "author": {
       "@type": "Organization",
       "name": SITE_CONFIG.name
@@ -87,13 +91,13 @@ export function generateArticleSchema(article) {
         "url": `${SITE_CONFIG.url}/favicon.svg`
       }
     },
-    "datePublished": article.date,
-    "dateModified": article.date
+    "datePublished": article?.date || '',
+    "dateModified": article?.date || ''
   };
 }
 
 // Generate breadcrumb schema
-export function generateBreadcrumbSchema(items) {
+export function generateBreadcrumbSchema(items = []) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

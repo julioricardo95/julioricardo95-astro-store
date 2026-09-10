@@ -2,119 +2,327 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/islands/Footer.jsx';
-import InfiniteScroll from '../../components/islands/InfiniteScroll.jsx';
 import ProductCard from '../../components/ProductCard.jsx';
 import productsData from '../../data/products.json';
 
-// 1. Obtener parámetros de búsqueda y categoría
-const searchQuery = Astro.url.searchParams.get('search') || '';
-const categoryFilter = Astro.url.searchParams.get('categoria') || '';
+// Importación de constantes del sitio
+import { SITE_CONFIG, SEO_DEFAULTS, PAGINATION } from '../../utils/constants.js';
 
-// 2. Filtrar productos estrictamente por categoría si existe
-let filteredProducts = productsData;
+// Normalización de datos recibidos del JSON
+const products = Array.isArray(productsData) ? productsData : productsData.products || [];
 
-if (categoryFilter) {
-    // Convertimos ambos a minúsculas y eliminamos espacios extras para una coincidencia exacta
-    const normalizedCategory = categoryFilter.trim().toLowerCase();
-    filteredProducts = filteredProducts.filter(product => 
-        product.CATEGORIA && product.CATEGORIA.trim().toLowerCase() === normalizedCategory
-    );
-}
-
-// 3. Si además hay término de búsqueda, aplicamos la búsqueda sobre la lista ya filtrada
-if (searchQuery) {
-    const searchLower = searchQuery.toLowerCase();
-    filteredProducts = filteredProducts.filter(product =>
-        (product.TITULO && product.TITULO.toLowerCase().includes(searchLower)) ||
-        (product.DESCRIPCION && product.DESCRIPCION.toLowerCase().includes(searchLower))
-    );
-}
-
-// 4. Obtener categorías únicas limpiando nulos
-const categories = [...new Set(productsData.map(product => product.CATEGORIA).filter(Boolean))];
+// Extraer categorías únicas para el selector de filtro
+const categories = [...new Set(products.map(p => p.CATEGORIA).filter(Boolean))].sort();
 ---
 
 <Layout 
-    title={`Productos ${categoryFilter || searchQuery ? '- ' + (categoryFilter || searchQuery) : ''} | TuTienda`}
-    description={categoryFilter ? `Descubre nuestra selección de productos de ${categoryFilter}. Calidad premium y precios competitivos.` : searchQuery ? `Resultados de búsqueda para "${searchQuery}". Encuentra los mejores productos.` : "Explora nuestro catálogo completo de productos premium. Tecnología, moda y accesorios de las mejores marcas con calidad garantizada."}
-    keywords={`productos, ${categoryFilter || 'tecnología, moda, accesorios'}, tienda online, calidad premium, ${searchQuery || 'smartphones, laptops, vestidos'}`}
-    ogImage="https://images.pexels.com/photos/3768894/pexels-photo-3768894.jpeg"
+    title={`Productos | ${SITE_CONFIG.name}`}
+    description={SITE_CONFIG.description}
+    keywords={SEO_DEFAULTS.keywords}
+    ogImage={products[0]?.IMG[0] || SEO_DEFAULTS.ogImage}
     ogType="website"
-    canonicalURL={`https://tu-tienda.com/productos${categoryFilter ? '?categoria=' + encodeURIComponent(categoryFilter) : ''}${searchQuery ? '?search=' + encodeURIComponent(searchQuery) : ''}`}
+    canonicalURL={`${SITE_CONFIG.siteUrl}/productos`}
 >
     <Header />
-    <main>
-        <!-- Page Header -->
-        <section class="bg-gradient-to-r from-primary-50 to-secondary-50 py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h1 class="text-4xl font-bold text-gray-900 mb-4">
-                        {categoryFilter ? `Productos de ${categoryFilter}` : searchQuery ? `Resultados para "${searchQuery}"` : 'Todos los Productos'}
-                    </h1>
-                    <p class="text-xl text-gray-600">
-                        {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
-                    </p>
+    
+    <main class="bg-gray-50/50 min-h-screen pb-16">
+        
+        <!-- HERO HEADER ANIMADO -->
+        <section class="relative overflow-hidden bg-gradient-to-b from-primary-50/80 via-white to-gray-50/50 py-20 border-b border-gray-100">
+            
+            <!-- Pattern de Malla de Puntos -->
+            <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:18px_18px] opacity-60 pointer-events-none"></div>
+
+            <!-- Esferas Ambientales de Luz -->
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-tr from-primary-400/25 via-secondary-400/20 to-emerald-400/20 blur-3xl rounded-full animate-pulse pointer-events-none"></div>
+            <div class="absolute top-1/2 -left-20 w-72 h-72 bg-primary-500/15 blur-3xl rounded-full animate-blob pointer-events-none"></div>
+            <div class="absolute top-1/3 -right-20 w-72 h-72 bg-secondary-500/15 blur-3xl rounded-full animate-blob [animation-delay:2s] pointer-events-none"></div>
+
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in-up">
+                
+                <!-- Badge Interactivo -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-primary-200/60 shadow-sm text-xs font-semibold text-gray-800 mb-6 hover:scale-105 transition-transform duration-300 cursor-default">
+                    <span class="flex h-2.5 w-2.5 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span class="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent font-bold">CATÁLOGO 2026</span>
+                    <span class="text-gray-300">•</span>
+                    <span class="text-gray-500 font-normal">Nuevas Ofertas Disponibles</span>
                 </div>
+
+                <!-- Título Principal -->
+                <h1 class="text-4xl sm:text-6xl font-black text-gray-900 tracking-tight mb-6 leading-tight">
+                    Catálogo de <span class="bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 bg-clip-text text-transparent animate-gradient-x bg-[length:200%_auto]">Productos</span>
+                </h1>
+
+                <!-- Subtítulo -->
+                <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-normal leading-relaxed mb-8">
+                    Encuentra tecnología, moda y accesorios al mejor precio con <span class="font-semibold text-gray-800 underline decoration-primary-400 decoration-2 underline-offset-4">calidad garantizada</span> y atención personalizada.
+                </p>
+
+                <!-- Beneficios Rápidos -->
+                <div class="flex flex-wrap justify-center items-center gap-3 text-xs sm:text-sm font-medium text-gray-600">
+                    <div class="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-gray-200/70 shadow-xs hover:border-primary-300 transition-colors">
+                        <i class="fas fa-truck text-primary-500"></i> Envíos Rápidos
+                    </div>
+                    <div class="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-gray-200/70 shadow-xs hover:border-emerald-300 transition-colors">
+                        <i class="fas fa-shield-alt text-emerald-500"></i> Compra Segura
+                    </div>
+                    <div class="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3.5 py-1.5 rounded-xl border border-gray-200/70 shadow-xs hover:border-green-300 transition-colors">
+                        <i class="fab fa-whatsapp text-green-500"></i> Soporte Directo
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <!-- Filters and Products -->
-        <section class="py-12">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Filters -->
-                <div class="flex flex-wrap gap-4 mb-8">
-                    <!-- Botón "Todos" LIMPIA cualquier filtro o búsqueda previo -->
-                    <a 
-                        href="/productos"
-                        class={`px-4 py-2 rounded-full transition-all ${!categoryFilter && !searchQuery ? 
-                        'bg-primary-500 text-white' : 
-                        'bg-white text-gray-700 border border-gray-300 hover:border-primary-500'}`}
-                    >
-                        Todos
-                    </a>
-
-                    <!-- Botones de Categorías (Limpian el buscador al cambiar de categoría) -->
-                    {categories.map(category => {
-                        const isSelected = categoryFilter.trim().toLowerCase() === category.trim().toLowerCase();
-                        return (
-                            <a 
-                                href={`/productos?categoria=${encodeURIComponent(category)}`}
-                                class={`px-4 py-2 rounded-full transition-all ${isSelected ? 
-                                'bg-primary-500 text-white' : 
-                                'bg-white text-gray-700 border border-gray-300 hover:border-primary-500'}`}
-                            >
-                                {category}
-                            </a>
-                        );
-                    })}
+        <!-- SECCIÓN DE FILTROS Y GALERÍA -->
+        <section class="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Barra de Filtros -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                <div class="relative flex-1">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Buscar por título o descripción..."
+                        class="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all shadow-sm"
+                    />
+                    <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
                 </div>
-
-                <!-- Products Grid -->
-				<InfiniteScroll 
-					items={filteredProducts}
-					itemsPerPage={8}
-					renderItemType="ProductCard"
-					currentCategory={categoryFilter.trim().toLowerCase()}
-					client:load
-				/>
+                
+                <select 
+                    id="categoryFilter" 
+                    class="w-full sm:w-64 px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all shadow-sm cursor-pointer"
+                >
+                    <option value="">Todas las categorías</option>
+                    {categories.map(cat => (    
+                        <option value={cat}>{cat}</option>
+                    ))}
+                </select>
             </div>
+
+            <!-- Grid de Productos Iniciales (Renderizados por Servidor) -->
+            <div 
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" 
+                id="productsGrid"
+            >
+                {products.slice(0, PAGINATION.PRODUCTS_PER_PAGE).map(product => (
+                    <div 
+                        class="product-wrapper" 
+                        data-titulo={(product.TITULO || '').toLowerCase()}
+                        data-categoria={(product.CATEGORIA || '').toLowerCase()}
+                        data-descripcion={(product.DESCRIPCION || '').toLowerCase()}
+                    >
+                        <ProductCard product={product} />
+                    </div>
+                ))}
+            </div>
+            
+            <!-- Elemento Centinela (Punto de activación invisible para scroll infinito) -->
+            <div id="scrollSentinel" class="h-12 w-full my-4"></div>
+
+            <!-- Indicador Visual de Carga (Spinner) -->
+            <div id="loading" class="text-center py-6 hidden">
+                <div class="w-10 h-10 border-4 border-gray-200 border-t-primary-600 rounded-full animate-spin mx-auto mb-3"></div>
+                <p class="text-sm font-medium text-gray-500">Cargando más productos...</p>
+            </div>
+
         </section>
     </main>
+
     <Footer client:load />
 </Layout>
 
-<script>
-    function contactWhatsApp(productTitle) {
-        const text = encodeURIComponent('Hola, estoy interesado en ' + productTitle);
-        window.open('https://wa.me/50558567432?text=' + text, '_blank');
+<!-- SCRIPTS CLIENTE -->
+<script define:vars={{ allProducts: products, itemsPerPage: PAGINATION.PRODUCTS_PER_PAGE, whatsappNumber: SITE_CONFIG.whatsapp }}>
+    class ProductGallery {
+        constructor() {
+            this.productsGrid = document.getElementById('productsGrid');
+            this.loading = document.getElementById('loading');
+            this.sentinel = document.getElementById('scrollSentinel');
+            this.searchInput = document.getElementById('searchInput');
+            this.categoryFilter = document.getElementById('categoryFilter');
+            
+            this.allProducts = allProducts || [];
+            this.currentPage = 1;
+            this.itemsPerPage = itemsPerPage || 8;
+            this.isLoading = false;
+
+            this.init();
+        }
+
+        init() {
+            this.initializeFilters();
+            this.initializeInfiniteScroll();
+        }
+
+        initializeFilters() {
+            this.searchInput?.addEventListener('input', () => this.filterProducts());
+            this.categoryFilter?.addEventListener('change', () => this.filterProducts());
+        }
+
+        initializeInfiniteScroll() {
+            if (!this.sentinel) return;
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    if (entries[0].isIntersecting && !this.isLoading) {
+                        this.loadMoreProducts();
+                    }
+                },
+                { rootMargin: '150px' } // Activa la carga 150px antes de llegar abajo
+            );
+
+            observer.observe(this.sentinel);
+        }
+
+        filterProducts() {
+            const searchTerm = (this.searchInput?.value || '').toLowerCase().trim();
+            const selectedCategory = (this.categoryFilter?.value || '').toLowerCase();
+            
+            const currentWrappers = document.querySelectorAll('.product-wrapper');
+
+            currentWrappers.forEach((product) => {
+                const productData = {
+                    titulo: product.getAttribute('data-titulo') || '',
+                    categoria: product.getAttribute('data-categoria') || '',
+                    descripcion: product.getAttribute('data-descripcion') || '',
+                };
+
+                const matchesSearch = !searchTerm || 
+                    Object.values(productData).some(value => value.includes(searchTerm));
+
+                const matchesCategory = !selectedCategory || productData.categoria === selectedCategory;
+                
+                product.classList.toggle('hidden', !(matchesSearch && matchesCategory));
+            });
+        }
+
+        loadMoreProducts() {
+            const startIndex = this.currentPage * this.itemsPerPage;
+            const endIndex = startIndex + this.itemsPerPage;
+
+            // Si ya no quedan más productos por cargar, ocultamos el centinela
+            if (startIndex >= this.allProducts.length) {
+                if (this.sentinel) this.sentinel.style.display = 'none';
+                return;
+            }
+
+            this.isLoading = true;
+            this.loading?.classList.remove('hidden');
+
+            // Carga fluida client-side
+            setTimeout(() => {
+                const newProducts = this.allProducts.slice(startIndex, endIndex);
+                this.renderNewProducts(newProducts);
+                this.currentPage++;
+                this.filterProducts();
+
+                this.isLoading = false;
+                this.loading?.classList.add('hidden');
+            }, 300);
+        }
+
+        renderNewProducts(newProducts) {
+            const fragment = document.createDocumentFragment();
+
+            newProducts.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product-wrapper';
+                productElement.setAttribute('data-titulo', (product.TITULO || '').toLowerCase());
+                productElement.setAttribute('data-categoria', (product.CATEGORIA || '').toLowerCase());
+                productElement.setAttribute('data-descripcion', (product.DESCRIPCION || '').toLowerCase());
+                
+                const imgUrl = Array.isArray(product.IMG) && product.IMG.length > 0 
+                    ? product.IMG[0] 
+                    : 'https://via.placeholder.com/400x300?text=Sin+Imagen';
+
+                const encodedTitle = encodeURIComponent(`Hola, estoy interesado en ${product.TITULO || 'este producto'}`);
+
+                productElement.innerHTML = `
+                    <div class="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col justify-between">
+                        <div class="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
+                            <img src="${imgUrl}" alt="${product.TITULO || 'Producto'}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" loading="lazy" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10 opacity-60"></div>
+                            ${product.CATEGORIA ? `
+                                <div class="absolute top-3 right-3">
+                                    <span class="backdrop-blur-md bg-white/80 text-gray-800 text-xs font-semibold px-3 py-1.5 rounded-full shadow-sm border border-white/40 tracking-wide uppercase">
+                                        ${product.CATEGORIA}
+                                    </span>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800 group-hover:text-primary-600 transition-colors line-clamp-1 mb-1">${product.TITULO || 'Sin título'}</h3>
+                                <p class="text-gray-500 text-sm line-clamp-2 leading-relaxed mb-4">${product.DESCRIPCION || 'Sin descripción disponible.'}</p>
+                            </div>
+                            <div>
+                                <div class="flex items-baseline justify-between mb-4 pt-2 border-t border-gray-50">
+                                    <div>
+                                        <span class="text-xs text-gray-400 block font-medium">Precio</span>
+                                        <span class="text-2xl font-extrabold text-gray-900 tracking-tight">$${product.PRECIO || '0.00'}</span>
+                                    </div>
+                                    <a href="/producto/${product.id}" class="inline-flex items-center justify-center bg-gray-900 hover:bg-primary-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 active:scale-95">Ver detalles</a>
+                                </div>
+                                <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                                    <span class="text-xs font-medium text-gray-400">Contacto rápido:</span>
+                                    <div class="flex items-center space-x-2">
+                                        <a href="https://wa.me/${whatsappNumber}?text=${encodedTitle}" target="_blank" class="w-9 h-9 flex items-center justify-center rounded-full bg-emerald-50 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all duration-200 shadow-sm hover:scale-110 active:scale-90" title="Contactar por WhatsApp">
+                                            <i class="fab fa-whatsapp text-lg"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                fragment.appendChild(productElement);
+            });
+
+            this.productsGrid?.appendChild(fragment);
+        }
     }
 
-    function shareProductOnFacebook(productId) {
-        const url = encodeURIComponent(window.location.origin + '/producto/' + productId);
-        window.open('https://www.facebook.com/sharer/sharer.php?u=' + url, '_blank');
-    }
-
-    function callPhone() {
-        window.open('tel:+50558567432');
-    }
+    new ProductGallery();
 </script>
+
+<!-- ANIMACIONES Y KEYFRAMES CSS -->
+<style>
+    @keyframes gradient-x {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+
+    @keyframes blob {
+        0%, 100% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -20px) scale(1.08); }
+        66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-gradient-x {
+        animation: gradient-x 6s ease infinite;
+    }
+
+    .animate-blob {
+        animation: blob 8s infinite ease-in-out;
+    }
+
+    .animate-fade-in-up {
+        animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+</style>

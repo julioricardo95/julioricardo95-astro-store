@@ -1,132 +1,327 @@
 [
   {
-    "id": "hp-15-dy1031w",
-    "TITULO": "PH 15-DY1031WM Laptop Semi Nueva",
-    "CATEGORIA": "radio",
+    "id": "elec-001",
+    "TITULO": "Audífonos Bluetooth Sony WH-1000XM4",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "audio",
     "IMG": [
-      "https://julioricardo95-astro.pages.dev/img/tienda/15-DY1031WM-HP-new.webp"
+      "https://picsum.photos/400/300?random=1",
+      "https://picsum.photos/400/300?random=2",
+      "https://picsum.photos/400/300?random=3"
     ],
-    "DESCRIPCION": "Laptop HP renovada con Windows 10, procesador Intel Core i3-1005G1, 8GB RAM, 256GB SSD y pantalla HD 15.6 pulgadas en color Natural Silver. Ideal para trabajo y estudio.",
-    "PRECIO": "$11,718.40"
+    "DESCRIPCION": "Audífonos inalámbricos con cancelación de ruido, 30h de batería y sonido Hi-Res.",
+    "PRECIO": 249.99
   },
   {
-    "id": "hp-15-dy1031wm",
-    "TITULO": "HP 15-DY1031WM Laptop Semi Nueva",
-    "CATEGORIA": "Tecnología",
+    "id": "elec-002",
+    "TITULO": "Smart TV Samsung 55\" 4K UHD",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "televisores",
     "IMG": [
-      "https://julioricardo95-astro.pages.dev/img/tienda/15-DY1031WM-HP-new.webp"
+      "https://picsum.photos/400/300?random=4",
+      "https://picsum.photos/400/300?random=5",
+      "https://picsum.photos/400/300?random=6"
     ],
-    "DESCRIPCION": "Laptop HP renovada con Windows 10, procesador Intel Core i3-1005G1, 8GB RAM, 256GB SSD y pantalla HD 15.6 pulgadas en color Natural Silver. Ideal para trabajo y estudio.",
-    "PRECIO": "$11,718.40"
+    "DESCRIPCION": "Televisor 4K con HDR, Smart Hub y control por voz.",
+    "PRECIO": 549.00
   },
   {
-  "id": "sony-wh-ch720n",
-  "TITULO": "Sony WH-CH720N Audífonos Inalámbricos",
-  "CATEGORIA": "Audio",
-  "IMG": [
-    "https://julioricardo95-astro.pages.dev/img/tienda/sony-wh-ch720n-new.webp"
-  ],
-  "DESCRIPCION": "Audífonos Sony con cancelación de ruido digital, batería de hasta 35 horas, conexión Bluetooth y micrófono incorporado para llamadas claras. Color negro elegante.",
-  "PRECIO": "$2,399.00"
-  },
-  {
-  "id": "kit-herramientas-profesional",
-  "TITULO": "Kit de Herramientas Profesional 125 Piezas",
-  "CATEGORIA": "Hogar",
-  "IMG": [
-    "https://julioricardo95-astro.pages.dev/img/tienda/kit-herramientas-new.webp"
-  ],
-  "DESCRIPCION": "Kit completo de herramientas profesionales con 125 piezas, incluye llaves, destornilladores, alicates y más. Maletín de almacenamiento resistente. Perfecto para reparaciones domésticas.",
-  "PRECIO": "$1,850.75"
-  },
-  {
-    "id": "hp-15-fc0039wm",
-    "TITULO": "HP 15-FC0039WM Laptop Semi Nueva",
-    "CATEGORIA": "Tecnología",
+    "id": "elec-003",
+    "TITULO": "Bocina JBL Flip 6 Portátil",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "audio",
     "IMG": [
-      "https://julioricardo95-astro.pages.dev/img/tienda/15-FC0039WM%20HP-new.webp"
+      "https://picsum.photos/400/300?random=7",
+      "https://picsum.photos/400/300?random=8",
+      "https://picsum.photos/400/300?random=9"
     ],
-    "DESCRIPCION": "Laptop HP renovada con Windows 11, potente procesador AMD Ryzen 5 7520U, 8GB RAM, 256GB SSD y pantalla Full HD 15.6 pulgadas en color Rose Gold. Perfecta para multitarea.",
-    "PRECIO": "$13,915.60"
+    "DESCRIPCION": "Bocina Bluetooth resistente al agua con sonido potente y 12h de batería.",
+    "PRECIO": 129.50
   },
   {
-    "id": "acer-a315-58-33xs",
-    "TITULO": "Acer A315-58-33XS Laptop Semi Nueva",
-    "CATEGORIA": "Tecnología",
+    "id": "elec-004",
+    "TITULO": "Cámara Canon EOS Rebel T7",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "camaras",
     "IMG": [
-      "https://julioricardo95-astro.pages.dev/img/tienda/A315-58-33XS-ACER-new.webp"
+      "https://picsum.photos/400/300?random=10",
+      "https://picsum.photos/400/300?random=11",
+      "https://picsum.photos/400/300?random=12"
     ],
-    "DESCRIPCION": "Laptop Acer renovada con Windows 11, procesador Intel Core i3-1115G4, 8GB RAM, 256GB SSD y pantalla Full HD 15.6 pulgadas en color Pure Silver. Diseño elegante y funcional.",
-    "PRECIO": "$12,267.70"
+    "DESCRIPCION": "Cámara DSLR 24.1MP con lente 18-55mm, WiFi y video Full HD.",
+    "PRECIO": 479.00
   },
   {
-    "id": "dell-latitude-5420",
-    "TITULO": "Dell Latitude 5420 Laptop Semi Nueva",
-    "CATEGORIA": "Tecnología",
+    "id": "elec-005",
+    "TITULO": "Reloj Inteligente Apple Watch SE",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "wearables",
     "IMG": [
-      "https://julioricardo95-astro.pages.dev/img/tienda/LATITUDE-5420-DELL-new.webp"
+      "https://picsum.photos/400/300?random=13",
+      "https://picsum.photos/400/300?random=14",
+      "https://picsum.photos/400/300?random=15"
     ],
-    "DESCRIPCION": "Laptop Dell renovada de alta gama con Windows 11, potente procesador Intel Core i7-1185G7, 8GB RAM, 256GB SSD y pantalla Full HD 14 pulgadas en color Plateado. Para profesionales exigentes.",
-    "PRECIO": "$13,732.50"
+    "DESCRIPCION": "Smartwatch con GPS, monitor de ritmo cardíaco y pantalla Retina.",
+    "PRECIO": 279.00
   },
   {
-    "id": "hp-15-dy2791wm",
-    "TITULO": "HP 15-DY2791WM Laptop Semi Nueva",
-    "CATEGORIA": "Tecnología",
+    "id": "elec-006",
+    "TITULO": "Consola PlayStation 5 Slim",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "gaming",
     "IMG": [
-      "https://julioricardo95-astro.pages.dev/img/tienda/15-DY1031WM-HP-new.webp"
+      "https://picsum.photos/400/300?random=16",
+      "https://picsum.photos/400/300?random=17",
+      "https://picsum.photos/400/300?random=18"
     ],
-    "DESCRIPCION": "Laptop HP renovada con Windows 11, procesador Intel Core i3-1115G4, 8GB RAM, 256GB SSD y pantalla HD 15.6 pulgadas en color Silver. Confiable y eficiente.",
-    "PRECIO": "$13,183.20"
+    "DESCRIPCION": "Consola de videojuegos con SSD 1TB y lector Blu-Ray.",
+    "PRECIO": 499.99
   },
   {
-    "id": "lenovo-820cx003us",
-    "TITULO": "Lenovo 820CX003US Laptop Semi Nueva",
-    "CATEGORIA": "Tecnología",
+    "id": "elec-007",
+    "TITULO": "Proyector Epson Home Cinema",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "proyectores",
     "IMG": [
-      "https://julioricardo95-astro.pages.dev/img/tienda/820CX003US-LENOVO-new.webp"
+      "https://picsum.photos/400/300?random=19",
+      "https://picsum.photos/400/300?random=20",
+      "https://picsum.photos/400/300?random=21"
     ],
-    "DESCRIPCION": "Laptop Lenovo renovada con Windows 11, procesador Intel Core i3-1215U, 8GB RAM, 256GB SSD y pantalla Full HD 14 pulgadas en color Plateado. Compacta y potente.",
-    "PRECIO": "$13,293.06"
+    "DESCRIPCION": "Proyector Full HD 3400 lúmenes ideal para cine en casa.",
+    "PRECIO": 649.00
   },
   {
-    "id": "hp-15-dy2702dx",
-    "TITULO": "HP 15-DY2702DX Laptop Semi Nueva Táctil",
-    "CATEGORIA": "Tecnología",
+    "id": "tel-001",
+    "TITULO": "iPhone 15 Pro Max 256GB",
+    "CATEGORIA": "telefono",
+    "SUBCATEGORIA": "smartphones",
     "IMG": [
-      "https://julioricardo95-astro.pages.dev/img/tienda/15-DY2702DX-HP-new.webp"
+      "https://picsum.photos/400/300?random=22",
+      "https://picsum.photos/400/300?random=23",
+      "https://picsum.photos/400/300?random=24"
     ],
-    "DESCRIPCION": "Laptop HP renovada con Windows 11, procesador Intel Core i3-1115G4, 12GB RAM, 256GB SSD y pantalla Full HD táctil de 15.6 pulgadas en color Silver. Mayor memoria y funcionalidad táctil.",
-    "PRECIO": "$13,732.50"
+    "DESCRIPCION": "Smartphone Apple con chip A17 Pro, cámara 48MP y pantalla Super Retina XDR.",
+    "PRECIO": 1199.00
   },
   {
-    "id": "hp-14-dq2031wm",
-    "TITULO": "HP 14-DQ2031WM Laptop Semi Nueva",
-    "CATEGORIA": "Tecnología",
+    "id": "tel-002",
+    "TITULO": "Samsung Galaxy S24 Ultra",
+    "CATEGORIA": "telefono",
+    "SUBCATEGORIA": "smartphones",
     "IMG": [
-      "https://julioricardo95-astro.pages.dev/img/tienda/14-DQ2031WM-HP-new.webp"
+      "https://picsum.photos/400/300?random=25",
+      "https://picsum.photos/400/300?random=26",
+      "https://picsum.photos/400/300?random=27"
     ],
-    "DESCRIPCION": "Laptop HP renovada compacta con Windows 11, procesador Intel Core i3-1115G4, 8GB RAM, 256GB SSD y pantalla HD 14 pulgadas en color Silver. Portabilidad y rendimiento.",
-    "PRECIO": "$11,864.88"
+    "DESCRIPCION": "Galaxy con S-Pen, cámara 200MP y pantalla Dynamic AMOLED 2X.",
+    "PRECIO": 1299.99
   },
   {
-    "id": "hp-15-dy2131wm",
-    "TITULO": "HP 15-DY2131WM Laptop Semi Nueva",
-    "CATEGORIA": "Tecnología",
+    "id": "tel-003",
+    "TITULO": "Xiaomi Redmi Note 13 Pro",
+    "CATEGORIA": "telefono",
+    "SUBCATEGORIA": "smartphones",
     "IMG": [
-      "https://julioricardo95-astro.pages.dev/img/tienda/15-DY1031WM-HP-new.webp"
+      "https://picsum.photos/400/300?random=28",
+      "https://picsum.photos/400/300?random=29",
+      "https://picsum.photos/400/300?random=30"
     ],
-    "DESCRIPCION": "Laptop HP renovada con Windows 11, procesador Intel Core i3-1115G4, 8GB RAM, 256GB SSD y pantalla HD 15.6 pulgadas en color Silver. Equilibrio perfecto entre precio y rendimiento.",
-    "PRECIO": "$14,062.08"
+    "DESCRIPCION": "Teléfono con cámara 200MP, carga rápida 67W y pantalla AMOLED.",
+    "PRECIO": 349.00
   },
   {
-    "id": "dell-13520-5124blk-pus",
-    "TITULO": "Dell 13520-5124BLK-PUS Laptop Semi Nueva Táctil",
-    "CATEGORIA": "Tecnología",
+    "id": "tel-004",
+    "TITULO": "Motorola Moto G Power 5G",
+    "CATEGORIA": "telefono",
+    "SUBCATEGORIA": "smartphones",
     "IMG": [
-      "https://julioricardo95-astro.pages.dev/img/tienda/13520-5124BLK-PUS-DELL-new.webp"
+      "https://picsum.photos/400/300?random=31",
+      "https://picsum.photos/400/300?random=32",
+      "https://picsum.photos/400/300?random=33"
     ],
-    "DESCRIPCION": "Laptop Dell renovada premium con Windows 11, potente procesador Intel Core i5-1235U, 8GB RAM, 512GB SSD y pantalla Full HD táctil de 15.6 pulgadas en color Negro. Alto rendimiento y almacenamiento.",
-    "PRECIO": "$17,577.60"
+    "DESCRIPCION": "Smartphone con batería de 5000mAh, 5G y pantalla 120Hz.",
+    "PRECIO": 299.99
+  },
+  {
+    "id": "tel-005",
+    "TITULO": "Funda Protectora iPhone 15",
+    "CATEGORIA": "telefono",
+    "SUBCATEGORIA": "accesorios",
+    "IMG": [
+      "https://picsum.photos/400/300?random=34",
+      "https://picsum.photos/400/300?random=35",
+      "https://picsum.photos/400/300?random=36"
+    ],
+    "DESCRIPCION": "Funda transparente antigolpes con protección de cámara.",
+    "PRECIO": 19.99
+  },
+  {
+    "id": "tel-006",
+    "TITULO": "Cargador Rápido USB-C 65W",
+    "CATEGORIA": "telefono",
+    "SUBCATEGORIA": "accesorios",
+    "IMG": [
+      "https://picsum.photos/400/300?random=37",
+      "https://picsum.photos/400/300?random=38",
+      "https://picsum.photos/400/300?random=39"
+    ],
+    "DESCRIPCION": "Cargador GaN de 65W con puerto USB-C y USB-A.",
+    "PRECIO": 39.50
+  },
+  {
+    "id": "tel-007",
+    "TITULO": "Teléfono Fijo Inalámbrico Panasonic",
+    "CATEGORIA": "telefono",
+    "SUBCATEGORIA": "fijos",
+    "IMG": [
+      "https://picsum.photos/400/300?random=40",
+      "https://picsum.photos/400/300?random=41",
+      "https://picsum.photos/400/300?random=42"
+    ],
+    "DESCRIPCION": "Teléfono inalámbrico con identificador de llamadas y contestadora.",
+    "PRECIO": 59.99
+  },
+  {
+    "id": "fer-001",
+    "TITULO": "Taladro Percutor DeWalt 20V",
+    "CATEGORIA": "ferreria",
+    "SUBCATEGORIA": "herramientas electricas",
+    "IMG": [
+      "https://picsum.photos/400/300?random=43",
+      "https://picsum.photos/400/300?random=44",
+      "https://picsum.photos/400/300?random=45"
+    ],
+    "DESCRIPCION": "Taladro inalámbrico 20V MAX con 2 baterías y maletín.",
+    "PRECIO": 199.00
+  },
+  {
+    "id": "fer-002",
+    "TITULO": "Juego de Llaves Mecánicas 40 pzs",
+    "CATEGORIA": "ferreria",
+    "SUBCATEGORIA": "herramientas manuales",
+    "IMG": [
+      "https://picsum.photos/400/300?random=46",
+      "https://picsum.photos/400/300?random=47",
+      "https://picsum.photos/400/300?random=48"
+    ],
+    "DESCRIPCION": "Set de llaves de acero cromo vanadio con estuche.",
+    "PRECIO": 89.99
+  },
+  {
+    "id": "fer-003",
+    "TITULO": "Martillo de Bola 16 oz Stanley",
+    "CATEGORIA": "ferreria",
+    "SUBCATEGORIA": "herramientas manuales",
+    "IMG": [
+      "https://picsum.photos/400/300?random=49",
+      "https://picsum.photos/400/300?random=50",
+      "https://picsum.photos/400/300?random=51"
+    ],
+    "DESCRIPCION": "Martillo con mango de fibra de vidrio y cabeza forjada.",
+    "PRECIO": 24.50
+  },
+  {
+    "id": "fer-004",
+    "TITULO": "Cinta Métrica 8m Truper",
+    "CATEGORIA": "ferreria",
+    "SUBCATEGORIA": "medicion",
+    "IMG": [
+      "https://picsum.photos/400/300?random=52",
+      "https://picsum.photos/400/300?random=53",
+      "https://picsum.photos/400/300?random=54"
+    ],
+    "DESCRIPCION": "Cinta métrica con freno y clip para cinturón.",
+    "PRECIO": 12.99
+  },
+  {
+    "id": "fer-005",
+    "TITULO": "Sierra Circular 7-1/4\" Makita",
+    "CATEGORIA": "ferreria",
+    "SUBCATEGORIA": "herramientas electricas",
+    "IMG": [
+      "https://picsum.photos/400/300?random=55",
+      "https://picsum.photos/400/300?random=56",
+      "https://picsum.photos/400/300?random=57"
+    ],
+    "DESCRIPCION": "Sierra circular 1800W con disco de carburo y guía paralela.",
+    "PRECIO": 159.00
+  },
+  {
+    "id": "fer-006",
+    "TITULO": "Caja de Herramientas 22\"",
+    "CATEGORIA": "ferreria",
+    "SUBCATEGORIA": "organizacion",
+    "IMG": [
+      "https://picsum.photos/400/300?random=58",
+      "https://picsum.photos/400/300?random=59",
+      "https://picsum.photos/400/300?random=60"
+    ],
+    "DESCRIPCION": "Caja metálica con bandeja removible y seguro.",
+    "PRECIO": 45.00
+  },
+  {
+    "id": "comp-001",
+    "TITULO": "Laptop HP 15-DY1031WM Core i3",
+    "CATEGORIA": "computadora",
+    "SUBCATEGORIA": "laptops",
+    "IMG": [
+      "https://picsum.photos/400/300?random=61",
+      "https://picsum.photos/400/300?random=62",
+      "https://picsum.photos/400/300?random=63"
+    ],
+    "DESCRIPCION": "Laptop renovada con Windows 10, Intel Core i3-1005G1, 8GB RAM y 256GB SSD.",
+    "PRECIO": 11718.40
+  },
+  {
+    "id": "comp-002",
+    "TITULO": "PC Gamer AMD Ryzen 5 RTX 4060",
+    "CATEGORIA": "computadora",
+    "SUBCATEGORIA": "desktops",
+    "IMG": [
+      "https://picsum.photos/400/300?random=64",
+      "https://picsum.photos/400/300?random=65",
+      "https://picsum.photos/400/300?random=66"
+    ],
+    "DESCRIPCION": "PC gamer con Ryzen 5 5600X, 16GB RAM, SSD 1TB y RTX 4060.",
+    "PRECIO": 1099.00
+  },
+  {
+    "id": "comp-003",
+    "TITULO": "Monitor LG 27\" 4K IPS",
+    "CATEGORIA": "computadora",
+    "SUBCATEGORIA": "monitores",
+    "IMG": [
+      "https://picsum.photos/400/300?random=67",
+      "https://picsum.photos/400/300?random=68",
+      "https://picsum.photos/400/300?random=69"
+    ],
+    "DESCRIPCION": "Monitor 4K UHD con panel IPS, HDR10 y USB-C.",
+    "PRECIO": 399.99
+  },
+  {
+    "id": "comp-004",
+    "TITULO": "Teclado Mecánico RGB Redragon",
+    "CATEGORIA": "computadora",
+    "SUBCATEGORIA": "perifericos",
+    "IMG": [
+      "https://picsum.photos/400/300?random=70",
+      "https://picsum.photos/400/300?random=71",
+      "https://picsum.photos/400/300?random=72"
+    ],
+    "DESCRIPCION": "Teclado mecánico con switches rojos, RGB y reposamuñecas.",
+    "PRECIO": 59.99
+  },
+  {
+    "id": "comp-005",
+    "TITULO": "Mouse Inalámbrico Logitech MX Master 3S",
+    "CATEGORIA": "computadora",
+    "SUBCATEGORIA": "perifericos",
+    "IMG": [
+      "https://picsum.photos/400/300?random=73",
+      "https://picsum.photos/400/300?random=74",
+      "https://picsum.photos/400/300?random=75"
+    ],
+    "DESCRIPCION": "Mouse ergonómico con sensor 8K DPI y conexión Bluetooth.",
+    "PRECIO": 99.99
   }
 ]

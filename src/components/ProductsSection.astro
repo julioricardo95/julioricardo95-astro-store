@@ -2,76 +2,98 @@
 import ProductCarousel from './islands/ProductCarousel.jsx';
 import productsData from '../data/products.json';
 
-// 1. Filtrar los productos marcados como destacados
-const filteredByFeatured = productsData.filter(product => product.DESTACADO || product.destacado);
+// 1. Normalización defensiva del JSON (Soporta Array directo o encapsulado { products: [...] })
+const rawProducts = Array.isArray(productsData) ? productsData : productsData.products || [];
 
-// 2. Si hay productos destacados se usan esos; si no hay ninguno, toma los primeros 8 productos del catálogo
+// 2. Filtrar productos destacados (Soporta mayúscula/minúscula)
+const filteredByFeatured = rawProducts.filter(product => product.DESTACADO || product.destacado);
+
+// 3. Fallback a los primeros 8 productos si no se han marcado destacados
 const featuredProducts = filteredByFeatured.length > 0 
   ? filteredByFeatured 
-  : productsData.slice(0, 8);
+  : rawProducts.slice(0, 8);
 ---
 
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                Productos <span class="text-primary-600">Destacados</span>
+<section class="py-10 sm:py-20 bg-white relative overflow-hidden">
+    
+    <!-- Pattern de Fondo de Puntos Sutil -->
+    <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-40 pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        
+        <!-- ENCABEZADO DE LA SECCIÓN -->
+        <div class="text-center mb-8 sm:mb-14">
+            
+            <!-- Badge superior -->
+            <span class="inline-block px-3 py-1 rounded-full bg-primary-50 text-primary-600 border border-primary-100 text-xs font-bold uppercase tracking-wider mb-2.5 sm:mb-3">
+                Selección Exclusiva
+            </span>
+
+            <!-- Título Principal -->
+            <h2 class="text-3xl sm:text-5xl font-black text-gray-900 tracking-tight mb-3 sm:mb-4">
+                Productos <span class="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">Destacados</span>
             </h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Descubre nuestra selección curada de productos premium que combinan calidad, 
-                innovación y estilo para satisfacer tus necesidades más exigentes.
+            
+            <!-- Subtítulo -->
+            <p class="text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Descubre nuestra selección curada de productos premium que combinan calidad, innovación y estilo para satisfacer tus necesidades.
             </p>
         </div>
 
-        <!-- Product Carousel Island -->
+        <!-- ISLA DE REACT: CARRUSEL DE PRODUCTOS -->
         
 
 <ProductCarousel products={featuredProducts} client:load />
 
-        <!-- View All Button -->
-        <div class="text-center mt-12">
+        <!-- BOTÓN DE ACCIÓN "VER TODOS" -->
+        <div class="text-center mt-8 sm:mt-12">
             <a 
                 href="/productos" 
-                class="inline-flex items-center bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+                class="inline-flex items-center justify-center bg-gray-900 hover:bg-primary-600 text-white min-h-[48px] px-6 sm:px-8 py-3.5 rounded-2xl font-bold text-sm sm:text-base transition-all duration-200 active:scale-95 shadow-md hover:shadow-xl group"
             >
-                <i class="fas fa-grid-2 mr-3"></i>
-                Ver Todos los Productos
-                <i class="fas fa-arrow-right ml-3"></i>
+                <i class="fas fa-th-large mr-2.5 text-xs sm:text-sm text-gray-400 group-hover:text-white transition-colors"></i>
+                <span>Ver Todos los Productos</span>
+                <i class="fas fa-arrow-right ml-2.5 text-xs sm:text-sm group-hover:translate-x-1 transition-transform"></i>
             </a>
         </div>
 
-        <!-- Features Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-            <div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-full mb-4">
-                    <i class="fas fa-medal text-2xl"></i>
+        <!-- REJILLA DE CARACTERÍSTICAS / BENEFICIOS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 mt-12 sm:mt-16 pt-10 sm:pt-16 border-t border-gray-100">
+            
+            <!-- Calidad -->
+            <div class="p-5 sm:p-6 bg-gray-50/80 border border-gray-100/80 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-300">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center mb-3.5 sm:mb-4">
+                    <i class="fas fa-medal text-lg sm:text-xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Calidad Premium</h3>
-                <p class="text-gray-600">
+                <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-1.5">Calidad Premium</h3>
+                <p class="text-xs sm:text-sm text-gray-500 leading-relaxed">
                     Productos seleccionados cuidadosamente por nuestros expertos para garantizar la máxima calidad.
                 </p>
             </div>
 
-            <div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-secondary-100 text-secondary-600 rounded-full mb-4">
-                    <i class="fas fa-rocket text-2xl"></i>
+            <!-- Innovación -->
+            <div class="p-5 sm:p-6 bg-gray-50/80 border border-gray-100/80 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-300">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-secondary-50 text-secondary-600 flex items-center justify-center mb-3.5 sm:mb-4">
+                    <i class="fas fa-rocket text-lg sm:text-xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Innovación</h3>
-                <p class="text-gray-600">
+                <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-1.5">Innovación Garantizada</h3>
+                <p class="text-xs sm:text-sm text-gray-500 leading-relaxed">
                     Las últimas tendencias y tecnologías más avanzadas del mercado en un solo lugar.
                 </p>
             </div>
 
-            <div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-accent-100 text-accent-600 rounded-full mb-4">
-                    <i class="fas fa-heart text-2xl"></i>
+            <!-- Satisfacción -->
+            <div class="p-5 sm:p-6 bg-gray-50/80 border border-gray-100/80 rounded-2xl hover:bg-white hover:shadow-md transition-all duration-300">
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3.5 sm:mb-4">
+                    <i class="fas fa-heart text-lg sm:text-xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Satisfacción</h3>
-                <p class="text-gray-600">
-                    +10,000 clientes satisfechos respaldan la calidad de nuestros productos y servicio.
+                <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-1.5">Satisfacción 100%</h3>
+                <p class="text-xs sm:text-sm text-gray-500 leading-relaxed">
+                    +10,000 clientes satisfechos respaldan la calidad de nuestros productos y servicio postventa.
                 </p>
             </div>
+
         </div>
+
     </div>
 </section>
