@@ -1,68 +1,71 @@
 [
   {
-    "id": "elec-001",
-    "TITULO": "Audífonos Bluetooth Sony WH-1000XM4",
+    "id": "reparacion-y-mantenimiento",
+    "TITULO": "servicio de reparación y mantenimiento ",
     "CATEGORIA": "electronica",
-    "SUBCATEGORIA": "audio",
+    "SUBCATEGORIA": "servicio",
     "IMG": [
-      "https://picsum.photos/400/300?random=1",
-      "https://picsum.photos/400/300?random=2",
-      "https://picsum.photos/400/300?random=3"
+      "https://scontent.fmga11-1.fna.fbcdn.net/v/t39.30808-6/784734934_3487469118080975_4674748091721246654_n.jpg?stp=dst-jpg_tt6&cstp=mx1254x1254&ctp=s1254x1254&_nc_cat=107&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=376m39NKKQwQ7kNvwE2LATx&_nc_oc=Ado6UHB4J02ZgJA9UC2N6mV7XyA-DX8Lkvrj_9b41Y18jUoArx8HCZCGIMNRLOg3VX_42teUW2No_4IPeYz7VBPp&_nc_zt=23&_nc_ht=scontent.fmga11-1.fna&_nc_gid=UhnDH1uedkEpRNrhzppOwA&_nc_ss=7b2a8&oh=00_AQL3xen6BWOJjMAu2ZUIIGw6Ct_Z8bObXKI0OXpDv3nkxw&oe=6AAB9407"
     ],
-    "DESCRIPCION": "Audífonos inalámbricos con cancelación de ruido, 30h de batería y sonido Hi-Res.",
-    "PRECIO": 249.99
+    "DESCRIPCION": "Servicio técnico especializado para computadoras y celulares.\n\n• Celulares: Cambio de pantallas, baterías, puertos de carga y software.\n\n• Computadoras: Mantenimiento, formateo, eliminación de virus, cambio de piezas y optimización.\n\nDiagnóstico certero, repuestos garantizados y atención rápida.",
+    "PRECIO": 30.00
   },
   {
-    "id": "elec-002",
-    "TITULO": "Smart TV Samsung 55\" 4K UHD",
+    "id": "mantenimiento-en-general",
+    "TITULO": "mantenimiento en general",
     "CATEGORIA": "electronica",
-    "SUBCATEGORIA": "televisores",
+    "SUBCATEGORIA": "servicio",
     "IMG": [
-      "https://picsum.photos/400/300?random=4",
-      "https://picsum.photos/400/300?random=5",
-      "https://picsum.photos/400/300?random=6"
+      "https://scontent.fmga3-2.fna.fbcdn.net/v/t39.30808-6/806390212_3511028219058398_4303487255446474367_n.jpg?stp=dst-jpg_tt6&cstp=mx1254x1254&ctp=s1254x1254&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=B5c6D1ymCX8Q7kNvwEFbZKq&_nc_oc=AdozTkwWcK5tPOgB6i_XH7c6-7DNwYAom2X5BAtjjZbDgoQjh_LLfTCx-weZuy-lbP-jbc2mMKFV0PJ9mQ5xsI6G&_nc_zt=23&_nc_ht=scontent.fmga3-2.fna&_nc_gid=8N5Te0AWFUXZALUE1HVUQA&_nc_ss=7b2a8&oh=00_AQIjHJWx16uxEgvSqeU1VHTyzN9EtLjESgLVmOQNhrP99Q&oe=6AAB708E"
+      
     ],
-    "DESCRIPCION": "Televisor 4K con HDR, Smart Hub y control por voz.",
-    "PRECIO": 549.00
+    "DESCRIPCION": "Servicio de mantenimiento preventivo y correctivo para equipos electrónicos y de cómputo. Incluye limpieza interna profunda, eliminación de polvo, cambio de pasta térmica, lubricación de ventiladores y diagnóstico de componentes para prevenir fallas y extender la vida útil de tus dispositivos.",
+    "PRECIO": 30.00
   },
   {
-    "id": "elec-003",
-    "TITULO": "Bocina JBL Flip 6 Portátil",
+    "id": "programas",
+    "TITULO": "el programa que necesitas",
     "CATEGORIA": "electronica",
-    "SUBCATEGORIA": "audio",
+    "SUBCATEGORIA": "servicio",
     "IMG": [
-      "https://picsum.photos/400/300?random=7",
-      "https://picsum.photos/400/300?random=8",
-      "https://picsum.photos/400/300?random=9"
+      "https://scontent.fmga11-2.fna.fbcdn.net/v/t39.30808-6/806280724_3511028085725078_5962703651485576051_n.jpg?stp=dst-jpg_tt6&cstp=mx1440x1440&ctp=s1440x1440&_nc_cat=107&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=EG_R-5K0MY4Q7kNvwFZkNAy&_nc_oc=AdrRl8Er4_BqVlrGJW7IbAP-y82inkXQKxSJshO_648W4qfGhKg24eeEIWKPCWZSQ9VbiWiXr4_VVgSwmEv8b5Cp&_nc_zt=23&_nc_ht=scontent.fmga11-2.fna&_nc_gid=rKL1RfRSqYJToG0szscKLw&_nc_ss=7b2a8&oh=00_AQI-QiNdxilQqrnlOPK_sn3ci0RZHUI95_deicmaxt0xlw&oe=6AAB869E",
+      "https://scontent.fmga3-1.fna.fbcdn.net/v/t39.30808-6/799839339_3511028089058411_4066608136759589266_n.jpg?stp=dst-jpg_tt6&cstp=mx1440x1440&ctp=s1440x1440&_nc_cat=100&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MD3WvPM7Be4Q7kNvwFCeRbs&_nc_oc=AdpdWg1CRicQPnvSUwc4XuC7FFNEUNFp_mRW6ly5yEIFfN54CDUGEqjFhWIt0GSo3SYEPg1rvuv8rTprI6Eckh68&_nc_zt=23&_nc_ht=scontent.fmga3-1.fna&_nc_gid=eM3ySebaqmjJE9DLvQ-8kA&_nc_ss=7b2a8&oh=00_AQLevVitd0oG5Rc4-Cb7cCOvmPbMuConlhl7koi3BpccPw&oe=6AAB7E87",
+      "https://scontent.fmga11-1.fna.fbcdn.net/v/t39.30808-6/806299695_3511028589058361_1770053222041848274_n.jpg?stp=dst-jpg_tt6&cstp=mx1440x1440&ctp=s1440x1440&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Uan3HD03I9wQ7kNvwFxq-cB&_nc_oc=AdprEIlXYX7E3AIM4RJAGYm9gvPuljbKauPKgkBYdYfLp-j_FLBBBb73yhe50pAw1GyRhEcY_GAgWp4AvT6ipjfO&_nc_zt=23&_nc_ht=scontent.fmga11-1.fna&_nc_gid=LBqnWnvTLCZXl3aXZ3mNlg&_nc_ss=7b2a8&oh=00_AQKD2Hr7u6VW3dgqXpLsZJ42VyXEOBuNEU13LuBuUt5qtw&oe=6AAB9963"
     ],
-    "DESCRIPCION": "Bocina Bluetooth resistente al agua con sonido potente y 12h de batería.",
-    "PRECIO": 129.50
+    "DESCRIPCION": "Instalación y configuración de programas para computadoras, incluyendo herramientas de oficina, diseño, edición y utilidades. Dejamos tu equipo listo para trabajar, con instalación segura, configuración personalizada y orientación básica para su uso.",
+    "PRECIO": 30.00
   },
   {
-    "id": "elec-004",
-    "TITULO": "Cámara Canon EOS Rebel T7",
-    "CATEGORIA": "electronica",
-    "SUBCATEGORIA": "camaras",
+    "id": "articulo-de-marca",
+    "TITULO": "articulos de marca",
+    "CATEGORIA": "publicidad",
+    "SUBCATEGORIA": "productos",
     "IMG": [
-      "https://picsum.photos/400/300?random=10",
-      "https://picsum.photos/400/300?random=11",
-      "https://picsum.photos/400/300?random=12"
+      "https://scontent.fmga3-2.fna.fbcdn.net/v/t39.30808-6/806271711_3511028409058379_7613565564671956097_n.jpg?stp=dst-jpg_tt6&cstp=mx1000x1000&ctp=s1000x1000&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MTzTV4fiafcQ7kNvwGLLjAy&_nc_oc=Adpfjjq_1bFrBYcw6WHqRxni9NTgTKBHMYfujKht8seAgA3w3OXlNN8B7YGderiLP3rCDhMoU1O1AD4pQksEdFQl&_nc_zt=23&_nc_ht=scontent.fmga3-2.fna&_nc_gid=5CWaVlP2dCjkjvsyWVDGYA&_nc_ss=7b2a8&oh=00_AQLuzsmtUFx5r2y45GfTKjHGOsNk8K8KLTg_cx79943vFQ&oe=6AABA268",
+      "https://scontent.fmga3-1.fna.fbcdn.net/v/t39.30808-6/803151512_3511028395725047_8245522279141193382_n.jpg?stp=dst-jpg_tt6&cstp=mx1000x1000&ctp=s1000x1000&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=n_inSopIsd8Q7kNvwGkPfGw&_nc_oc=AdrP-yalCrx20qrMzjcNd3MfxnfxPJ1YMYr9eipuh_W-fQd2G4Kro-stq-raNeeTMnsnqITru9NVv8p2VFZXRCHy&_nc_zt=23&_nc_ht=scontent.fmga3-1.fna&_nc_gid=DKyWcMUnETdgdwYrqHRlmg&_nc_ss=7b2a8&oh=00_AQItVo9byWez_Ok90z9kNKTPADPoHtcUlE3N1As4x4JsdQ&oe=6AABB353",
+      "https://scontent.fmga11-2.fna.fbcdn.net/v/t39.30808-6/808193255_3511028329058387_8085043033980142558_n.jpg?stp=dst-jpg_tt6&cstp=mx1000x1000&ctp=s1000x1000&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=129j0rtcWBEQ7kNvwGjt58G&_nc_oc=AdrLGAawyJcPMuoJD8jQEcllMc6KhcFmnmb6dXJw1xvRPP97K72A5utR-QvEWftWKU-4qwuRwEsUsjYnNarxRkqA&_nc_zt=23&_nc_ht=scontent.fmga11-2.fna&_nc_gid=bqPB74-WV5NGEW0m0fBUOQ&_nc_ss=7b2a8&oh=00_AQIr5hoxNyFIYUePYW05uPAkizoAi5ohoUeFsjaBbcM7cQ&oe=6AABC5C5",
+      "https://scontent.fmga3-1.fna.fbcdn.net/v/t39.30808-6/801031204_3511028269058393_643261108917324618_n.jpg?stp=dst-jpg_tt6&cstp=mx750x1000&ctp=s750x1000&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=J3WOi4YefqQQ7kNvwGj5Vxk&_nc_oc=AdrNezplRZ7-YNAzIOhWS4j6Jd19cn4X314LKRPLRouTDkjLXx-nC1J1BF5n5QRBowr2UyDmkinbNCjyq-EamTpq&_nc_zt=23&_nc_ht=scontent.fmga3-1.fna&_nc_gid=S_dnumMtjJf58ojiXBzUxA&_nc_ss=7b2a8&oh=00_AQLbw0wFQS_QMZRsQS_IciWVfX0E_rYwNPWRIft7MOhZ1Q&oe=6AABBEA2",
+      "https://scontent.fmga3-2.fna.fbcdn.net/v/t39.30808-6/801882839_3511028199058400_7204713087010113026_n.jpg?stp=dst-jpg_tt6&cstp=mx1000x1000&ctp=s1000x1000&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7LKfhnNC04MQ7kNvwENgdoM&_nc_oc=AdoJth1v75lFG1vYxHaQjMOfndLRsO5t--pl86G34bMJhDdUPHogcjwY1Y8o-0aqdgqloEJtrEsZGngY48u5s96L&_nc_zt=23&_nc_ht=scontent.fmga3-2.fna&_nc_gid=Pe1LnhrH9gp7YfUYXUFw5w&_nc_ss=7b2a8&oh=00_AQKuuVRkImbjFKZnHTr1cBUhwrD5z7yTisy-RWVvXJNafw&oe=6AABA1DE",
+      "https://scontent.fmga11-2.fna.fbcdn.net/v/t39.30808-6/799848946_3511028149058405_3818390232338457959_n.jpg?stp=dst-jpg_tt6&cstp=mx750x1000&ctp=s750x1000&_nc_cat=102&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=2-xFV4cI8QcQ7kNvwHCAPlo&_nc_oc=AdoxMrJmPre0kL8dvqcYEd8oqobEzvxfLl9tRLbDsolAg-05j42fLu2n5NCopAfXSooMQxGZ7ZngPo7_Ib_E_VXV&_nc_zt=23&_nc_ht=scontent.fmga11-2.fna&_nc_gid=YvTihls12XmewJbrX_tKUg&_nc_ss=7b2a8&oh=00_AQIM8eePz5M00ipcX0EFDOjtrluKkXN7CgQC3Bpv_BJkIg&oe=6AABB4FF",
+      "https://scontent.fmga3-1.fna.fbcdn.net/v/t39.30808-6/806453612_3511028049058415_1138674647312364099_n.jpg?stp=dst-jpg_tt6&cstp=mx1000x1000&ctp=s1000x1000&_nc_cat=109&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=6MGM_pQzGQoQ7kNvwFStyDn&_nc_oc=AdqBZubPWW8S19FZ2DFNQIIl499x3ul657KvgJfsxKpWfdQlGGIxpctgXjXfOYr84bIWRQDmeUGfzNcuoHU_f5Yi&_nc_zt=23&_nc_ht=scontent.fmga3-1.fna&_nc_gid=ina0NLeArptIHb4v2ART3g&_nc_ss=7b2a8&oh=00_AQJb_ihY1uhlpc-5nSoJs_b_UwZY6QXMbtWTOo7AyQUrzA&oe=6AAB7B70",
+      "https://scontent.fmga3-2.fna.fbcdn.net/v/t39.30808-6/800755825_3511028122391741_2150061071232949254_n.jpg?stp=dst-jpg_tt6&cstp=mx999x1000&ctp=s999x1000&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=XUCG0XYodkcQ7kNvwEdeZUZ&_nc_oc=Adqn4nMmnexITyJXrMpbgJFWROQlOQ5hUSztA5PIWapDaSu48BjfcPg0pUww0D_2sepe95ktF0V-imNVcXtM8oDf&_nc_zt=23&_nc_ht=scontent.fmga3-2.fna&_nc_gid=prUOUom2ak-zaiKIbg13Bw&_nc_ss=7b2a8&oh=00_AQLU8NPigtShkCVrK1ISqYSzlLMqkjGc6JPNwOsUlA1HBA&oe=6AAB8C4B"
     ],
-    "DESCRIPCION": "Cámara DSLR 24.1MP con lente 18-55mm, WiFi y video Full HD.",
-    "PRECIO": 479.00
+    "DESCRIPCION": "Productos de marca originales y de alta calidad, cuidadosamente seleccionados para ofrecer durabilidad, confianza . Encuentra opciones para satisfacer y fortalecer tu marca escrinos.",
+    "PRECIO": 30.00
   },
   {
-    "id": "elec-005",
-    "TITULO": "Reloj Inteligente Apple Watch SE",
-    "CATEGORIA": "electronica",
-    "SUBCATEGORIA": "wearables",
+    "id": "productos-de-publicidad",
+    "TITULO": "productos de publicidad",
+    "CATEGORIA": "publicidad",
+    "SUBCATEGORIA": "productos",
     "IMG": [
-      "https://picsum.photos/400/300?random=13",
-      "https://picsum.photos/400/300?random=14",
-      "https://picsum.photos/400/300?random=15"
+      "https://scontent.fmga11-1.fna.fbcdn.net/v/t39.30808-6/808219677_3511029995724887_8599360967725281498_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=K59Vqi0P_rMQ7kNvwGQSs2f&_nc_oc=AdrEHv5faYA4qgfmO8o9Pyc-jBgXU3pdTsOygFcYrA0EqW1wWHUZw5eUf3aMdDYfF0OIhiSIMzjCP7wTAZqDeGvO&_nc_zt=23&_nc_ht=scontent.fmga11-1.fna&_nc_gid=pEDcW-Ok07jMMsQzAaw44g&_nc_ss=7b2a8&oh=00_AQJR1qGBu1daPCxZhKO4nVeSV_ZJL4FyXajOwjM56hJ0SQ&oe=6AABAF9B",
+      "https://scontent.fmga3-1.fna.fbcdn.net/v/t39.30808-6/806177027_3511029869058233_3742207273289055355_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Zh-2N_6azXcQ7kNvwHUt78y&_nc_oc=AdoGamVffCCTlQsyxd4KdRJAUlNrK23MfQlTSgYMTWxbjcJjGw8Oi-4PWTjmR3rN_-56tNgYfuk6hohtfT8AUiBe&_nc_zt=23&_nc_ht=scontent.fmga3-1.fna&_nc_gid=QBgM4X7HHVXjkHSK-mXA1g&_nc_ss=7b2a8&oh=00_AQKxmnOlGFAcn6pPagzBG99uodUf5wmVqDQ9Syf9yeh8Vw&oe=6AABCD50",
+      "https://scontent.fmga11-2.fna.fbcdn.net/v/t39.30808-6/801882496_3511029912391562_4277809562257159122_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=6W75uU9uGZMQ7kNvwHDwaVj&_nc_oc=Adq7cq1InaSGZN7Z1bPVZFiSByd13xtm-6GsF3Wtq9w11_uZYVNs4rdAY2LrPlJAjIhqY2Uz970tq1sPVDvVnJdm&_nc_zt=23&_nc_ht=scontent.fmga11-2.fna&_nc_gid=jWOtJgDlqjq65CQv-K7jmA&_nc_ss=7b2a8&oh=00_AQKucmJ7Sq9xy0sBqlDRf7eB76aS4D0ohfqgIB4aLXM_YA&oe=6AAB9FBC",
+      "https://scontent.fmga11-2.fna.fbcdn.net/v/t39.30808-6/806687314_3510773565750530_5344308809982094319_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x2048&ctp=s2048x2048&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=127cfc&_nc_ohc=34-ritGfEZAQ7kNvwFT_RfA&_nc_oc=AdrShYVFQMN2bfl0AnLeQMZG3pxCcIksIBz9EMneoPkTbTTIDlDS6MP9vYQX7jM5kB5BLuutebVaFtkQkKaA1HqV&_nc_zt=23&_nc_ht=scontent.fmga11-2.fna&_nc_gid=mhg60QGMuL6g14BPVMnM3Q&_nc_ss=7b2a8&oh=00_AQJWorKvSqJ7HOkHVya3I9686oMSeL7C_5-yv4wW453ivQ&oe=6AABBD5D"
     ],
-    "DESCRIPCION": "Smartwatch con GPS, monitor de ritmo cardíaco y pantalla Retina.",
-    "PRECIO": 279.00
+    "DESCRIPCION": "Productos promocionales para destacar tu marca y conectar con tus clientes: roll up, mesa de degustación, banner gigante y póster personalizados. Ideales para ferias, eventos, puntos de venta y campañas publicitarias, con diseños atractivos y materiales de excelente calidad.",
+    "PRECIO": 30.00
   },
   {
     "id": "elec-006",
