@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/islands/Footer.jsx';
+import CartPage from '../components/cart/CartPage.tsx';
+import { SITE_CONFIG, SEO_DEFAULTS } from '../utils/constants.js';
+---
+
+<Layout 
+    title={`Carrito de Compras | ${SITE_CONFIG.name}`}
+    description={`Revisa los productos en tu carrito, descarga tu lista en PDF y envía tu pedido por WhatsApp o correo en ${SITE_CONFIG.name}.`}
+    keywords={`carrito de compras, pedido, cotización, productos, ${SEO_DEFAULTS.keywords}`}
+    canonicalURL={`${SITE_CONFIG.siteUrl}/carrito`}
+>
+    <Header />
+    <main id="main-content" class="bg-gray-50/50 min-h-[70vh]">
+        <CartPage client:load />
+    </main>
+    <Footer client:load />
+</Layout>
+

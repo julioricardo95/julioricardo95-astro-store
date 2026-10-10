@@ -3,6 +3,8 @@ import SEOHead from '../components/SEOHead.astro';
 import { SITE_CONFIG, SEO_DEFAULTS } from '../utils/constants.js';
 // 1. IMPORTAR TUS ESTILOS GLOBALES (Requerido para Tailwind v4)
 import '../styles/global.css';
+import CartDrawer from '../components/cart/CartDrawer.tsx';
+import CartToast from '../components/cart/CartToast.tsx';
 
 export interface Props {
     title?: string;
@@ -82,6 +84,10 @@ const currentURL = canonicalURL || Astro.url.href;
                 <i class="fab fa-whatsapp text-3xl"></i>
             </a>
         </div>
+
+        <!-- Cajón del Carrito de Compras y Notificaciones Toast (Globales) -->
+        <CartDrawer client:load />
+        <CartToast client:load />
     </body>
 </html>
 

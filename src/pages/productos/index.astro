@@ -156,6 +156,22 @@ const categories = [...new Set(products.map(p => p.CATEGORIA).filter(Boolean))].
         init() {
             this.initializeFilters();
             this.initializeInfiniteScroll();
+            this.initializeCartActions();
+        }
+
+        initializeCartActions() {
+            this.productsGrid?.addEventListener('click', (e) => {
+                const btn = e.target.closest('.add-to-cart-dynamic-btn');
+                if (btn) {
+                    const id = btn.getAttribute('data-product-id');
+                    const product = this.allProducts.find(p => String(p.id) === String(id));
+                    if (product) {
+                        window.dispatchEvent(new CustomEvent('fixstore:add-to-cart', {
+                            detail: { product, quantity: 1, autoOpen: true }
+                        }));
+                    }
+                }
+            });
         }
 
         initializeFilters() {
@@ -263,9 +279,14 @@ const categories = [...new Set(products.map(p => p.CATEGORIA).filter(Boolean))].
                                 <div class="flex items-baseline justify-between mb-4 pt-2 border-t border-gray-50">
                                     <div>
                                         <span class="text-xs text-gray-400 block font-medium">Precio</span>
-                                        <span class="text-2xl font-extrabold text-gray-900 tracking-tight">$${product.PRECIO || '0.00'}</span>
+                                        <span class="text-2xl font-extrabold text-gray-900 tracking-tight">$${parseFloat(String(product.PRECIO || 0)).toFixed(2)}</span>
                                     </div>
-                                    <a href="/producto/${product.id}" class="inline-flex items-center justify-center bg-gray-900 hover:bg-primary-600 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 active:scale-95">Ver detalles</a>
+                                    <div class="flex items-center gap-1.5 shrink-0">
+                                        <button type="button" class="add-to-cart-dynamic-btn w-9 h-9 rounded-xl bg-primary-600 hover:bg-primary-700 text-white flex items-center justify-center transition-all active:scale-95 shadow-xs" data-product-id="${product.id}" title="Añadir al carrito">
+                                            <i class="fas fa-cart-plus text-xs"></i>
+                                        </button>
+                                        <a href="/producto/${product.id}" class="inline-flex items-center justify-center bg-gray-900 hover:bg-primary-600 text-white text-xs sm:text-sm font-semibold px-3 py-2 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 active:scale-95">Detalles</a>
+                                    </div>
                                 </div>
                                 <div class="flex items-center justify-between pt-3 border-t border-gray-100">
                                     <span class="text-xs font-medium text-gray-400">Contacto rápido:</span>

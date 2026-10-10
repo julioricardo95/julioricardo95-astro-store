@@ -2,6 +2,7 @@ import React from 'react';
 
 // Importación de las constantes del sitio
 import { SITE_CONFIG } from '../utils/constants.js';
+import AddToCartButton from './cart/AddToCartButton.tsx';
 
 /**
  * Componente ProductCard (Optimizado para Celular y Laptop)
@@ -73,21 +74,31 @@ export default function ProductCard({ product }) {
 
         {/* Precio y Acciones */}
         <div>
-          {/* Fila del Precio y Botón Principal */}
+          {/* Fila del Precio y Botones de Acción */}
           <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4 pt-2 border-t border-gray-50">
             <div className="min-w-0">
               <span className="text-[10px] sm:text-xs text-gray-400 block font-medium leading-none mb-0.5">Precio</span>
               <span className="text-lg sm:text-2xl font-black text-gray-900 tracking-tight block truncate">
-                ${product?.PRECIO ?? '0.00'}
+                ${parseFloat(String(product?.PRECIO || 0)).toFixed(2)}
               </span>
             </div>
 
-            <a
-              href={`/producto/${product?.id}`}
-              className="inline-flex items-center justify-center bg-gray-900 hover:bg-primary-600 text-white text-xs sm:text-sm font-semibold px-3 py-2 sm:px-4 sm:py-2.5 rounded-lg sm:rounded-xl shadow-xs hover:shadow-md transition-all duration-200 active:scale-95 shrink-0"
-            >
-              Ver detalles
-            </a>
+            <div className="flex items-center gap-1.5 shrink-0">
+              {/* Botón rápido para agregar al carrito */}
+              <AddToCartButton 
+                product={product} 
+                iconOnly={true} 
+                className="!w-8 !h-8 sm:!w-9 sm:!h-9 !rounded-lg sm:!rounded-xl"
+              />
+
+              {/* Botón Ver detalles */}
+              <a
+                href={`/producto/${product?.id}`}
+                className="inline-flex items-center justify-center bg-gray-900 hover:bg-primary-600 text-white text-xs sm:text-sm font-semibold px-2.5 py-2 sm:px-3.5 sm:py-2 rounded-lg sm:rounded-xl shadow-xs hover:shadow-md transition-all duration-200 active:scale-95 shrink-0"
+              >
+                Detalles
+              </a>
+            </div>
           </div>
 
           {/* Botonera de Contacto Rápido */}

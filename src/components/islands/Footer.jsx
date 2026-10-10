@@ -127,6 +127,7 @@ export default function Footer() {
               {[
                 { name: 'Inicio', url: '/' },
                 { name: 'Catálogo', url: '/productos' },
+                { name: 'Mi Carrito', url: '/carrito' },
                 { name: 'Novedades', url: '/articulos' },
                 { name: 'Contacto', url: '#contacto' },
               ].map((link) => (

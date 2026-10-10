@@ -10,6 +10,9 @@ export const SITE_CONFIG = {
   phone: "+50558567432",
   // Formato numérico limpio sin '+' ni espacios para la API de WhatsApp (wa.me/50558567432)
   whatsapp: "50558567432", 
+  // Endpoint o ID de Formspree para recibir los pedidos por correo electrónico
+  // Configurado con el ID de la tienda (meaqvvbe)
+  formspreeEndpoint: "https://formspree.io/f/meaqvvbe",
   address: {
     street: "Calle Principal",
     city: "Boaco",

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/islands/Footer.jsx';
+import { SITE_CONFIG } from '../../utils/constants.js';
 
 export async function getStaticPaths() {
     // 1. Reemplazo de Astro.glob por import.meta.glob de Vite
@@ -29,13 +30,13 @@ const { Content, frontmatter } = article;
 ---
 
 <Layout 
-    title={`${frontmatter.title} | TuTienda Blog`}
+    title={`${frontmatter.title} | ${SITE_CONFIG.name}`}
     description={frontmatter.excerpt}
     keywords={`${frontmatter.category}, ${frontmatter.title}, blog, artículo, guía, consejos, tendencias`}
     ogImage={frontmatter.image}
     ogType="article"
-    canonicalURL={`https://tu-tienda.com/articulo/${Astro.params.slug}`}
-    author="TuTienda"
+    canonicalURL={`${SITE_CONFIG.siteUrl}/articulo/${Astro.params.slug}`}
+    author={frontmatter.author || SITE_CONFIG.name}
     twitterCard="summary_large_image"
 >
     <Header />
@@ -226,14 +227,14 @@ const { Content, frontmatter } = article;
         "image": frontmatter.image,
         "author": {
             "@type": "Organization",
-            "name": "TuTienda"
+            "name": SITE_CONFIG.name
         },
         "publisher": {
             "@type": "Organization",
-            "name": "TuTienda",
+            "name": SITE_CONFIG.name,
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://tu-tienda.com/logo.png"
+                "url": `${SITE_CONFIG.siteUrl}/favicon.svg`
             }
         },
         "datePublished": frontmatter.date,
