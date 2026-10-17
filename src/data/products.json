@@ -1,5 +1,225 @@
 [
   {
+    "id": "iphone-14-pro-max",
+    "TITULO": "iPhone 14 Pro Max",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266973/tienda/Lago%20Smart%20Nicaragua/iPhone_14_Pro_Max_1_TB_y_6_GB_de_RAM._2_ap6jmw.jpg"
+    ],
+    "DESCRIPCION": "1 TB y 6 GB de RAM.\n\nNuevo, 100 % original, con todos los accesorios originales incluidos e intactos.\n\nComo parte de nuestra promoción actual, este dispositivo incluye un obsequio.\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 15200.00
+  },
+  {
+    "id": "iphone-13-pro-max",
+    "TITULO": "iPhone 13 Pro Max",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266974/tienda/Lago%20Smart%20Nicaragua/iPhone_13_Pro_Max_512GB_y_6_GB_de_RAM._nadr9g.jpg"
+    ],
+    "DESCRIPCION": "512GB y 6 GB de RAM.\n\nNuevo, 100 % original, con todos los accesorios originales incluidos e intactos.\n\nComo parte de nuestra promoción actual, este dispositivo incluye un obsequio.\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 12500.00
+  },
+  {
+    "id": "iphone-12-pro-max",
+    "TITULO": "iPhone 12 Pro Max",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266974/tienda/Lago%20Smart%20Nicaragua/iPhone_12_Pro_Max_256GB_y_6_GB_de_RAM._dbss5x.jpg"
+    ],
+    "DESCRIPCION": "256GB y 6 GB de RAM.\n\nNuevo, 100 % original, con todos los accesorios originales incluidos e intactos.\n\nComo parte de nuestra promoción actual, este dispositivo incluye un obsequio.\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 9800.00
+  },
+  {
+    "id": "iphone-11-pro-max",
+    "TITULO": "iPhone 11 Pro Max",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266975/tienda/Lago%20Smart%20Nicaragua/iPhone_11_Pro_Max_256GB_y_6_GB_de_RAM._qh5wcw.jpg"
+    ],
+    "DESCRIPCION": "256GB y 6 GB de RAM.\n\nNuevo, 100 % original, con todos los accesorios originales incluidos e intactos.\n\nComo parte de nuestra promoción actual, este dispositivo incluye un obsequio.\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 7500.00
+  },
+  {
+    "id": "samsung-galaxy-s25-ultra",
+    "TITULO": "Samsung Galaxy S25 ultra",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266975/tienda/Lago%20Smart%20Nicaragua/Samsung_Galaxy_S25_ultra_ogfkak.jpg"
+    ],
+    "DESCRIPCION": "- 1TB de almacenamiento interno\n- 12 GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nComo parte de nuestra promoción por tiempo limitado, esta compra incluye un Samsung Galaxy SmartWatch Active de regalo.\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 19500.00
+  },
+  {
+    "id": "samsung-galaxy-s24-ultra",
+    "TITULO": "Samsung Galaxy S24 ultra",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266974/tienda/Lago%20Smart%20Nicaragua/Samsung_Galaxy_S24_ultra_l4ysga.jpg"
+    ],
+    "DESCRIPCION": "- 1TB de almacenamiento interno\n- 12 GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nComo parte de nuestra promoción por tiempo limitado, esta compra incluye un Samsung Galaxy SmartWatch Active de regalo.\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 19500.00
+  },
+  {
+    "id": "samsung-galaxy-s23-ultra",
+    "TITULO": "Samsung Galaxy S23 ultra",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266975/tienda/Lago%20Smart%20Nicaragua/Samsung_Galaxy_S23_ultra_amgge5.jpg"
+    ],
+    "DESCRIPCION": "- 512GB de almacenamiento interno\n- 8 GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nComo parte de nuestra promoción por tiempo limitado, esta compra incluye un Samsung Galaxy SmartWatch Active de regalo.\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 12500.00
+  },
+  {
+    "id": "samsung-galaxy-s22-ultra",
+    "TITULO": "Samsung Galaxy S22 ultra",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266975/tienda/Lago%20Smart%20Nicaragua/Samsung_Galaxy_S22_ultra_i19kuy.jpg"
+    ],
+    "DESCRIPCION": "- 256 GB de almacenamiento interno\n- 8 GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nComo parte de nuestra promoción por tiempo limitado, esta compra incluye un Samsung Galaxy SmartWatch Active de regalo.\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 9800.00
+  },
+  {
+    "id": "samsung-galaxy-note-20-ultra",
+    "TITULO": "Samsung Galaxy Note 20 Ultra",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266975/tienda/Lago%20Smart%20Nicaragua/Samsung_Galaxy_Note_20_Ultra_qqygci.jpg"
+    ],
+    "DESCRIPCION": "- 256 GB de almacenamiento interno\n- 8 GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nComo parte de nuestra promoción por tiempo limitado, esta compra incluye un Samsung Galaxy SmartWatch Active de regalo.\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 7000.00
+  },
+  {
+    "id": "samsung-galaxy-s21-ultra",
+    "TITULO": "Samsung Galaxy S21 ultra",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266973/tienda/Lago%20Smart%20Nicaragua/Samsung_Galaxy_S21_ultra_cygzfa.jpg"
+    ],
+    "DESCRIPCION": "- 256 GB de almacenamiento interno\n- 8 GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nComo parte de nuestra promoción por tiempo limitado, esta compra incluye un Samsung Galaxy SmartWatch Active de regalo.\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 7800.00
+  },
+  {
+    "id": "redmi-note-15-pro",
+    "TITULO": "Redmi Note 15 pro",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266974/tienda/Lago%20Smart%20Nicaragua/Redmi_Note_15_pro_ayhzxm.jpg"
+    ],
+    "DESCRIPCION": "- 256 GB de almacenamiento interno\n- 8 GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 7800.00
+  },
+  {
+    "id": "redmi-note-14-pro",
+    "TITULO": "Redmi Note 14 pro",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266974/tienda/Lago%20Smart%20Nicaragua/Redmi_Note_14_pro_v1iyys.jpg"
+    ],
+    "DESCRIPCION": "- 128 GB de almacenamiento interno\n- 5 GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 7000.00
+  },
+  {
+    "id": "google-pixel",
+    "TITULO": "Google Pixel",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266975/tienda/Lago%20Smart%20Nicaragua/Google_Pixel_rsiioo.jpg"
+    ],
+    "DESCRIPCION": "- 256 GB de almacenamiento interno\n- 8 GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 7000.00
+  },
+  {
+    "id": "huawei-pura80-pro",
+    "TITULO": "Huawei Pura80 pro",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266976/tienda/Lago%20Smart%20Nicaragua/Huawei_Pura80_pro_yjjble.jpg"
+    ],
+    "DESCRIPCION": "- 256 GB de almacenamiento interno\n- 8 GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 7000.00
+  },
+  {
+    "id": "poco-m8",
+    "TITULO": "Poco m8",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266976/tienda/Lago%20Smart%20Nicaragua/Poco_m8_awmgn4.jpg"
+    ],
+    "DESCRIPCION": "- 256 GB de almacenamiento interno\n- 5 GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 6000.00
+  },
+  {
+    "id": "samsung-galaxy-a34",
+    "TITULO": "Samsung Galaxy A34",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266983/tienda/Lago%20Smart%20Nicaragua/Samsung_Galaxy_A34_ubj9lh.jpg"
+    ],
+    "DESCRIPCION": "- 256 GB de almacenamiento interno\n- 5GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 7000.00
+  },
+  {
+    "id": "honor-magic-7pro",
+    "TITULO": "Honor magic 7pro",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266977/tienda/Lago%20Smart%20Nicaragua/Honor_magic_7_pro_cjmnsh.jpg"
+    ],
+    "DESCRIPCION": "- 256 GB de almacenamiento interno\n- 8GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 7000.00
+  },
+  {
+    "id": "honor-magic-6pro",
+    "TITULO": "Honor magic 6pro",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266977/tienda/Lago%20Smart%20Nicaragua/Honor_magic_6pro_xeogzs.jpg"
+    ],
+    "DESCRIPCION": "- 128 GB de almacenamiento interno\n- 5GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 6000.00
+  },
+  {
+    "id": "samsung-galaxy-a55",
+    "TITULO": "Samsung Galaxy A55",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266977/tienda/Lago%20Smart%20Nicaragua/Samsung_Galaxy_A55_jmlvtr.jpg"
+    ],
+    "DESCRIPCION": "- 256 GB de almacenamiento interno\n- 5GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 7000.00
+  },
+  {
+    "id": "samsung-galaxy-z-fold-5",
+    "TITULO": "Samsung Galaxy Z Fold 5",
+    "CATEGORIA": "electronica",
+    "SUBCATEGORIA": "celulares",
+    "IMG": [
+      "https://res.cloudinary.com/dzbxmdvi5/image/upload/v1792266978/tienda/Lago%20Smart%20Nicaragua/Samsung_Galaxy_Z_Fold_5_mh1spz.jpg"
+    ],
+    "DESCRIPCION": "- 256GB de almacenamiento interno\n- 12 GB de RAM\n- Dispositivo completamente nuevo, 100 % original\n- Incluye todos los accesorios originales\n\nComo parte de nuestra promoción por tiempo limitado, esta compra incluye un Samsung Galaxy SmartWatch Active de regalo.\n\nPara cualquier consulta nos puedes escribir 📲 al WhatsApp: https://wa.me/50588750094",
+    "PRECIO": 10500.00
+  },
+  {
     "id": "reparacion-y-mantenimiento",
     "TITULO": "servicio de reparación y mantenimiento ",
     "CATEGORIA": "electronica",
