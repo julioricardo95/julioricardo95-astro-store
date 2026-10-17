@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import productsData from '../../data/products.json';
+import { formatCurrency } from '../../utils/cartFormatters.ts';
 
 export default function SearchBox({ initialProducts = productsData }) {
   const [query, setQuery] = useState('');
@@ -144,7 +145,7 @@ export default function SearchBox({ initialProducts = productsData }) {
                             </span>
                           )}
                           <span className="font-extrabold text-xs text-gray-900">
-                            ${product.PRECIO ?? '0.00'}
+                            {formatCurrency(product.PRECIO)}
                           </span>
                         </div>
                       </div>

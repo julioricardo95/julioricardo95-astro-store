@@ -11,7 +11,7 @@
 
 import type { CartItem, CustomerInfo } from '../types/cart';
 import { calculateTotals } from '../stores/cartStore';
-import { formatCurrency, generateOrderId } from './cartFormatters';
+import { formatCurrency, generateOrderId, CURRENCY_CONFIG } from './cartFormatters';
 
 const JSPDF_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
 const AUTOTABLE_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js';
@@ -185,7 +185,7 @@ export async function downloadCartPDF(
       if (typeof (doc as any).autoTable === 'function') {
         (doc as any).autoTable({
           startY: 79,
-          head: [['#', 'Producto', 'P. Unitario', 'Cantidad', 'Total']],
+          head: [['#', 'Producto', `P. Unitario (${CURRENCY_CONFIG.symbol})`, 'Cantidad', `Total (${CURRENCY_CONFIG.symbol})`]],
           body: tableData,
           theme: 'striped',
           headStyles: {
@@ -291,9 +291,9 @@ export async function downloadCartPDF(
           <tr>
             <th>#</th>
             <th>Producto</th>
-            <th style="text-align:right">P. Unitario</th>
+            <th style="text-align:right">P. Unitario (${CURRENCY_CONFIG.symbol})</th>
             <th style="text-align:center">Cantidad</th>
-            <th style="text-align:right">Total</th>
+            <th style="text-align:right">Total (${CURRENCY_CONFIG.symbol})</th>
           </tr>
         </thead>
         <tbody>

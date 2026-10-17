@@ -1,7 +1,8 @@
 import React from 'react';
 
-// Importación de las constantes del sitio
+// Importación de las constantes del sitio y formateador de moneda
 import { SITE_CONFIG } from '../utils/constants.js';
+import { formatCurrency } from '../utils/cartFormatters.ts';
 import AddToCartButton from './cart/AddToCartButton.tsx';
 
 /**
@@ -79,7 +80,7 @@ export default function ProductCard({ product }) {
             <div className="min-w-0">
               <span className="text-[10px] sm:text-xs text-gray-400 block font-medium leading-none mb-0.5">Precio</span>
               <span className="text-lg sm:text-2xl font-black text-gray-900 tracking-tight block truncate">
-                ${parseFloat(String(product?.PRECIO || 0)).toFixed(2)}
+                {formatCurrency(product?.PRECIO)}
               </span>
             </div>
 
@@ -88,6 +89,8 @@ export default function ProductCard({ product }) {
               <AddToCartButton 
                 product={product} 
                 iconOnly={true} 
+                autoOpenCart={true}
+                showToast={true}
                 className="!w-8 !h-8 sm:!w-9 sm:!h-9 !rounded-lg sm:!rounded-xl"
               />
 

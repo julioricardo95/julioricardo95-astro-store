@@ -28,7 +28,7 @@ export default function AddToCartButton({
   className = '',
   buttonText = 'Agregar al Carrito',
   iconOnly = false,
-  autoOpenCart = false,
+  autoOpenCart = true,
   showToast = true
 }: AddToCartButtonProps) {
   const [quantity, setQuantity] = useState(1);
@@ -54,6 +54,10 @@ export default function AddToCartButton({
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    // Prevenir duplicación en escuchadores delegados de Astro / vanilla
+    if (e.nativeEvent) {
+      (e.nativeEvent as any).__cartHandled = true;
+    }
     if (!product) return;
 
     addToCart(product, quantity, autoOpenCart, showToast);
@@ -104,6 +108,8 @@ export default function AddToCartButton({
       <button
         type="button"
         onClick={handleAddToCart}
+        data-add-to-cart="true"
+        data-product-id={product?.id}
         className={`relative inline-flex items-center justify-center transition-all duration-200 active:scale-95 font-bold shadow-xs hover:shadow-md cursor-pointer ${
           isAdded
             ? 'bg-emerald-600 text-white'

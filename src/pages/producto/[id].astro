@@ -6,7 +6,8 @@ import Footer from '../../components/islands/Footer.jsx';
 import ProductCard from '../../components/ProductCard.jsx';
 import AddToCartButton from '../../components/cart/AddToCartButton.tsx';
 import { generateProductSchema } from '../../utils/seo.js';
-import { SITE_CONFIG, SEO_DEFAULTS } from '../../utils/constants.js';
+import { SITE_CONFIG, SEO_DEFAULTS, CURRENCY_CONFIG } from '../../utils/constants.js';
+import { formatCurrency } from '../../utils/cartFormatters.ts';
 import productsData from '../../data/products.json';
 
 // --- GENERACIÓN DE RUTAS ESTÁTICAS (SSG) ---
@@ -50,8 +51,8 @@ const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeU
 
 <Layout 
     title={`${product.TITULO} | ${SITE_CONFIG.name}`}
-    description={`${product.DESCRIPCION} Precio: $${product.PRECIO}. Envío gratis y garantía asegurada en ${SITE_CONFIG.name}.`}
-    keywords={`${product.TITULO}, ${product.CATEGORIA}, $${product.PRECIO}, ${SEO_DEFAULTS.keywords}`}
+    description={`${product.DESCRIPCION} Precio: ${formatCurrency(product.PRECIO)}. Envío gratis y garantía asegurada en ${SITE_CONFIG.name}.`}
+    keywords={`${product.TITULO}, ${product.CATEGORIA}, ${formatCurrency(product.PRECIO)}, ${SEO_DEFAULTS.keywords}`}
     ogImage={images[0]}
     ogType="product"
     canonicalURL={canonicalURL}
@@ -147,7 +148,7 @@ const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeU
                                 <div>
                                     <span class="text-[10px] sm:text-xs text-gray-400 block font-bold uppercase tracking-wider">Precio Garantizado</span>
                                     <span class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">
-                                        ${parseFloat(String(product.PRECIO || 0)).toFixed(2)}
+                                        {formatCurrency(product.PRECIO)}
                                     </span>
                                 </div>
                                 <span class="text-xs text-emerald-700 font-semibold bg-emerald-100/70 px-3 py-1.5 rounded-xl border border-emerald-200/50">
@@ -271,7 +272,7 @@ const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeU
                     <!-- Grid Responsive: 2 columnas en móvil / 4 en PC -->
                     <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
                         {relatedProducts.map(relatedProduct => (
-                            <ProductCard product={relatedProduct} />
+                            <ProductCard product={relatedProduct} client:visible />
                         ))}
                     </div>
 
@@ -282,21 +283,30 @@ const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeU
     </main>
 
     <!-- BARRA FLOTANTE DE COMPRA INFERIOR (EXCLUSIVA MÓVIL / CELULAR) -->
-    <div class="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-200/80 p-3 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] flex items-center justify-between gap-3">
-        <div>
+    <div class="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-200/80 p-3 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] flex items-center justify-between gap-2.5">
+        <div class="min-w-0 pr-1">
             <span class="text-[10px] text-gray-400 block font-bold uppercase tracking-wider">Precio</span>
-            <span class="text-2xl font-extrabold text-gray-900 tracking-tight">${product.PRECIO}</span>
+            <span class="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight truncate block">{formatCurrency(product.PRECIO)}</span>
         </div>
 
-        <a 
-            href={whatsappUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="flex-1 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white min-h-[44px] py-2.5 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md transition-all"
-        >
-            <i class="fab fa-whatsapp text-lg"></i>
-            <span>Comprar Ahora</span>
-        </a>
+        <div class="flex items-center gap-2">
+            <AddToCartButton 
+                product={product} 
+                client:load 
+                iconOnly={true} 
+                autoOpenCart={true}
+                className="!w-11 !h-11 !rounded-xl shrink-0" 
+            />
+            <a 
+                href={whatsappUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white min-h-[44px] py-2.5 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-md transition-all shrink-0"
+            >
+                <i class="fab fa-whatsapp text-lg"></i>
+                <span>Pedir WhatsApp</span>
+            </a>
+        </div>
     </div>
 
     <Footer client:load />

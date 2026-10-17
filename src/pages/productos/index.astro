@@ -5,8 +5,8 @@ import Footer from '../../components/islands/Footer.jsx';
 import ProductCard from '../../components/ProductCard.jsx';
 import productsData from '../../data/products.json';
 
-// Importación de constantes del sitio
-import { SITE_CONFIG, SEO_DEFAULTS, PAGINATION } from '../../utils/constants.js';
+// Importación de constantes del sitio y configuración de moneda
+import { SITE_CONFIG, SEO_DEFAULTS, PAGINATION, CURRENCY_CONFIG } from '../../utils/constants.js';
 
 // Normalización de datos recibidos del JSON
 const products = Array.isArray(productsData) ? productsData : productsData.products || [];
@@ -115,7 +115,7 @@ const categories = [...new Set(products.map(p => p.CATEGORIA).filter(Boolean))].
                         data-categoria={(product.CATEGORIA || '').toLowerCase()}
                         data-descripcion={(product.DESCRIPCION || '').toLowerCase()}
                     >
-                        <ProductCard product={product} />
+                        <ProductCard product={product} client:load />
                     </div>
                 ))}
             </div>
@@ -136,7 +136,7 @@ const categories = [...new Set(products.map(p => p.CATEGORIA).filter(Boolean))].
 </Layout>
 
 <!-- SCRIPTS CLIENTE -->
-<script define:vars={{ allProducts: products, itemsPerPage: PAGINATION.PRODUCTS_PER_PAGE, whatsappNumber: SITE_CONFIG.whatsapp }}>
+<script define:vars={{ allProducts: products, itemsPerPage: PAGINATION.PRODUCTS_PER_PAGE, whatsappNumber: SITE_CONFIG.whatsapp, currencySymbol: CURRENCY_CONFIG.symbol }}>
     class ProductGallery {
         constructor() {
             this.productsGrid = document.getElementById('productsGrid');
@@ -150,6 +150,9 @@ const categories = [...new Set(products.map(p => p.CATEGORIA).filter(Boolean))].
             this.itemsPerPage = itemsPerPage || 8;
             this.isLoading = false;
 
+            // Exponer lista completa de productos para delegación global
+            window.__ALL_PRODUCTS__ = this.allProducts;
+
             this.init();
         }
 
@@ -161,14 +164,20 @@ const categories = [...new Set(products.map(p => p.CATEGORIA).filter(Boolean))].
 
         initializeCartActions() {
             this.productsGrid?.addEventListener('click', (e) => {
-                const btn = e.target.closest('.add-to-cart-dynamic-btn');
+                const btn = e.target.closest('.add-to-cart-dynamic-btn, [data-add-to-cart="true"]');
                 if (btn) {
+                    e.preventDefault();
+                    e.stopPropagation();
                     const id = btn.getAttribute('data-product-id');
                     const product = this.allProducts.find(p => String(p.id) === String(id));
                     if (product) {
-                        window.dispatchEvent(new CustomEvent('fixstore:add-to-cart', {
-                            detail: { product, quantity: 1, autoOpen: true }
-                        }));
+                        if (window.fixstoreCart) {
+                            window.fixstoreCart.addToCart(product, 1, true, true);
+                        } else {
+                            window.dispatchEvent(new CustomEvent('fixstore:add-to-cart', {
+                                detail: { product, quantity: 1, autoOpen: true, showToast: true }
+                            }));
+                        }
                     }
                 }
             });
@@ -279,11 +288,11 @@ const categories = [...new Set(products.map(p => p.CATEGORIA).filter(Boolean))].
                                 <div class="flex items-baseline justify-between mb-4 pt-2 border-t border-gray-50">
                                     <div>
                                         <span class="text-xs text-gray-400 block font-medium">Precio</span>
-                                        <span class="text-2xl font-extrabold text-gray-900 tracking-tight">$${parseFloat(String(product.PRECIO || 0)).toFixed(2)}</span>
+                                        <span class="text-2xl font-extrabold text-gray-900 tracking-tight">${currencySymbol}${parseFloat(String(product.PRECIO || 0)).toFixed(2)}</span>
                                     </div>
                                     <div class="flex items-center gap-1.5 shrink-0">
-                                        <button type="button" class="add-to-cart-dynamic-btn w-9 h-9 rounded-xl bg-primary-600 hover:bg-primary-700 text-white flex items-center justify-center transition-all active:scale-95 shadow-xs" data-product-id="${product.id}" title="Añadir al carrito">
-                                            <i class="fas fa-cart-plus text-xs"></i>
+                                        <button type="button" class="add-to-cart-dynamic-btn w-9 h-9 rounded-xl bg-primary-600 hover:bg-primary-700 text-white flex items-center justify-center transition-all active:scale-95 shadow-xs" data-product-id="${product.id}" data-add-to-cart="true" title="Añadir al carrito" aria-label="Añadir al carrito">
+                                            <i class="fas fa-cart-plus text-xs pointer-events-none"></i>
                                         </button>
                                         <a href="/producto/${product.id}" class="inline-flex items-center justify-center bg-gray-900 hover:bg-primary-600 text-white text-xs sm:text-sm font-semibold px-3 py-2 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 active:scale-95">Detalles</a>
                                     </div>

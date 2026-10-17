@@ -140,13 +140,36 @@ if (typeof window !== 'undefined') {
       addToCart(
         event.detail.product,
         event.detail.quantity || 1,
-        event.detail.autoOpen ?? false,
+        event.detail.autoOpen ?? true,
         event.detail.showToast ?? true
       );
     }
   });
 
-  // 6. Exposición de API pública en window para depuración o scripts tradicionales
+  // 6. Delegación global de clics para botones estáticos o inyectados por scroll infinito
+  document.addEventListener('click', (event: MouseEvent) => {
+    // Si el evento ya fue procesado por el componente React, no duplicar
+    if ((event as any).__cartHandled) return;
+
+    const target = event.target as HTMLElement | null;
+    if (!target) return;
+
+    const btn = target.closest('[data-add-to-cart="true"], .add-to-cart-dynamic-btn') as HTMLElement | null;
+    if (!btn) return;
+
+    const productId = btn.getAttribute('data-product-id');
+    const allProducts = (window as any).__ALL_PRODUCTS__;
+    if (productId && Array.isArray(allProducts)) {
+      const foundProduct = allProducts.find((p: any) => String(p.id) === String(productId));
+      if (foundProduct) {
+        event.preventDefault();
+        event.stopPropagation();
+        addToCart(foundProduct, 1, true, true);
+      }
+    }
+  });
+
+  // 7. Exposición de API pública en window para depuración o scripts tradicionales
   (window as any).fixstoreCart = {
     addToCart,
     removeFromCart,

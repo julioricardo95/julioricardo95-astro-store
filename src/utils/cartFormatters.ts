@@ -6,12 +6,17 @@
 
 import type { CartItem, CustomerInfo } from '../types/cart';
 import { calculateTotals } from '../stores/cartStore';
+import { CURRENCY_CONFIG } from './constants.js';
+
+// Reexportar para facilitar su uso en componentes
+export { CURRENCY_CONFIG };
 
 /**
- * Formatea un valor numérico o string al formato monetario estándar de la tienda ($XX.XX).
+ * Formatea un valor numérico o string al formato monetario configurado en la tienda
+ * (ej: "C$30.00" o "$30.00" según ACTIVE_CURRENCY).
  * 
  * @param amount Cantidad a formatear
- * @returns Cadena con formato "$0.00"
+ * @returns Cadena con formato "C$0.00" o "$0.00"
  */
 export function formatCurrency(amount: number | string): string {
   let num: number = 0;
@@ -21,7 +26,7 @@ export function formatCurrency(amount: number | string): string {
     const cleaned = String(amount || 0).replace(/[^0-9.-]/g, '');
     num = parseFloat(cleaned) || 0;
   }
-  return `$${num.toFixed(2)}`;
+  return `${CURRENCY_CONFIG.symbol}${num.toFixed(2)}`;
 }
 
 /**
@@ -123,12 +128,12 @@ export function buildFormspreePayload(
   items.forEach((item, index) => {
     const itemPrice = typeof item.PRECIO === 'number' ? item.PRECIO : parseFloat(String(item.PRECIO || 0)) || 0;
     const itemTotal = itemPrice * (item.quantity || 1);
-    tablaTexto += `${index + 1}. ${item.TITULO} | Cant: ${item.quantity} | P.U: $${itemPrice.toFixed(2)} | Subtotal: $${itemTotal.toFixed(2)}\n`;
+    tablaTexto += `${index + 1}. ${item.TITULO} | Cant: ${item.quantity} | P.U: ${formatCurrency(itemPrice)} | Subtotal: ${formatCurrency(itemTotal)}\n`;
   });
 
   tablaTexto += `=================================================================\n`;
   tablaTexto += `TOTAL DE ARTÍCULOS: ${totalItems}\n`;
-  tablaTexto += `TOTAL A PAGAR: $${total.toFixed(2)}\n`;
+  tablaTexto += `TOTAL A PAGAR: ${formatCurrency(total)}\n`;
 
   return {
     _subject: `🛍️ Pedido #${orderId} de ${customer.name || 'Cliente'} - ${storeName}`,
@@ -141,7 +146,7 @@ export function buildFormspreePayload(
     cliente_direccion: customer.address || 'No especificada',
     cliente_notas: customer.notes || 'Ninguna',
     total_articulos: totalItems,
-    total_pagar: `$${total.toFixed(2)}`,
+    total_pagar: formatCurrency(total),
     productos_lista: tablaTexto
   };
 }
